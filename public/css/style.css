@@ -1,0 +1,801 @@
+:root {
+  --pmesp-black: #191818;
+  --pmesp-red: #b52023;
+  --pmesp-dark-red: #a11c1e;
+  --pmesp-blue: #52648c;
+  --pmesp-blue-dark: #2d3957;
+  --pmesp-dark-gray: #232428;
+  --pmesp-gray: #f2f5f8;
+  --pmesp-light-gray: ;
+  --pmesp-bg-gray: #edeff4;
+  --pmesp-white: #fff;
+  --pmesp-border: #f5f5f5;
+  --pmesp-green: #1b3e39;
+
+  /** One Drive */
+  --oned-green: #92c353;
+  --oned-blue: #0459a9;
+  --oned-dark-blue: #1a3697;
+  --oned-bg-gray: #F5F5F5;
+  --oned-bg-gray-hover: #EBEBEB;
+  --oned-bg-black: #242424;
+  --oned-fc-whithe: #EBEBEB;
+  --oned-bg-graydark: #424242;
+  --oned--bg-red: #D65532;
+
+
+  /** COPOM */
+  --yellow-copom: #ECB003;
+  --gray-copom: #3C3B3C;
+  --dark-gray-copom: #282828;
+  --ligh-gray-copom: #F1F3F7;
+  --black-copom: #313132;
+
+
+
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", "Robot", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
+}
+
+body {
+  background-color: #2d2d2d;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none !important;
+  color: currentColor !important;
+}
+
+header {
+  /*background-color: #141414;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;*/
+}
+
+.header__user {}
+
+.header__title {
+  text-align: center;
+}
+
+.header__user img {
+  height: 55px;
+  width: 55px;
+  border-radius: 100%;
+}
+
+a,
+a:active,
+a:visited {
+  text-decoration: none;
+  color: currentColor;
+}
+
+.dropdown-menu {
+  padding: 10px 20px !important;
+  width: 330px;
+}
+
+.dropdown-menu p {
+  margin: 0;
+}
+
+.dropdown-menu p {
+  margin: 0;
+}
+
+.dropdown-menu .link__sair {
+  color: red;
+}
+
+.container__menu {
+  width: 1200px;
+  margin: auto;
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+
+.menu__item {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  height: 200px;
+  margin: 20px 30px 0 30px;
+  text-align: center;
+  font-weight: bold;
+  align-items: baseline;
+  padding: 10px;
+}
+
+.item__ico {
+  width: 100px;
+  height: 100px;
+  /*background-color: var(--pmesp-blue);*/
+  color: #fff;
+  font-size: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  /*box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;*/
+  transition: transform 250ms;
+}
+
+.item__label {
+  font-weight: bold;
+  margin-top: 10px;
+  color: var(--pmesp-dark-gray) !important;
+  margin-bottom: 5px !important;
+}
+
+.item__ico:hover {}
+
+.menu__item:hover .item__ico {
+  background-color: #2d3957;
+  transform: translateY(-5px);
+}
+
+.menu__item>a {
+  position: relative;
+  color: var(--pmesp-black);
+  text-decoration: none;
+  text-align: center;
+}
+
+.menu__item>a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--pmesp-blue);
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.menu__item>a:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.menu__modulo {
+  border-radius: 5px;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modulo__icon {
+  height: 55px;
+}
+
+.menu__modulo:hover {
+  background-color: var(--pmesp-border);
+  font-weight: 500;
+}
+
+.modulo__label {
+  text-align: center;
+  height: 55px;
+}
+
+.titulo__divisao>.titulo__barra {
+  border-bottom: 4px solid var(--pmesp-dark-red);
+  width: 200px;
+}
+
+
+
+.ec__table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.ec__table td,
+.ec__table tr,
+.ec__table th {
+  border: 1px solid #cecfcf;
+  padding: 5px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid var(--pmesp-border);
+}
+
+.ec__table tr:nth-child(even) {
+  /*background-color: #F2F5F8;*/
+}
+
+.ec__table tr:not(:first-child):hover {
+  background-color: var(--pmesp-border);
+}
+
+.td__left {
+  text-align: left !important;
+}
+
+.td__center {
+  text-align: center !important;
+}
+
+.td__right {
+  text-align: right !important;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* Isso faz com que o body ocupe 100% da altura da tela */
+  display: flex;
+  flex-direction: column;
+  /* Isso permite que o footer fique no final */
+}
+
+.body__cpi {
+  background-color: var(--oned-bg-gray);
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "aside main"
+    "footer footer";
+  grid-template-rows: 50px 1fr 60px;
+  /* A altura do rodapé está configurada aqui */
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+  /* Garante que a altura mínima da body__cpi será de 100vh */
+  transition: grid-template-columns 0.3s ease;
+}
+
+.body__cpi.recolhido {
+  grid-template-columns: 80px 1fr; /* Ajusta a largura do main automaticamente */
+}
+
+
+.container__cpi {
+  padding: 10px;
+  margin: 20px 30px;
+}
+
+
+/** Cabeçalho padrão CPI-7 */
+
+.header__cpi {
+  display: grid;
+  grid-template-columns: 40px 70px auto 80px;
+  background-color: #242424;
+  color: var(--pmesp-border);
+  padding: 10px 10px;
+  grid-area: header;
+  background-color: var(--dark-gray-copom);
+}
+
+
+.header__cpi div {
+  display: flex;
+  align-items: center;
+}
+
+.header__app {}
+
+.header__logo {
+  justify-content: center;
+}
+
+
+.header__logo {
+  justify-content: center;
+}
+
+.header__titulo {
+  justify-content: center;
+  font-size: 1.1em;
+}
+
+.header__logout {
+  justify-content: end;
+  gap: 20px;
+  position: relative;
+}
+
+aside {
+  grid-area: aside;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  width: 250px;
+  transition: width 0.3s ease;
+}
+
+/* Quando o menu é recolhido */
+aside.recolhido {
+  width: 80px;
+  /* Novo tamanho do menu recolhido */
+}
+
+.recolhe__menu {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+  transition: transform 0.3s ease;
+  /* Adiciona transição suave para a rotação do botão */
+}
+
+.recolhe__menu svg {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  /* Transição suave para a rotação do ícone */
+}
+
+/* Efeito de rotação do ícone */
+.recolhe__menu.recolhido svg {
+  transform: rotate(0deg);
+  /* Rota para 0 graus quando o menu é recolhido */
+}
+
+.recolhe__menu:not(.recolhido) svg {
+  transform: rotate(180deg);
+  /* Rota para 180 graus quando o menu está expandido */
+}
+
+
+main {
+  grid-area: main;
+}
+
+
+
+footer {
+  background-color: var(--oned-bg-gray-hover);
+  color: gray;
+  text-align: center;
+  padding: 10px;
+  grid-area: footer;
+}
+
+
+.menu__lateral {
+  list-style-type: none;
+  padding-left: 0;
+  padding: 5px;
+}
+
+.menu__lateral>a>li {
+  border-radius: 10px;
+  padding: 10px 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #242424;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  justify-content: flex-start;
+  position: relative;
+}
+
+/* Quando o menu está recolhido, os itens do menu ficam invisíveis */
+aside.recolhido .menu__lateral>a>li>span {
+  opacity: 0;
+}
+
+
+/* Quando o menu é recolhido, o texto é escondido */
+aside.recolhido .menu__lateral>a>li span {
+  display: none; /* Esconde o texto */
+}
+
+
+
+.barra__item__vertical {
+  width: 6px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.menu__lateral>a>li:hover {
+  background-color: var(--oned-bg-gray-hover);
+  padding: 10px 5px;
+  color: var(--oned-blue);
+}
+
+
+.menu__lateral>a>li:hover .barra__item__vertical {
+  background-color: var(--oned-blue);
+}
+
+.recolhe__menu {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+}
+
+
+.recolhe__menu svg {
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+
+.label__menu {
+  background-color: var(--pmesp-black);
+  color: white;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  position: absolute;
+  top: 100%; /* Exibe a label abaixo do ícone */
+  /*left: 50%;
+  transform: translateX(-50%);*/ /* Centraliza a label */
+  top: 50%;
+  transform: translateY(-50%);
+  left: 90%;
+  visibility: hidden; /* Inicialmente invisível */
+  opacity: 0; /* Inicialmente invisível */
+  transition: visibility 0s, opacity 0.3s ease; /* Transição suave para visibilidade e opacidade */
+  z-index: 1;
+}
+
+.menu__lateral>a>li>svg:hover .label__menu {
+  visibility: visible;
+  opacity: 1; /* Torna a label visível com uma transição suave */
+}
+
+/* Aumenta o ícone SVG quando o menu é recolhido */
+aside.recolhido .menu__lateral>a>li svg {
+  /*width: 28px;
+  height: 28px;*/
+}
+
+/* Quando o menu é recolhido, a label continua oculta até o hover */
+aside.recolhido .menu__lateral>a>li:hover .label__menu {
+  visibility: visible;
+  opacity: 1; /* Torna a label visível somente durante o hover */
+}
+
+
+.titulo__secao {
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.titulo__secao p {
+ margin: 0;
+}
+
+.barra__titulo_secao {
+  border: 2px solid var(--pmesp-dark-red);
+  width: 250px;
+}
+
+
+
+.search-form {
+  position: absolute;
+  top: 35px; /* Distância do botão */
+  right: 10px;
+  display: none; /* Escondido por padrão */
+  z-index: 1; /* Certifique-se de que o formulário fique acima do botão */
+  background: white; /* Adiciona um fundo branco para o formulário */
+  padding: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra para dar destaque */
+  width: 240px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+
+.search-form #inputSearch {
+  width: 140px;
+}
+
+
+.float__busca_pm{
+  position: fixed;
+  top: -40%;
+  right: 10px;
+  width: 240px;
+  background-color: var(--pmesp-border);
+  border-radius: 7px;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 10px;
+  color: var(--pmesp-dark-gray);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: top 0.3s ease-in-out; 
+  z-index: 1;
+}
+
+
+.float__busca_pm .form-control{
+  width: 130px ;
+}
+
+
+.float__busca_pm button{
+  margin-left: 10px;
+  width: 50px ;
+}
+
+
+/** Menu aplicações */
+.float__menu_aplicacoes {
+  width: 500px;
+  height: 500px;
+  border-radius: 8px;
+  border: 1px solid gray;
+  position: fixed;
+  top: 60px;
+  left: -100%;
+  background-color: var(--pmesp-blue);
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.589);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  color: var(--pmesp-dark-gray);
+  transition: left 0.3s ease-in-out; /* Transição suave para a posição */
+}
+
+.float__menu_aplicacoes.show {
+  left: 10px; 
+}
+
+#btn-app-cpi {
+  cursor: pointer;
+}
+
+#btn-fechar-app {
+  cursor: pointer;
+}
+
+
+.float__menu_aplicacoes > p {
+  padding: 10px;
+  margin: 0;
+  font-weight: 600;
+}
+
+
+.float__menu_aplicacoes .container__menu_float {
+  display: flex;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.float__menu_aplicacoes .item__menu_float {
+  display: flex;
+  flex-direction: column;
+  height: 95px;
+  width: 95px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+}
+
+
+.float__menu_aplicacoes .item__menu_float:hover {
+  background-color: var(--oned-bg-gray);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+
+.float__menu_aplicacoes .icon__menu_float {
+  height: 60px;
+}
+
+
+/** Caixa mensagem */
+
+/** Efeito de aparição (fade-in) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/** Efeito de desaparecimento (fade-out) */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
+
+/** Aplica fade-in na mensagem */
+.caixa__mensagem {
+  background-color: var(--oned-bg-black);
+  color: var(--oned-fc-whithe);
+  width: 570px;
+  min-height: 80px;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  border-radius: 5px;
+  align-items: center;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+/** Aplica fade-out quando a classe "fade-out" é adicionada */
+.caixa__mensagem.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+
+.caixa__mensagem .caixa_mensagem__icon,
+.caixa__mensagem .caixa_mensagem__fechar {
+  display: flex;
+  justify-content: center;
+}
+
+.caixa__mensagem .caixa_mensagem__texto {
+  padding-left: 8px;
+}
+
+
+.caixa__mensagem .btn {
+  color: var(--oned-bg-gray);
+  padding: 4px;
+}
+
+.caixa__mensagem .btn:hover {
+  background-color: var(--oned-bg-graydark);
+}
+
+
+.area__busca {
+  display: flex;
+  gap: 5px;
+}
+
+.area__busca input {
+  width: 150px;
+}
+
+.td__form {
+  width: 250px;
+  display: flex;
+  flex-direction: row;
+}
+
+.td__form  button {
+  padding: 3px;
+  margin-left: 5px;
+}
+
+
+.data_ias {
+  width: 140px;
+  border: 0 none;
+  outline: 0; 
+}
+
+
+.data_ias:focus, .data_ias:focus, .data_ias:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0; 
+}
+
+.container__legenda_alt {
+  position: relative;
+}
+
+
+.legenda__alt {
+  display: none;
+  position: absolute;
+  background-color: black;
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  padding: 2px 4px;
+  z-index: 10;
+
+}
+
+.container__legenda_alt:hover .legenda__alt {
+  display: block;
+  bottom: 90%; /* Exibe a legenda acima do botão */
+  left: 50%; /* Alinha ao centro do botão */
+  transform: translateX(-50%); /* Ajusta para garantir que o texto fique centralizado */
+}
+
+.container__legenda_alt .btn {
+  position: relative;
+}
+
+
+.btn__cancelar, .btn__salvar {
+  display: none;
+}
+
+
+.lista__link li {
+  margin-top: 15px;
+  list-style-type: square;
+}
+
+.lista__link li:hover {
+  text-decoration-line: underline;
+}
+
+
+/** mouse hover imagem perfil */
+.img_efetivo_lista {
+  width: 35px;
+  border-radius: 100%;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+.img_efetivo_lista::after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.img_efetivo_lista:hover {
+ /* border-radius: 2px;
+  z-index: 999;
+  transform: scale(4.4); */
+}
+
+.table tr {
+  vertical-align: middle;
+}
+
+
+/** bootstrap */
+.form-label {
+  margin-bottom: 0.1rem !important;
+  margin-top: 0.6rem !important;
+}
+
+
+a.btn {
+  color: #fff !important;
+}

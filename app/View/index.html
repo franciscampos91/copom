@@ -1,0 +1,171 @@
+<style>
+
+.container__menu {
+    gap: 50px;
+}
+
+.card__modulo {
+    background-color: #F5F5F5;
+    width: 190px;
+    height: 370px;
+    padding: 5px;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    display: grid;
+    grid-template-rows: 70px 40px 1fr;
+    cursor: pointer;
+}
+
+.card__modulo:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.card__icon {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: 10px;
+}
+
+.card__label {
+    font-weight: 700;
+    padding-top: 5px;
+    text-align: center;
+}
+
+
+.modulo__desc {
+    padding: 0 10px;
+    text-align: center;
+}
+
+
+</style>
+
+<div class="container mt-5">
+
+    <div class="container__menu ">
+
+        <a class="card__modulo">
+            <div class="card__icon" style="background-image: url('public/assets/icon/config-site.png');">
+                <!--<img src="public/assets/icon/config-site.png" alt=""> -->
+            </div>
+            <div class="card__label">
+                Manutenção Site
+            </div>
+
+            <div class="modulo__desc">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+            </div>
+
+        </a>
+
+        <a class="card__modulo" href="?pagina=comunicacaosocial">
+            <div class="card__icon" style="background-image: url('public/assets/icon/comunicacao-social.png');">
+                <!-- <img src="public/assets/icon/comunicacao-social.png" width="100px" alt=""> -->
+            </div>
+            <div class="card__label">
+                Comunicação Social
+            </div>
+
+            <div class="modulo__desc">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+            </div>
+        </a>
+
+
+        <a class="card__modulo" href="?pagina=comunicacaosocial">
+            <div class="card__icon" style="background-image: url('public/assets/icon/area-restrita.png');">
+                <!-- <img src="public/assets/icon/area-restrita.png" width="55px" alt=""> -->
+            </div>
+            <div class="card__label">
+                Area Restrita
+            </div>
+
+            <div class="modulo__desc">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+            </div>
+        </a>
+                
+        <!--<div class="menu__item">
+            <a href="">
+                <div class="item__ico">
+                    
+                    <img src="public/assets/icon/config-site.png" alt="">
+
+                </div>
+                <div class="item__label">
+                    <span>Manutenção Site</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="menu__item">
+            <a href="">
+                <div class="item__ico">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="42" fill="currentColor"><path d="M2.75 1.5a.25.25 0 0 0-.25.25v11.5c0 .138.112.25.25.25h3.5a.75.75 0 0 1 0 1.5h-3.5A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8a1.75 1.75 0 0 1 1.508.862.75.75 0 1 1-1.289.768.25.25 0 0 0-.219-.13h-8Z"></path><path d="M8 7a3.999 3.999 0 0 1 7.605-1.733 4 4 0 0 1-1.115 4.863l.995 4.973a.75.75 0 0 1-.991.852l-2.409-.876a.248.248 0 0 0-.17 0l-2.409.876a.75.75 0 0 1-.991-.852l.994-4.973A3.994 3.994 0 0 1 8 7Zm4-2.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 6.5c-.373 0-.745-.051-1.104-.154l-.649 3.243 1.155-.42c.386-.14.81-.14 1.196 0l1.155.42-.649-3.243A4.004 4.004 0 0 1 12 11Z"></path></svg>
+                </div>
+                <div class="item__label">
+                    <span>Novo</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="menu__item">
+            <a href="">
+                <div class="item__ico">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="62   " viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c3.859 0 7-3.141 7-7s-3.141-7-7-7c-3.86 0-7 3.141-7 7s3.14 7 7 7zm0-12c2.757 0 5 2.243 5 5s-2.243 5-5 5-5-2.243-5-5 2.243-5 5-5zm-1-8H7v5.518a8.957 8.957 0 0 1 4-1.459V2zm6 0h-4v4.059a8.957 8.957 0 0 1 4 1.459V2z"></path><path d="m10.019 15.811-.468 2.726L12 17.25l2.449 1.287-.468-2.726 1.982-1.932-2.738-.398L12 11l-1.225 2.481-2.738.398z"></path></svg>
+                </div>
+                <div class="item__label">
+                    <span>Novo</span>
+                </div>
+            </a>
+        </div>-->
+
+
+
+
+        <div class="card__modulo" data-bs-toggle="modal" data-bs-target="#modalBuscaPM">
+            <div class="card__icon">
+                <img src="public/assets/icon/busca-pm.png"  alt="">
+            </div>
+            <div class="card__label">
+                Busca PM
+            </div>
+
+            <div class="modulo__desc">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+            </div>
+
+        </div>
+
+        <!-- Modal Busca PM -->
+        <div class="modal fade" id="modalBuscaPM" tabindex="-1" aria-labelledby="modalBuscaPMLabel" aria-hidden="true">
+            <form class="modal-dialog" action="?pagina=Policial&metodo=pesquisarPM" method="post">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalBuscaPMLabel">Pesquisar policial</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="re" class="form-label">Digite o RE ou CPF</label>
+                            <input type="text" class="form-control" name="re" placeholder="" maxlength="11" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+                </div>
+            </form>
+        </div>
+
+
+        
+    </div>
+
+</div>
+

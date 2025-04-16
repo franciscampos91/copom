@@ -1,0 +1,245 @@
+{
+    "questoes": [
+      {
+        "id": 1,
+        "disciplina": "Educação Física",
+        "pergunta": "O que é considerado um estado de saúde?",
+        "alternativas": {
+          "A": "Apenas a ausência de doença",
+          "B": "Bem-estar físico, mental e social completo",
+          "C": "Capacidade de realizar exercícios intensos",
+          "D": "Manutenção de um peso corporal ideal"
+        },
+        "correta": "B"
+      },
+      {
+        "id": 2,
+        "disciplina": "Educação Física",
+        "pergunta": "Quais alimentos devem ser priorizados para uma alimentação saudável?",
+        "alternativas": {
+          "A": "Alimentos in natura e caseiros",
+          "B": "Alimentos ultraprocessados",
+          "C": "Alimentos industrializados prontos para consumo",
+          "D": "Fast food"
+        },
+        "correta": "A"
+      },
+      {
+        "id": 3,
+        "disciplina": "História da PM",
+        "pergunta": "Qual o nome da primeira Instituição militar de natureza policial do Brasil criada em 1809 e que serviu de modelo para as demais do país?",
+        "alternativas": {
+          "A": "Guarda Nacional",
+          "B": "Unidades de Ordenanças",
+          "C": "Guarda Real de Polícia",
+          "D": "Regimento de Cavalaria de Guardas"
+        },
+        "correta": "C"
+      },
+      {
+        "id": 6,
+        "disciplina": "Inteligência Policial",
+        "pergunta": "Em qual das seguintes aplicações podemos verificar a localização das viaturas em tempo real?",
+        "alternativas": {
+          "A": "INFOCRIM 4.0",
+          "B": "COPOM Online",
+          "C": "FOTOCRIM",
+          "D": "SINESP"
+        },
+        "correta": "B"
+      },
+      {
+        "id": 7,
+        "disciplina": "Direito Penal",
+        "pergunta": "Quais das opções abaixo não é uma exceção para a lavratura do TC/PM?",
+        "alternativas": {
+          "A": "Quando o autor da infração penal de menor potencial ofensivo for desconhecido",
+          "B": "Quando se tratar de infrações penais cuja pena máxima excede a 2 (dois) anos",
+          "C": "Quando a infração envolver criança e ou adolescente, sujeitos à Lei 8.069/90 - ECA",
+          "D": "Nas ocorrências de ameaça à integridade física"
+        },
+        "correta": "D"
+      },
+      {
+        "id": 8,
+        "disciplina": "Direito Penal",
+        "pergunta": "No aplicativo RO-e na tela de qualificação de envolvidos, para finalizar o cadastro de uma pessoa envolvida, quais dos itens abaixo não é um item obrigatório?",
+        "alternativas": {
+          "A": "Sexo",
+          "B": "Grau de escolaridade",
+          "C": "Data de nascimento",
+          "D": "Profissão"
+        },
+        "correta": "B"
+      },
+      {
+        "id": 9,
+        "disciplina": "Direito de Trânsito",
+        "pergunta": "A quem compete a fiscalização do artigo 165-D do CTB ‘deixar de realizar o exame toxicológico previsto no § 2º do art. 148-A deste Código, após 30 (trinta) dias do vencimento do prazo estabelecido’?",
+        "alternativas": {
+          "A": "Órgão ou Entidade Executiva de Trânsito, de registro da CNH do infrator",
+          "B": "Policias Militares",
+          "C": "Polícia Rodoviária Federal",
+          "D": "Todos os anteriores"
+        },
+        "correta": "A"
+      },
+      {
+        "id": 10,
+        "disciplina": "Direito de Trânsito",
+        "pergunta": "De acordo com o Art. 162 VII do CTB, qual é a medida administrativa para os condutores que estiverem sem os devidos cursos?",
+        "alternativas": {
+          "A": "remoção do veículo",
+          "B": "apreensão do veículo",
+          "C": "retenção do veículo até a apresentação de condutor habilitado",
+          "D": "nenhuma das alternativas"
+        },
+        "correta": "C"
+      },
+      {
+        "id": 12,
+        "disciplina": "Gestão Contemporânea",
+        "pergunta": "É atemporal e levanta questionamentos, permitindo um exercício de reflexão sobre a gestão e a adequação de suas práticas. Estamos falando do:",
+        "alternativas": {
+          "A": "Diagrama de Poder e Influência",
+          "B": "SWOT",
+          "C": "MEG",
+          "D": "ISO 90"
+        },
+        "correta": "C"
+      },
+      {
+        "id": 13,
+        "disciplina": "Gestão de Finanças Públicas",
+        "pergunta": "É hipótese de inexigibilidade de licitação a:",
+        "alternativas": {
+          "A": "contratação de prestação de serviços com organizações sociais",
+          "B": "contratação de associação sem fins lucrativos de pessoas com deficiência física",
+          "C": "inscrição de servidores públicos em seminário sobre contratos que tenha por objetivo a capacitação",
+          "D": "contratação de remanescente de obra, em consequência de rescisão contratual"
+        },
+        "correta": "C"
+      },
+      {
+        "id": 15,
+        "disciplina": "Gestão Patrimonial",
+        "pergunta": "Quais são os motivos para a passagem de carga?",
+        "alternativas": {
+          "A": "Afastamento superior a 30 dias e substituição definitiva",
+          "B": "Afastamento inferior a 30 dias e substituição definitiva",
+          "C": "Afastamento superior a 30 dias e substituição temporária",
+          "D": "Afastamento inferior a 30 dias e substituição temporária"
+        },
+        "correta": "A"
+      },
+      {
+        "id": 17,
+        "disciplina": "Gestão Sismen",
+        "pergunta": "Quais das práticas abaixo não contribuem para uma vida financeira saudável?",
+        "alternativas": {
+          "A": "Compreender sua realidade financeira é um passo crucial para a construção de um futuro financeiro sólido",
+          "B": "Registre cada gasto, categorizando-os em essenciais e não essenciais",
+          "C": "Utilize uma planilha de ganhos e gastos para gerenciar suas finanças de maneira eficaz",
+          "D": "Tenha vários cartões de crédito com limites acima dos seus ganhos mensais"
+        },
+        "correta": "D"
+      },
+      {
+        "id": 19,
+        "disciplina": "Defesa Pessoal",
+        "pergunta": "De acordo com o M-3-PM, o uso do contato direto da AIN pode ser justificado em qual das seguintes situações?",
+        "alternativas": {
+          "A": "Para punir um agressor que desacatou o policial",
+          "B": "Para controlar um indivíduo que resiste à prisão, sem oferecer risco à vida do policial, objetivando a obtenção de uma vantagem tática para a conclusão do algemamento",
+          "C": "Para qualquer tipo de abordagem policial, independentemente do nível de resistência",
+          "D": "Para obter confissão de um infrator"
+        },
+        "correta": "B"
+      },
+      {
+        "id": 20,
+        "disciplina": "Defesa Pessoal",
+        "pergunta": "Segundo o M-3-PM, o contato direto da AIN deve ser utilizado com qual finalidade?",
+        "alternativas": {
+          "A": "Punir o agressor de forma mais eficiente",
+          "B": "Substituir o uso de armas de fogo em todos os cenários",
+          "C": "Conter o agressor que está violento contra si ou contra terceiros, quando outras medidas se mostrarem ineficazes",
+          "D": "Causar dor intensa para que o agressor cesse a agressão"
+        },
+        "correta": "C"
+      },
+      {
+        "id": 21,
+        "disciplina": "Procedimento Operacional Padrão",
+        "pergunta": "Em qual situação um alvo agressor pode ser considerado não atirável?",
+        "alternativas": {
+          "A": "Quando está armado e demonstra intenção de atirar",
+          "B": "Quando está desarmado e representa uma ameaça física",
+          "C": "Quando está armado, mas a situação não justifica o uso da força letal",
+          "D": "Quando está armado e está em local público"
+        },
+        "correta": "C"
+      },
+      {
+        "id": 22,
+        "disciplina": "Procedimento Operacional Padrão",
+        "pergunta": "Qual a importância de conhecer as características do ambiente em que a ocorrência está inserida?",
+        "alternativas": {
+          "A": "Para escolher a melhor arma para a situação",
+          "B": "Para solicitar apoio de outras viaturas",
+          "C": "Para tomar decisões mais assertivas e seguras",
+          "D": "Para identificar possíveis testemunhas"
+        },
+        "correta": "C"
+      },
+      {
+        "id": 23,
+        "disciplina": "Tecnologia da Informação e Comunicações",
+        "pergunta": "Assinale a alternativa incorreta quanto ao preconizado no POP 5.16.01 das situações em que o policial militar deve iniciar a gravação intencional:",
+        "alternativas": {
+          "A": "Após o despacho de uma ocorrência",
+          "B": "Após o policial ser acionado diretamente por populares",
+          "C": "Ocorrências que envolvam exposição da intimidade, crimes de abusos contra crianças e adolescentes",
+          "D": "Ao se deparar com um flagrante"
+        },
+        "correta": "C"
+      },
+      {
+        "id": 25,
+        "disciplina": "Mecânica",
+        "pergunta": "Como deve ser feita a verificação do nível do líquido/fluído de arrefecimento?",
+        "alternativas": {
+          "A": "Com o motor ligado, após 15min, pois após esse tempo o nível do fluido vai baixar",
+          "B": "Com o motor ligado, fazer a inspeção visual do reservatório e se o nível do fluido estiver baixo, abrir a tampa do reservatório e completar com água",
+          "C": "Com o motor desligado e de preferência frio, fazer a inspeção visual no reservatório onde o nível do fluido deve estar entre o mínimo e máximo, se estiver abaixo do mínimo, completar com fluido especificado pelo fabricante",
+          "D": "A verificação do nível do líquido de arrefecimento deve ser feita apenas uma vez por semana"
+        },
+        "correta": "C"
+      },
+      {
+        "id": 26,
+        "disciplina": "Mecânica",
+        "pergunta": "Ao realizar o abastecimento de combustível em uma viatura flex, qual tipo de combustível utilizar, etanol ou gasolina?",
+        "alternativas": {
+          "A": "Tanto faz, já que a viatura é flex",
+          "B": "Utilizar o combustível que estiver mais barato, visando economia à PMESP",
+          "C": "Utilizar o etanol, pois é um biocombustível, uma fonte de energia limpa e renovável",
+          "D": "Se após fazer a conta do preço (gasolina) X 0,7 o resultado for menor que o preço do litro do etanol na 'bomba', deve-se utilizar a gasolina, caso contrário o etanol"
+        },
+        "correta": "D"
+      },
+      {
+        "id": 27,
+        "disciplina": "Legislação PM",
+        "pergunta": "Quais são as situações em que o Sistema de Comando e Controle será utilizado, de acordo com o texto? Indique a alternativa correta:",
+        "alternativas": {
+          "A": "Somente em situações de emergência com apoio de outras instituições",
+          "B": "Apenas em missões interinstitucionais que envolvem a Força Nacional",
+          "C": "Exclusivamente em ações de policiamento preventivo",
+          "D": "Em todas as operações nas quais uma US atue isoladamente ou com apoio de outras US e OPM vizinhas"
+        },
+        "correta": "D"
+      }
+    ]
+  }
+  

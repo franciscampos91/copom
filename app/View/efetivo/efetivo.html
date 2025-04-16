@@ -1,0 +1,290 @@
+{% include 'caixaMensagem.html' %}
+
+<section class="container__cpi">
+
+    <div class="titulo__secao">
+        <p>
+            Efetivo COPOM
+        </p>
+        <div class="barra__titulo_secao"></div>
+    </div>
+
+   
+        <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#modalConsulta">
+            Incluir policial
+        </button>
+
+        <table class="table table-striped">
+            <tr>
+                <th></th>
+                <th>Posto/Grad.</th>
+                <th>RE</th>
+                <th>Nome</th>
+                <th>Guerra</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Equipe</th>
+                <th>Função</th>
+                <th></th>
+
+            </tr>
+
+            {% for policial in efetivo %}
+                <tr>
+                    <td>
+                        <img src="public/assets/foto-efetivo/{{ policial.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="img_efetivo_lista" alt="{{guerra}}" >
+                    </td>
+                    <td>{{ policial.pt_gr }}</td>
+                    <td>{{ policial.re }}-{{ policial.dg_re }}</td>
+                    <td>{{ policial.nome }}</td>
+                    <td>{{ policial.guerra }}</td>
+                    <td>{{ policial.email }}</td>
+                    <td>{{ policial.telefone }}</td>
+                    <td>{{ policial.equipe }}</td>
+                    <td>{{ policial.funcao_copom }}</td>
+
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-success">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" width="18px"><path d="M400 255.4l0-15.4 0-32c0-8.8-7.2-16-16-16l-32 0-16 0-46.5 0c-50.9 0-93.9 33.5-108.3 79.6c-3.3-9.4-5.2-19.8-5.2-31.6c0-61.9 50.1-112 112-112l48 0 16 0 32 0c8.8 0 16-7.2 16-16l0-32 0-15.4L506 160 400 255.4zM336 240l16 0 0 48c0 17.7 14.3 32 32 32l3.7 0c7.9 0 15.5-2.9 21.4-8.2l139-125.1c7.6-6.8 11.9-16.5 11.9-26.7s-4.3-19.9-11.9-26.7L409.9 8.9C403.5 3.2 395.3 0 386.7 0C367.5 0 352 15.5 352 34.7L352 80l-16 0-32 0-16 0c-88.4 0-160 71.6-160 160c0 60.4 34.6 99.1 63.9 120.9c5.9 4.4 11.5 8.1 16.7 11.2c4.4 2.7 8.5 4.9 11.9 6.6c3.4 1.7 6.2 3 8.2 3.9c2.2 1 4.6 1.4 7.1 1.4l2.5 0c9.8 0 17.8-8 17.8-17.8c0-7.8-5.3-14.7-11.6-19.5c0 0 0 0 0 0c-.4-.3-.7-.5-1.1-.8c-1.7-1.1-3.4-2.5-5-4.1c-.8-.8-1.7-1.6-2.5-2.6s-1.6-1.9-2.4-2.9c-1.8-2.5-3.5-5.3-5-8.5c-2.6-6-4.3-13.3-4.3-22.4c0-36.1 29.3-65.5 65.5-65.5l14.5 0 32 0zM72 32C32.2 32 0 64.2 0 104L0 440c0 39.8 32.2 72 72 72l336 0c39.8 0 72-32.2 72-72l0-64c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 64c0 13.3-10.7 24-24 24L72 464c-13.3 0-24-10.7-24-24l0-336c0-13.3 10.7-24 24-24l64 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L72 32z"/></svg>
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" width="18px"><path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z"/></svg>
+                            </button>
+                            <button type="button" class="btn btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512" fill="currentColor" width="18px"><path d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M80 112h352"/><path d="M192 112V72h0a23.93 23.93 0 0124-24h80a23.93 23.93 0 0124 24h0v40M256 176v224M184 176l8 224M328 176l-8 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                            </button>
+                          </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+
+   
+    <!-- Modal -->
+    <div class="modal fade" id="modalConsulta" tabindex="-1" aria-labelledby="modalConsultaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalConsultaLabel">Cadastrar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">                      
+
+                    <form class="area__busca" action="?pagina=efetivo&metodo=buscaPMInsercao" method="post">
+                        <input type="text" class="form-control number" name="busca-re" maxlength="6" placeholder="RE" required>
+                        <button type="submit" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+                        </button>
+                    </form>
+                   
+                </div>
+
+                {% if retornoConsulta %}
+                <form action="?pagina=efetivo&metodo=incluirEfetivo" method="post">
+
+                    <div class="row" style="margin: 0; padding: 15px;">
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <td rowspan="5" class="td__left" style="width: 80px;"><img src="{{foto}}" alt="">
+                                </td>
+                                <td class="td__left">Posto/Graduação</td>
+                                <td class="td__left"><strong>{{ptgr}}</strong></td>
+                                <td class="td__left">RE</td>
+                                <td class="td__left"><strong>{{re}}-{{dgre}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="td__left">Nome</td>
+                                <td class="td__left"><strong>{{nome}}</strong></td>
+                                <td class="td__left">Guerra</td>
+                                <td class="td__left"><strong>{{guerra}}</td>
+                            </tr>
+                            <tr>
+                                <td class="td__left">Unidade</td>
+                                <td class="td__left"><strong>{{opm}}</strong></td>
+                                <td class="td__left">Código OPM</td>
+                                <td class="td__left"><strong>{{codopm}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="td__left">Email</td>
+                                <td class="td__left"><strong>{{email}}</strong></td>
+                                <td class="td__left">Função SIRH</td>
+                                <td class="td__left"><strong>{{funcao}}</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                   
+
+
+                    <div class="modal-body">
+
+                        <div class="row mt-3" hidden>
+
+                            <div class="col-md-6">
+                                <label for="form-label">Posto/Grad.</label>
+                                <input type="text" class="form-control number" value="{{ptgr}}" name="ptgr" id="ptgr"  readonly>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="form-label">RE</label>
+                                <input type="text" class="form-control number" value="{{re}}" name="re" id="re" maxlength="6" readonly>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="form-label">Dig.</label>
+                                <input type="text" class="form-control number" value="{{dgre}}" name="dgre" id="dgre" readonly>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="form-label">NOME</label>
+                                <input type="text" class="form-control number" value="{{nome}}" name="nome" id="nome" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="form-label">Guerra</label>
+                                <input type="text" class="form-control number" value="{{guerra}}" name="guerra" id="guerra" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="form-label">E-mail</label>
+                                <input type="text" class="form-control number" value="{{email}}" name="email" id="email" readonly>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <label for="form-label">OPM</label>
+                                <input type="text" class="form-control number" value="{{opm}}" name="opm" id="opm"  readonly>
+                            </div>
+
+                            
+                            <div class="col-md-4">
+                                <label for="form-label">CODOPM</label>
+                                <input type="text" class="form-control number" value="{{codopm}}" name="codopm" id="codopm"  readonly>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="form-label">CPF</label>
+                                <input type="text" class="form-control number cpf" name="cpf" id="cpf" maxlength="14" value="{{cpf}}">
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="form-label">Sexo</label>
+                                <input type="text" class="form-control number" name="sexo" id="sexo" maxlength="1" value="{{sexo}}">
+                            </div>
+
+                            <input type="text" class="form-control" value="{{foto}}" name="foto">
+                          
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <label for="form-label">Telefone</label>
+                                <input type="text" class="form-control number telefone" name="telefone" id="telefone" maxlength="15" value="">
+                            </div>
+                        
+                        
+                            <div class="col-md-3">
+                                <label for="form-label">RG</label>
+                                <input type="text" class="form-control number" name="rg" id="rg" maxlength="11" value="{{rg}}">
+                            </div>
+
+                                                   
+                       
+                            <div class="col-md-8 mt-3">
+                                <label for="form-label">Endereço</label>
+                                <input type="text" class="form-control" name="endereco" id="endereco" maxlength="100" value="">
+                            </div>
+                        
+                            <div class="col-md-4 mt-3">
+                                <label for="form-label">Município</label>
+                                <input type="text" class="form-control" name="municipio" id="municipio" maxlength="40" value="">
+                            </div>
+                        
+                            <div class="col-md-2 mt-3">
+                                <label for="form-label">Equipe</label>
+                                <select class="form-select" name="equipe" id="equipe">
+                                    <option value="">Selecione...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="Adm">Adm</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3 mt-3">
+                                <label for="form-label">Função</label>
+                                <select name="funcao" id="funcao" class="form-select">
+                                    <option value="">Selecione...</option>
+                                    <option value="Atendente 190">Atendente 190</option>
+                                    <option value="Despachador">Despachador</option>
+                                    <option value="Supervisor">Supervisor</option>
+                                    <option value="Adm">Adm</option>
+                                    <option value="Chefe">Chefe</option>
+                                </select>
+                            </div>
+                        
+                            <div class="col-md-3 mt-3">
+                                <label for="form-label">Chegada COPOM</label>
+                                <input type="date" class="form-control" name="chegada_copom" id="chegada_copom" value="">
+                            </div>
+                        
+                            <div class="col-md-3 mt-3">
+                                <label for="form-label">Saída COPOM</label>
+                                <input type="date" class="form-control" name="saida_copom" id="saida_copom" value="">
+                            </div>
+                        
+                            <div class="col-md-4 mt-3">
+                                <label for="form-label">Situação Funcional</label>
+                                <select class="form-select" name="situacao" id="situcao">
+                                    <option value="Ativo">Ativo</option>
+                                    <option value="Inativo">Agregado</option>
+                                    <option value="Inativo">Inativo</option>
+                                </select>
+                            </div>
+                        
+                        </div>
+                        
+                        
+                        
+                        
+                    </div>
+                    
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </form>
+                {% endif %}
+           </div>
+        </div>
+    </div>
+
+
+
+
+</section>
+
+
+{% if retornoConsulta  %}
+
+ <!-- Script para abrir o modal automaticamente -->
+ <script>
+    // Quando o documento estiver pronto, abra o modal
+    window.addEventListener('DOMContentLoaded', (event) => {
+    var myModal = new bootstrap.Modal(document.getElementById('modalConsulta'), {
+        keyboard: false  // Desativa a possibilidade de fechar com a tecla ESC (opcional)
+    });
+    myModal.show();  // Abre o modal automaticamente
+    });
+</script>
+
+{% endif %}

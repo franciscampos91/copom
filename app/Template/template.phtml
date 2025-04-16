@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPI-7 - COPOM</title>
+
+    <link rel="icon" href="public/assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="public/css/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="public/assets/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS dos ícones Bootstrap -->
+    <link rel="stylesheet" href="public/assets/bootstrap/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
+
+    <!-- Google Fonts -- Poppins e Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- IonIcon 
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>-->
+
+    
+
+</head>
+<body class="body__cpi">
+
+    <header class="header__cpi">
+
+        <div class="header__app">
+            <svg id="btn-app-cpi" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M240-160q-33 0-56.5-23.5T160-240q0-33 23.5-56.5T240-320q33 0 56.5 23.5T320-240q0 33-23.5 56.5T240-160Zm240 0q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm240 0q-33 0-56.5-23.5T640-240q0-33 23.5-56.5T720-320q33 0 56.5 23.5T800-240q0 33-23.5 56.5T720-160ZM240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400ZM240-640q-33 0-56.5-23.5T160-720q0-33 23.5-56.5T240-800q33 0 56.5 23.5T320-720q0 33-23.5 56.5T240-640Zm240 0q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Zm240 0q-33 0-56.5-23.5T640-720q0-33 23.5-56.5T720-800q33 0 56.5 23.5T800-720q0 33-23.5 56.5T720-640Z"/></svg>
+        </div>
+        
+        <div class="header__logo">
+            <img src="public/assets/images/copom.png" height="40px" alt="">
+        </div>
+
+
+        <div class="header__titulo">
+            <span>COPOM</span>
+        </div>
+
+
+        <div class="header__logout">
+
+            <div class="consulta__pm">
+                <button class="btn" id="searchButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                    </svg>
+                </button>
+                
+                <div class="float__busca_pm">
+                    <form action="?pagina=policial&metodo=pesquisarPM" method="post">
+                        <span>Buscar PM</span>
+                        <div class="row">
+                            <input type="text" class="form-control" placeholder="RE" name="re" id="re">
+                            <button class="btn btn-primary">Ok</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <a href="">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m234-480-12-60q-12-5-22.5-10.5T178-564l-58 18-40-68 46-40q-2-13-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T222-820l12-60h80l12 60q12 5 22.5 10.5T370-796l58-18 40 68-46 40q2 13 2 26t-2 26l46 40-40 68-58-18q-11 8-21.5 13.5T326-540l-12 60h-80Zm40-120q33 0 56.5-23.5T354-680q0-33-23.5-56.5T274-760q-33 0-56.5 23.5T194-680q0 33 23.5 56.5T274-600ZM592-40l-18-84q-17-6-31.5-14.5T514-158l-80 26-56-96 64-56q-2-18-2-36t2-36l-64-56 56-96 80 26q14-11 28.5-19.5T574-516l18-84h112l18 84q17 6 31.5 14.5T782-482l80-26 56 96-64 56q2 18 2 36t-2 36l64 56-56 96-80-26q-14 11-28.5 19.5T722-124l-18 84H592Zm56-160q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z"/></svg>
+            </a>
+
+            
+            <a href="">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
+            </a>
+
+            <!-- <img src="{{fotoBase}}" width="35px" height="35px" style="border-radius: 100%;" alt=""> -->
+
+
+
+        </div>
+
+
+    </header>
+
+   
+
+
+    <aside>
+
+        <div class="recolhe__menu" id="btn-recolhe-menu">
+            <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="24px" fill="currentcolor "><path d="M300-640v320l160-160-160-160ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm440-80h120v-560H640v560Zm-80 0v-560H200v560h360Zm80 0h120-120Z"/></svg>
+        </div>
+
+        <ul class="menu__lateral">
+            <a href="?pagina=home">
+                <li>
+                    <div class="label__menu">Página inicial</div>
+                    <div class="barra__item__vertical"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor "><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+                    <span>Página inicial</span>
+                </li>
+            </a>
+
+            <a href="?pagina=efetivo">
+                <li>
+                    <div class="label__menu">Efetivo</div>
+                    <div class="barra__item__vertical"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor "><path d="M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Zm-455-80h311q-10-20-55.5-35T480-370q-55 0-100.5 15T325-320ZM160-440q-33 0-56.5-23.5T80-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-440Zm640 0q-33 0-56.5-23.5T720-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-440Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm0-80q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm1 240Zm-1-280Z"/></svg>
+                    <span>Efetivo</span>
+                </li>
+            </a>
+
+            <a href="?pagina=afastamentos">
+                <li>
+                    <div class="label__menu">Afastamentos</div>
+                    <div class="barra__item__vertical"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="m216-160-56-56 384-384H440v80h-80v-160h233q16 0 31 6t26 17l120 119q27 27 66 42t84 16v80q-62 0-112.5-19T718-476l-40-42-88 88 90 90-262 151-40-69 172-99-68-68-266 265Zm-96-280v-80h200v80H120ZM40-560v-80h200v80H40Zm739-80q-33 0-57-23.5T698-720q0-33 24-56.5t57-23.5q33 0 57 23.5t24 56.5q0 33-24 56.5T779-640Zm-659-40v-80h200v80H120Z"/></svg>
+                    <span>Afastamentos</span>
+                </li>
+            </a>
+
+            
+            <a href="?pagina=previsao">
+                <li>
+                    <div class="label__menu">Previsão</div>
+                    <div class="barra__item__vertical"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-42v-80q-125-14-214.5-103.5T122-440H42v-80h80q14-125 103.5-214.5T440-838v-80h80v80q125 14 214.5 103.5T838-520h80v80h-80q-14 125-103.5 214.5T520-122v80h-80Zm40-158q116 0 198-82t82-198q0-116-82-198t-198-82q-116 0-198 82t-82 198q0 116 82 198t198 82Zm0-120q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm0-80q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Zm0-80Z"/></svg>                 
+                    <span>Previsão</span>
+                </li>
+            </a>
+
+            <a href="?pagina=edicao">
+                <li>
+                    <div class="label__menu">Edição</div>                    
+                    <div class="barra__item__vertical"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor "><path d="M560-80v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T903-300L683-80H560Zm300-263-37-37 37 37ZM620-140h38l121-122-18-19-19-18-122 121v38ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v120h-80v-80H520v-200H240v640h240v80H240Zm280-400Zm241 199-19-18 37 37-18-19Z"/></svg>
+                    <span>Edição</span>
+                </li>
+            </a>
+
+
+            <a href="?pagina=dashboard">
+                <li>
+                    <div class="label__menu">Dashboard</div>                    
+                    <div class="barra__item__vertical"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor "><path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg>
+                    <span>Dashboard</span>
+                </li>
+            </a>
+        </ul>
+
+    </aside>
+
+
+    <main class="conteudo">
+            
+        {{area_dinamica}}
+
+    </main>
+
+
+    <footer>
+        Comando de Policiamento do Interior Sete &copy 2025
+    </footer>
+
+
+
+    <!-- Menu de aplicações -->
+    <div class="float__menu_aplicacoes" id="float__menu_aplicacoes">
+
+        <p style="display: flex; align-content: center; justify-content: space-between;">
+            Aplicações CPI-7
+            <img id="btn-fechar-app" src="public/assets/images/fechar.png" width="26px" alt="Fechar">
+        </p>
+        
+        <div class="container__menu_float">
+
+
+            <div class="item__menu_float">
+
+                <div class="icon__menu_float">
+                    <img src="public/assets/images/cpi7.png" width="30px" alt="">
+                </div>
+
+                <div class="label__menu_float">
+                    <span>Home Page</span>
+                </div>
+            
+            </div>
+
+
+            <div class="item__menu_float">
+
+                <div class="icon__menu_float">
+                    <img src="public/assets/images/aula.png" width="50px" alt="">
+                </div>
+
+                <div class="label__menu_float">
+                    <span>Gabinete de Treinamento</span>
+                </div>
+            
+            </div>
+
+
+            <div class="item__menu_float">
+
+            <div class="icon__menu_float">
+                <img src="public/assets/images/pesquisa-pm.png" width="50px" alt="">
+            </div>
+
+            <div class="label__menu_float">
+                <span>Localiza PM</span>
+            </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+ 
+
+
+
+
+
+    <header class="header" hidden>
+        <div class="header__logo">
+            <img src="public/assets/images/cpi7.png" width="50px" alt="">
+        </div>
+
+        <div class="header__title">
+            <a href="?pagina=home">
+                <h5>Comando de Policiamento do Interior Sete</h5>
+                <div style="width: 500px; border-bottom: 3px solid red; margin: 3px"></div>
+                <h3>Gabinete de Treinamento</h3>
+            </a>
+        </div>
+
+
+        <div class="header__user">
+
+            <div class="dropdown">
+                <div class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="img__perfil" src="{{fotoBase}}" alt="{{guerra}}">
+                    <span>{{ptgr}} {{guerra}}</span>
+                </div>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <p><strong>{{ptgr}} {{re}}-{{digre}} {{nome}}</strong></p>
+
+                    <hr>
+
+                    <p>{{codopm}}</p>
+                    <p>{{unidade}}</p>
+
+                    <p>{{funcao}}</p>
+
+                    <hr>
+                    
+                    <a href="./signin/?logout=true}}" class="link__sair">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                            <path d="M7.5 1v7h1V1z"/>
+                            <path d="M3 8.812a5 5 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812"/>
+                        </svg>
+                        Sair
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+
+       
+<script src="public/js/script.js"></script>
+
+<script src="public/assets/bootstrap/js/popper.min.js"></script>
+<script src="public/assets/bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    document.getElementById('btn-recolhe-menu').addEventListener('click', function() {
+        // Alterna a classe 'recolhido' no aside
+        document.querySelector('aside').classList.toggle('recolhido');
+        // Alterna a classe 'recolhido' no botão
+        document.querySelector('.recolhe__menu').classList.toggle('recolhido');
+        document.querySelector(".body__cpi").classList.toggle("recolhido");
+    });
+
+
+    document.getElementById('searchButton').addEventListener('click', function() {
+        const form = document.querySelector('.float__busca_pm');
+        const formPosition = form.style.top === "60px" ? "-40%" : "60px";
+        
+        // Alterando a posição do formulário
+        form.style.top = formPosition;
+    });
+
+
+    /** Botao de app cpi */
+    const btnApp = document.getElementById('btn-app-cpi');
+    const menu = document.getElementById('float__menu_aplicacoes');
+    const btnFecharApp = document.getElementById('btn-fechar-app');
+
+    // Adiciona um evento de clique no botão
+    btnApp.addEventListener('click', function() {
+        // Alterna a classe 'show' no menu para mostrar ou esconder
+        menu.classList.toggle('show');
+    });
+
+
+    btnFecharApp.addEventListener('click', function() {
+        menu.classList.toggle('show');
+    });
+    
+
+
+</script>
+
+</body>
+</html>

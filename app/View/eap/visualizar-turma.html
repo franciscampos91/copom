@@ -1,0 +1,380 @@
+{% include 'caixaMensagem.html' %}
+
+<section class="container__cpi">
+
+
+    <div class="titulo__secao">
+        <p>
+            EAP - Turma
+        </p>
+        <div class="barra__titulo_secao"></div>
+    </div>
+
+    <table class="table mt-3" style="width: 400px;">
+        <tr>
+            <th>Turma</th>
+            <td>{{turma}}</td>
+        </tr>
+
+        <tr>
+            <th>Tipo</th>
+            <td>{{tipo}}</td>
+        </tr>
+
+
+        <tr>
+            <th>Período</th>
+            <td>{{periodo}}</td>
+        </tr>
+
+
+        <tr>
+            <th>Discentes</th>
+            <td>{{discentes}}</td>
+        </tr>
+
+
+
+    </table>
+
+    <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#modalBuscaPM">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M480-80 200-360l56-56 184 183v-647h80v647l184-184 56 57L480-80Z"/></svg>
+        Incluir discente
+    </button>
+
+
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>#</th>
+            <th>Posto/Grad.</th>
+            <th>RE</th>
+            <th>Nome</th>
+            <th style="width: 150px;">IAS</th>
+            <th>OPM</th>
+            <th>Ação</th>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>Cb PM</td>
+            <td>111999-2</td>
+            <td>Stive Mike</td>
+            <td>                
+                <form action="?pagina=eap&metodo=alterarIAS" method="post" class="td__form">
+
+                    <div class="row" hidden>
+                        <input type="text" name="id_turma" value="1">
+                        <input type="text" name="id_discente" value="1">
+                    </div>
+
+                    <input type="date" class="data_ias" id="data_ias" value="2025-03-15" required readonly>
+
+                    <div class="btn__editar container__legenda_alt">
+                        <span class="legenda__alt">Editar</span>
+                        <button class="btn" type="button" onclick="habilitaEdicaoIAS()">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="btn__cancelar container__legenda_alt" >
+                        <span class="legenda__alt">Cancelar</span>
+                        <button class="btn" type="button" onclick="desabilitaEdicaoIAS()">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                        </button>
+                    </div>
+
+
+                    <div class="btn__salvar container__legenda_alt">                        
+                        <span class="legenda__alt">Salvar</span>    
+                        <button type="submit" class="btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z"/></svg>
+                        </button>
+                    </div>
+                </form>
+
+            </td>
+            <td>CPI-7</td>
+            <td style="display: flex; gap: 10px;">
+                <form action="?pagina=policial&metodo=pesquisarPM" method="post" target="_blank">
+                    <input type="text" name="re" value="144795" hidden>
+                    <button type="submit" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/></svg>
+                        Visualizar
+                    </button>
+                </form>
+
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalRemoverPM" onclick="carregaPMExcluir(1, 'Cb PM', '111999', 'Stive Mike Francis Reginaldo de Góes')">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                    Remover
+                </button>
+            </td>
+        </tr>
+
+    </table>
+
+
+
+
+
+    <!-- Modal Busca PM -->
+    <div class="modal fade" id="modalBuscaPM" tabindex="-1" aria-labelledby="modalBuscaPMLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="?pagina=eap&metodo=buscaPMInsercao" method="post">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalBuscaPMLabel">Buscar PM</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label for="form-label">RE</label>
+                                    <input type="text" class="form-control number" value="" name="busca-re" id="busca-re" maxlength="6">
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                        </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Remover PM Turma-->
+        <div class="modal fade" id="modalRemoverPM" tabindex="-1" aria-labelledby="modalRemoverPMLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="?pagina=eap&metodo=removerPMTurma" method="post">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalRemoverPMLabel">Remover policial</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Confirma a remoção policial:</p>
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <td style="width: 100px;">Posto/Grad.</td>
+                                        <td style="width: 70px;">RE</td>
+                                        <td style="overflow: hidden;;">Nome</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="excluir-ptgr"></td>
+                                        <td id="excluir-re"></td>
+                                        <td id="excluir-nome"></td>
+                                    </tr>
+                                </table>
+                                <div class="row" hidden>
+                                    <input type="text" class="form-control" value="" name="id" id="excluir-id">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-danger">Confirmar</button>
+                            </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+
+    <!-- Modal PM -->
+
+
+    {% if retornoConsulta  %}
+
+    <div class="modal fade" id="modalPolicial" tabindex="-1" aria-labelledby="modalPolicialLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalPolicialLabel">Buscar PM</h1>
+                        
+                        <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">                      
+
+                        <form class="area__busca" action="?pagina=eap&metodo=buscaPMInsercao" method="post">
+                            <input type="text" class="form-control number" name="busca-re" maxlength="6" placeholder="RE" required>
+                            <button type="submit" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+                            </button>
+                        </form>
+                       
+                    </div>
+
+
+                    <form action="?pagina=eap&metodo=incluirPMTurma" method="post">
+
+                        <div class="row" style="margin: 0; padding: 15px;">
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <td rowspan="5" class="td__left" style="width: 80px;"><img src="{{foto}}" alt="">
+                                    </td>
+                                    <td class="td__left">Posto/Graduação</td>
+                                    <td class="td__left"><strong>{{ptgr}}</strong></td>
+                                    <td class="td__left">RE</td>
+                                    <td class="td__left"><strong>{{re}}-{{dgre}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="td__left">Nome</td>
+                                    <td class="td__left"><strong>{{nome}}</strong></td>
+                                    <td class="td__left">Guerra</td>
+                                    <td class="td__left"><strong>{{guerra}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td__left">Unidade</td>
+                                    <td class="td__left"><strong>{{opm}}</strong></td>
+                                    <td class="td__left">Código OPM</td>
+                                    <td class="td__left"><strong>{{codopm}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="td__left">Email</td>
+                                    <td class="td__left"><strong>{{email}}</strong></td>
+                                    <td class="td__left">Função</td>
+                                    <td class="td__left"><strong>{{funcao}}</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                       
+
+
+                        <div class="modal-body">
+
+                            <!-- <div class="row">
+
+                                <div class="col-md-12">
+                                    <img src="{{foto}}">
+                                </div>
+                            </div> -->
+
+                            <div class="row mt-3" hidden>
+
+                                <div class="col-md-6">
+                                    <label for="form-label">Posto/Grad.</label>
+                                    <input type="text" class="form-control number" value="{{ptgr}}" name="ptgr" id="ptgr"  readonly>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="form-label">RE</label>
+                                    <input type="text" class="form-control number" value="{{re}}" name="re" id="re" maxlength="6" readonly>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="form-label">Dig.</label>
+                                    <input type="text" class="form-control number" value="{{dgre}}" name="dgre" id="dgre" readonly>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="form-label">NOME</label>
+                                    <input type="text" class="form-control number" value="{{nome}}" name="nome" id="nome" readonly>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="form-label">Guerra</label>
+                                    <input type="text" class="form-control number" value="{{guerra}}" name="guerra" id="guerra" readonly>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="form-label">E-mail</label>
+                                    <input type="text" class="form-control number" value="{{email}}" name="email" id="email" readonly>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <label for="form-label">OPM</label>
+                                    <input type="text" class="form-control number" value="{{opm}}" name="opm" id="opm"  readonly>
+                                </div>
+
+                                
+                                <div class="col-md-4">
+                                    <label for="form-label">CODOPM</label>
+                                    <input type="text" class="form-control number" value="{{codopm}}" name="codopm" id="codopm"  readonly>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="form-label">Função</label>
+                                    <input type="text" class="form-control number" value="{{funcao}}" name="funcao" id="funcao" readonly>
+                                </div>
+
+                                
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="form-label">IAS</label>
+                                    <input type="date" class="form-control" value="" name="ias" id="ias" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                        </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Script para abrir o modal automaticamente -->
+    <script>
+        // Quando o documento estiver pronto, abra o modal
+        window.addEventListener('DOMContentLoaded', (event) => {
+        var myModal = new bootstrap.Modal(document.getElementById('modalPolicial'), {
+            keyboard: false  // Desativa a possibilidade de fechar com a tecla ESC (opcional)
+        });
+        myModal.show();  // Abre o modal automaticamente
+        });
+    </script>
+
+    {% endif %}
+
+
+
+
+
+
+</section>
+
+<script>
+
+
+    function carregaPMExcluir(id, ptgr, re, nome) {
+        document.getElementById('excluir-id').value = id;
+        document.getElementById('excluir-ptgr').textContent = ptgr;
+        document.getElementById('excluir-re').textContent = re;
+        document.getElementById('excluir-nome').textContent = nome;
+    }
+
+
+    function habilitaEdicaoIAS() {
+        // Esconde o botão Editar e mostra Cancelar e Salvar
+        document.querySelector('.btn__editar').style.display = 'none';
+        document.querySelector('.btn__cancelar').style.display = 'block';
+        document.querySelector('.btn__salvar').style.display = 'block';
+
+        // Torna o input de data editável
+        document.getElementById('data_ias').removeAttribute('readonly');
+    }
+
+    function desabilitaEdicaoIAS() {
+        // Esconde Cancelar e Salvar e mostra o botão Editar
+        document.querySelector('.btn__editar').style.display = 'block';
+        document.querySelector('.btn__cancelar').style.display = 'none';
+        document.querySelector('.btn__salvar').style.display = 'none';
+
+        // Torna o input de data não editável
+        document.getElementById('data_ias').setAttribute('readonly', true);
+    }
+
+
+</script>
