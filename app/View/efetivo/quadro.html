@@ -1,0 +1,85 @@
+{% include 'caixaMensagem.html' %}
+
+
+<style>
+
+.quadro {
+  display: grid;
+  grid-template-rows: auto auto auto auto auto;
+  gap: 8px;
+  padding: 16px;
+  border: 2px solid #4caf50;
+  background: #e8f5e9;
+  font-family: sans-serif;
+}
+
+.quadro__rotulo {
+  background: #ffe0b2;
+  padding: 8px;
+  border: 1px solid #ef6c00;
+}
+
+.quadro__chefe {
+  background: #c8e6c9;
+  padding: 8px;
+}
+
+.quadro__equipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  background: #64b5f6;
+  padding: 8px;
+}
+
+.quadro__equipe {
+  background: #f5f5f5;
+  border: 1px solid #000;
+  padding: 8px;
+}
+
+.quadro__adm {
+  background: #cfd8dc;
+  padding: 8px;
+}
+
+.quadro__outros {
+  background: #bbdefb;
+  padding: 8px;
+}
+
+
+</style>
+
+
+<section class="container">
+
+
+    <div class="quadro">
+    <div class="quadro__rotulo">
+        <h2>COPOM - CPI-7</h2>
+    </div>
+
+
+    <div class="quadro__chefe">
+        
+
+                        <img src="public/assets/foto-efetivo/{{ chefe.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="img_efetivo_lista" alt="{{guerra}}" >
+
+    </div>
+
+
+    <div class="quadro__equipes">
+        <div class="quadro__equipe">.quadro__equipe</div>
+        <div class="quadro__equipe">.quadro__equipe</div>
+        <div class="quadro__equipe">.quadro__equipe</div>
+        <div class="quadro__equipe">.quadro__equipe</div>
+        <div class="quadro__equipe">.quadro__equipe</div>
+    </div>
+    <div class="quadro__adm">.quadro__adm</div>
+    <div class="quadro__outros">.quadro__outros</div>
+    </div>
+
+
+
+</section>

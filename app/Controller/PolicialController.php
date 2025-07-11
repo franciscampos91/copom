@@ -107,10 +107,17 @@ class PolicialController
             //$gcmdo = self::procuraGCMDO(substr($dados->codigoOPMAtualPM->codigoOPM, 0, 5));
             $gcmdo = '';
 
-            // Cria instância do Policial
-            $policial = new Policial($dados, $emailFuncional, $telefone, $funcao, $funcoes, $foto, $fotoBase, $gcmdo);
+            // Busca documentos
+            $documentos = self::buscaDocumentos($dados);
 
-            // Retorna o objeto Policial
+                        
+            // Busca medalhas
+            $medalhas = self::buscaMedalhas(trim($dados->Documentos->FuncionarioDocumento[0]->Numero . $dados->Documentos->FuncionarioDocumento[0]->DigitoDocumento));
+
+            // Cria instância do Policial
+            $policial = new Policial($dados, $emailFuncional, $telefone, $funcao, $funcoes, $foto, $fotoBase, $gcmdo, $documentos, $medalhas);
+
+             // Retorna o objeto Policial
             return $policial;
         }
 
@@ -167,8 +174,13 @@ class PolicialController
         $soapOptions = array('trace' => 1);
         $pm = new \SoapClient($pmUrl, $soapOptions);
 
+        /* Foto com tamanho reduzido       
         $rstp = $pm->procuraFotoPorRE(array('RegistroEstatistico' => (float) $re));
         $foto = base64_encode($rstp->procuraFotoPorREResult);
+         */
+
+        $rstp = $pm->procuraFotoPorRESemReducao(array('RegistroEstatistico' => (float) $re));
+        $foto = base64_encode($rstp->procuraFotoPorRESemReducaoResult);
 
         return $foto;
     }
@@ -329,6 +341,71 @@ class PolicialController
 
     }
 
+    public static function buscaDocumentos($dados)
+    {
+        $documentos = [
+            'tituloEleitor' => null,
+            'zonaEleitoral' => null,
+            'secaoEleitoral' => null,
+            'municipioEleitoral' => null,
+            'cnh' => null,
+            'rg' => null,
+            'dgrg' => null,
+            'pispasep' => null,
+        ];
+
+        if (!isset($dados->Documentos->FuncionarioDocumento)) {
+            return $documentos;
+        }
+
+        foreach ($dados->Documentos->FuncionarioDocumento as $doc) {
+            switch ($doc->codigoTipoDocumento) {
+                case 1:
+                    // CPF
+                    break;
+
+                case 2:
+                    $documentos['pispasep'] = $doc->Numero;
+                    break;
+
+                case 3:
+                    $documentos['rg'] = $doc->Numero;
+                    $documentos['dgrg'] = isset($doc->DigitoDocumento) ? trim($doc->DigitoDocumento) : null;
+                    $documentos['ufrg'] = $doc->UFDocumento;
+                    $documentos['emissorrg'] = $doc->EmissorDocumento;
+
+                    break;
+
+                case 4:
+                    $documentos['tituloEleitor'] = $doc->Numero;
+                    if (isset($doc->InformacoesComplementares->InformacaoComplementar)) {
+                        foreach ($doc->InformacoesComplementares->InformacaoComplementar as $info) {
+                            if ($info->Chave === 'Zona_Eleitoral') {
+                                $documentos['zonaEleitoral'] = $info->Valor;
+                            }
+                            if ($info->Chave === 'Secao_Eleitoral') {
+                                $documentos['secaoEleitoral'] = $info->Valor;
+                            }
+                            if ($info->Chave === 'Municipio_Eleitoral') {
+                                $documentos['municipioEleitoral'] = $info->Valor;
+                            }
+                        }
+                    }
+                    break;
+
+                case 5:
+                    $documentos['cnh'] = $doc->Numero;
+                    break;
+            }
+        }
+
+        return $documentos;
+    }
+
+
+
+    
+
 
     /*public static function procuraGCMDO($codopm)
     {
@@ -359,7 +436,9 @@ class Policial
         $funcoes,
         $foto,
         $fotoBase,
-        $gcmdo
+        $gcmdo,
+        $documentos,
+        $medalhas
     ) {
         $this->cpf = trim($dados->Documentos->FuncionarioDocumento[0]->Numero . $dados->Documentos->FuncionarioDocumento[0]->DigitoDocumento);
         $this->re = trim($dados->numeroREPM);
@@ -376,8 +455,7 @@ class Policial
         $this->descricaoNivel01OPMComando = trim($dados->codigoOPMAtualPM->descricaoNivel01OPMComando);
         $this->codopm = trim($dados->codigoOPMAtualPM->codigoOPM);
         $this->situacaoLegal = trim($dados->codigoSituacaoLegalPM->descricaoSituacaoLegal);
-        $this->dataAdmissao = trim($dados->dataMatriculaPM);
-        $this->dataNascimento = trim($dados->dataNascimentoPM);
+        $this->dataNascimento = substr(trim($dados->dataNascimentoPM), 0, 10);
         $this->estadoCivil = trim($dados->descricaoSituacaoCivilPM);
         $this->foto = $foto;
         $this->fotoBase = $fotoBase;
@@ -388,6 +466,67 @@ class Policial
         $this->gcmdo = $gcmdo;
         $this->erroCodigo = $dados->erroCodigo;
 
+        $this->rg = $documentos['rg'];
+        $this->dgrg = $documentos['dgrg'];
+        $this->ufrg = $documentos['ufrg'];        
+        $this->emissorrg = $documentos['emissorrg'];
+        $this->tituloEleitor = $documentos['tituloEleitor'];
+        $this->zonaEleitoral = $documentos['zonaEleitoral'];
+        $this->secaoEleitoral = $documentos['secaoEleitoral'];
+        $this->municipioEleitoral = $documentos['municipioEleitoral'];
+        $this->cnh = $documentos['cnh'];
+        $this->medalhas = $medalhas;
+        $this->natural = trim($dados->codigoMunicipioNascimentoPM);
+        $this->codigoOPMAnteriorPM = $dados->codigoOPMAnteriorPM;
+        $this->codigoOPMEfetivaPM = $dados->codigoOPMEfetivaPM;        
+        $this->religiao = $dados->descricaoReligiaoPM;
+        $this->tipoSanguineo = $dados->codigoTipoSanguineoPM;
+        $this->fatorSanguineo = $dados->codigoFatorSanguineoPM;
+        $this->altura = $dados->numeroAlturaPM;
+        $this->bolGPosse = $dados->numeroBoletimGeralPossePM;
+        $this->dataPrimeiroEmprego = $dados->dataPrimeiroEmpregoPM;        
+        $this->bairroOpm = trim($dados->codigoOPMAtualPM->bairroOPM);
+        $this->cepOPM = trim($dados->codigoOPMAtualPM->cepOPM);
+        $this->enderecoOPM = trim($dados->codigoOPMAtualPM->enderecoOPM);
+        $this->dataAdmissao = substr(trim($dados->dataAdmissaoPM), 0, 10);
+        $this->idade = self::idade($dados->dataNascimentoPM);
+        $this->tempoServico = self::calcularTempoServico($dados->dataAdmissaoPM);
+
+
+    }
+
+
+    public static function idade($dataNascimento)
+    {
+        if (!empty($dataNascimento) && $dataNascimento != '0001-01-01') {
+            $nascimento = new DateTime($dataNascimento);
+            $hoje = new DateTime();
+            $idade = $nascimento->diff($hoje)->y;
+        }
+
+        return $idade;
+    }
+
+    public static function calcularTempoServico($dataAdmissao)
+    {
+        if (empty($dataAdmissao) || $dataAdmissao == '0001-01-01') {
+            return null;
+        }
+
+        $dataAdmissao = substr($dataAdmissao, 0, 10);
+        $admissao = new DateTime($dataAdmissao);
+        $hoje = new DateTime();
+        $diferenca = $admissao->diff($hoje);
+
+        return sprintf(
+            "%d ano%s, %d mês%s e %d dia%s",
+            $diferenca->y,
+            $diferenca->y != 1 ? "s" : "",
+            $diferenca->m,
+            $diferenca->m != 1 ? "es" : "",
+            $diferenca->d,
+            $diferenca->d != 1 ? "s" : ""
+        );
     }
 
 }

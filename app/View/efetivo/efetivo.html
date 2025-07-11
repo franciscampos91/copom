@@ -1,5 +1,128 @@
 {% include 'caixaMensagem.html' %}
 
+
+<style>
+
+    .dashboard__efetivo_total {
+        display: flex;
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    .dashboard__efetivo_total > .dashboard__card {
+        background-color: #fff;
+        display: grid;
+        grid-template-areas: "ico num" "ico label";
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr 1fr;
+        padding: 8px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
+
+
+    .dashboard__efetivo_total  .dashboard__num {
+        grid-area: num;
+        font-size: 1.2em;
+        font-weight: 700;
+        align-content: baseline;
+    }
+
+    .dashboard__efetivo_total  .dashboard__label {
+        grid-area: label;
+        font-size: 0.9em;
+        font-weight: 400;
+        color: #a3a5a8;
+    }
+
+    .dashboard__efetivo_total  .dashboard__ico {
+        grid-area: ico;
+        display: grid;
+        place-items: center;
+    }
+
+
+    .container__table {
+        padding: 12px 0;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
+
+
+    .td__row_2 div {
+        display: block;  
+
+    }
+
+    .td__row_2 div:first-child {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    .td__row_2 div:last-child {
+        color: #808080;
+    }
+
+    .table__efetivo {
+        font-size: 15px;
+    }
+
+    .table__efetivo th {
+        color: rgb(94, 92, 92);
+        font-size: 16px;
+    }
+
+    .table__efetivo .img_efetivo_lista {
+        width: 60px;
+        height: 60px;
+    }
+
+    .table__efetivo .link__editar {
+        font-weight: 500;
+        color: #4343ee !important;
+    }
+
+    .table__efetivo .link__editar:hover {
+        text-decoration: underline !important;
+    }
+
+    .table__efetivo .alert__ativo {
+        border: 1px solid #A3CFBB;
+        color: #0A3622;
+        background-color: #D1E7DD;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 0.9em;
+    }
+
+    .table__efetivo .alert__ativo {
+        border: 1px solid #A3CFBB;
+        color: #0A3622;
+        background-color: #D1E7DD;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 0.9em;
+        width: 80px;
+    }
+
+
+    .table__efetivo .alert__agregado {
+        border: 1px solid #F1AEB5;
+        color: #58151C;
+        background-color: #F8D7DA;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 0.9em;
+        width: 80px;
+    }
+
+    .td__center {
+        text-align: center;
+        vertical-align: center;
+    }
+
+</style>
+
 <section class="container__cpi">
 
     <div class="titulo__secao">
@@ -9,11 +132,185 @@
         <div class="barra__titulo_secao"></div>
     </div>
 
+    <div class="dashboard__efetivo_total">
+        <div class="dashboard__card">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.efetivo_total }}
+            </div>
+            <div class="dashboard__ico">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" width="26" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Efetivo Total
+            </div>
+        </div>
+
+        <div class="dashboard__card">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.efetivo_agregado }}
+            </div>
+            <div class="dashboard__ico">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" width="26" viewBox="0 0 512 512"><path d="M376 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M288 304c-87 0-175.3 48-191.64 138.6-2 10.92 4.21 21.4 15.65 21.4H464c11.44 0 17.62-10.48 15.65-21.4C463.3 352 375 304 288 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M144 232H32"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Agregados
+            </div>
+        </div>
+
+        <div class="dashboard__card">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.chefe }}
+            </div>
+            <div class="dashboard__ico">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" width="26" viewBox="0 0 512 512"><path d="M480 208H308L256 48l-52 160H32l140 96-54 160 138-100 138 100-54-160z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Chefe
+            </div>
+        </div>
+
+        <div class="dashboard__card">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.adm }}
+            </div>
+            <div class="dashboard__ico">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" width="26" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Efetivo Adm
+            </div>
+        </div>
+
+        <div class="dashboard__card">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.supervisores }}
+            </div>
+            <div class="dashboard__ico">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" class="ionicon" viewBox="0 0 512 512"><rect x="32" y="64" width="448" height="320" rx="32" ry="32" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M304 448l-8-64h-80l-8 64h96z"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 448H144"/><path d="M32 304v48a32.09 32.09 0 0032 32h384a32.09 32.09 0 0032-32v-48zm224 64a16 16 0 1116-16 16 16 0 01-16 16z"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Supervisores
+            </div>
+        </div>
+
+        <div class="dashboard__card">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.despachadores }}
+            </div>
+            <div class="dashboard__ico">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M192 448h128M384 208v32c0 70.4-57.6 128-128 128h0c-70.4 0-128-57.6-128-128v-32M256 368v80"/><path d="M256 64a63.68 63.68 0 00-64 64v111c0 35.2 29 65 64 65s64-29 64-65V128c0-36-28-64-64-64z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Despachadores
+            </div>
+        </div>
+
+        <div class="dashboard__card">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.atendentes }}
+            </div>
+            <div class="dashboard__ico">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" class="ionicon" viewBox="0 0 512 512"><path d="M451 374c-15.88-16-54.34-39.35-73-48.76-24.3-12.24-26.3-13.24-45.4.95-12.74 9.47-21.21 17.93-36.12 14.75s-47.31-21.11-75.68-49.39-47.34-61.62-50.53-76.48 5.41-23.23 14.79-36c13.22-18 12.22-21 .92-45.3-8.81-18.9-32.84-57-48.9-72.8C119.9 44 119.9 47 108.83 51.6A160.15 160.15 0 0083 65.37C67 76 58.12 84.83 51.91 98.1s-9 44.38 23.07 102.64 54.57 88.05 101.14 134.49S258.5 406.64 310.85 436c64.76 36.27 89.6 29.2 102.91 23s22.18-15 32.83-31a159.09 159.09 0 0013.8-25.8C465 391.17 468 391.17 451 374z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Atendentes 190
+            </div>
+        </div>
+
+
+        
+        <div class="dashboard__card">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.sem_funcao }}
+            </div>
+            <div class="dashboard__ico">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" class="ionicon" viewBox="0 0 512 512"><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path d="M250.26 166.05L256 288l5.73-121.95a5.74 5.74 0 00-5.79-6h0a5.74 5.74 0 00-5.68 6z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 367.91a20 20 0 1120-20 20 20 0 01-20 20z"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Sem função
+            </div>
+        </div>
+
+
+
+    </div>
+
    
         <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#modalConsulta">
             Incluir policial
         </button>
 
+        <br><br>
+
+        <div class="container__table">
+            <table class="table table__efetivo">
+                <tr>
+                    <th>Policial</th>
+                    <th></th>
+                    <th></th>
+                    <th>Função</th>
+                    <th>Situação</th>
+                    <th></th>
+                </tr>
+
+                {% for policial in efetivo %}
+                <tr>
+                    <td class="td__center">
+                        <img src="public/assets/foto-efetivo/{{ policial.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="img_efetivo_lista" alt="{{guerra}}" >
+                    </td>
+
+                    <td class="td__row_2">
+                        <div>{{ policial.guerra }}</div>
+                        <div>{{ policial.pt_gr }} {{ policial.re }}-{{ policial.dg_re }}</div>   
+                    </td>
+
+                    <td class="td__row_2">
+                        <div>{{ policial.nome }}</div>
+                        <div>{{ policial.email }}</div>   
+                    </td>
+
+                    <td class="td__row_2">
+                        <div>{{ policial.funcao_copom }}</div>
+                        <div>
+                            
+                            {% if policial.equipe == 'Adm' %}
+                                Administração
+                            {% elseif policial.equipe == 'A' or policial.equipe == 'B' or policial.equipe == 'C' or policial.equipe == 'D' or policial.equipe == 'E'%}                
+                                Equipe {{ policial.equipe }}
+                            {% else %}                
+                                {{ policial.equipe }}
+                            {% endif %}
+                        
+                        </div>   
+                    </td>
+
+                    <td>
+                        <div 
+                            {% if policial.situacao == 'Agregado'  %}
+                                class="alert__agregado"
+                            {% else %}
+                                class="alert__ativo"
+                            {% endif %}
+                        >
+                            {{ policial.situacao }}
+                        </div>
+                    </td>
+
+
+                    <td>
+                        <a href="" class="link__editar" data-bs-toggle="modal" data-bs-target="#modalEditar" onclick="carregarPM({{ policial.id_efetivo }})">Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+
+
+
+
+<!--
         <table class="table table-striped">
             <tr>
                 <th></th>
@@ -59,7 +356,172 @@
                 </tr>
             {% endfor %}
 
-        </table>
+        </table> -->
+
+    <!-- Modal Editar -->
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <form action="?pagina=efetivo&metodo=editarPM" method="post" class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalEditarLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <img id="foto-editar" src="public/assets/foto-efetivo/default.png" alt="Foto do policial" class="img-fluid mb-3" />
+
+                    <div class="row mt-3">
+
+                            <div class="col-md-6">
+                                <label for="form-label">ID</label>
+                                <input type="text" class="form-control number" name="id_efetivo" id="id-editar"  readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="form-label">Posto/Grad.</label>
+                                <input type="text" class="form-control number" value="{{ptgr}}" name="ptgr" id="ptgr"  readonly>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="form-label">RE</label>
+                                <input type="text" class="form-control number" value="{{re}}" name="re" id="re-editar" maxlength="6" readonly>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="form-label">Dig.</label>
+                                <input type="text" class="form-control number" value="{{dgre}}" name="dgre" id="dgre" readonly>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="form-label">NOME</label>
+                                <input type="text" class="form-control number" value="{{nome}}" name="nome" id="nome" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="form-label">Guerra</label>
+                                <input type="text" class="form-control number" value="{{guerra}}" name="guerra" id="guerra" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="form-label">E-mail</label>
+                                <input type="text" class="form-control number" value="{{email}}" name="email" id="email" readonly>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <label for="form-label">OPM</label>
+                                <input type="text" class="form-control number" value="{{opm}}" name="opm" id="opm"  readonly>
+                            </div>
+
+                            
+                            <div class="col-md-4">
+                                <label for="form-label">CODOPM</label>
+                                <input type="text" class="form-control number" value="{{codopm}}" name="codopm" id="codopm"  readonly>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="form-label">CPF</label>
+                                <input type="text" class="form-control number cpf" name="cpf" id="cpf" maxlength="14" value="{{cpf}}">
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="form-label">Sexo</label>
+                                <input type="text" class="form-control number" name="sexo" id="sexo" maxlength="1" value="{{sexo}}">
+                            </div>
+
+                            
+                            <div class="col-md-2">
+                                <label for="form-label">DN</label>
+                                <input type="text" class="form-control number" name="data_nascimento" id="data_nascimento"  value="{{data_nascimento|date('Y-m-d')}}">
+                            </div>
+
+
+                            <div class="col-md-2">
+                                <label for="form-label">DA</label>
+                                <input type="text" class="form-control number" name="data_admissao" id="da"  value="{{data_admissao|date('Y-m-d')}}">
+                            </div>
+                          
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <label for="form-label">Telefone</label>
+                                <input type="text" class="form-control number telefone" name="telefone" id="telefone" maxlength="15" value="">
+                            </div>
+                        
+                        
+                            <div class="col-md-3">
+                                <label for="form-label">RG</label>
+                                <input type="text" class="form-control number" name="rg" id="rg" maxlength="11" value="{{rg}}">
+                            </div>
+
+                                                   
+                       
+                            <div class="col-md-8 mt-3">
+                                <label for="form-label">Endereço</label>
+                                <input type="text" class="form-control" name="endereco" id="endereco" maxlength="100" value="">
+                            </div>
+                        
+                            <div class="col-md-4 mt-3">
+                                <label for="form-label">Município</label>
+                                <input type="text" class="form-control" name="municipio" id="municipio" maxlength="40" value="">
+                            </div>
+                        
+                            <div class="col-md-2 mt-3">
+                                <label for="form-label">Equipe</label>
+                                <select class="form-select" name="equipe" id="equipe">
+                                    <option value="">Selecione...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="Adm">Adm</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3 mt-3">
+                                <label for="form-label">Função</label>
+                                <select name="funcao" id="funcao" class="form-select">
+                                    <option value="">Selecione...</option>
+                                    <option value="Atendente 190">Atendente 190</option>
+                                    <option value="Despachador">Despachador</option>
+                                    <option value="Supervisor">Supervisor</option>
+                                    <option value="Adm">Adm</option>
+                                    <option value="Chefe">Chefe</option>
+                                </select>
+                            </div>
+                        
+                            <div class="col-md-3 mt-3">
+                                <label for="form-label">Chegada COPOM</label>
+                                <input type="date" class="form-control" name="chegada_copom" id="chegada_copom" value="">
+                            </div>
+                        
+                            <div class="col-md-3 mt-3">
+                                <label for="form-label">Saída COPOM</label>
+                                <input type="date" class="form-control" name="saida_copom" id="saida_copom" value="">
+                            </div>
+                        
+                            <div class="col-md-4 mt-3">
+                                <label for="form-label">Situação Funcional</label>
+                                <select class="form-select" name="situacao" id="situcao">
+                                    <option value="Ativo">Ativo</option>
+                                    <option value="Agregado">Agregado</option>
+                                    <option value="Inativo">Inativo</option>
+                                </select>
+                            </div>
+                        
+                        </div>
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
    
@@ -113,6 +575,12 @@
                                 <td class="td__left"><strong>{{email}}</strong></td>
                                 <td class="td__left">Função SIRH</td>
                                 <td class="td__left"><strong>{{funcao}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="td__left">Nascimento</td>
+                                <td class="td__left"><strong>{{data_nascimento|date("d/m/Y")}}</strong></td>
+                                <td class="td__left">Admissão</td>
+                                <td class="td__left"><strong>{{data_admissao|date("d/m/Y")}}</strong></td>
                             </tr>
                         </table>
                     </div>
@@ -175,6 +643,20 @@
                                 <label for="form-label">Sexo</label>
                                 <input type="text" class="form-control number" name="sexo" id="sexo" maxlength="1" value="{{sexo}}">
                             </div>
+
+                            
+                            <div class="col-md-2">
+                                <label for="form-label">DN</label>
+                                <input type="text" class="form-control number" name="dn" id="data_nascimento"  value="{{data_nascimento|date('Y-m-d')}}">
+                            </div>
+
+
+                            <div class="col-md-2">
+                                <label for="form-label">DA</label>
+                                <input type="text" class="form-control number" name="data_admissao" id="da"  value="{{data_admissao|date('Y-m-d')}}">
+                            </div>
+
+                            
 
                             <input type="text" class="form-control" value="{{foto}}" name="foto">
                           
@@ -244,7 +726,7 @@
                                 <label for="form-label">Situação Funcional</label>
                                 <select class="form-select" name="situacao" id="situcao">
                                     <option value="Ativo">Ativo</option>
-                                    <option value="Inativo">Agregado</option>
+                                    <option value="Agregado">Agregado</option>
                                     <option value="Inativo">Inativo</option>
                                 </select>
                             </div>
@@ -271,6 +753,7 @@
 
 
 
+
 </section>
 
 
@@ -288,3 +771,74 @@
 </script>
 
 {% endif %}
+
+
+<script>
+    const efetivo = [
+        {% for policial in efetivo %}
+        {
+            id_efetivo: {{ policial.id_efetivo }},
+            pt_gr: "{{ policial.pt_gr|e('js') }}",
+            re: "{{ policial.re|e('js') }}",
+            dg_re: "{{ policial.dg_re|e('js') }}",
+            nome: "{{ policial.nome|e('js') }}",
+            guerra: "{{ policial.guerra|e('js') }}",
+            opm: "{{ policial.opm|e('js') }}",
+            codopm: "{{ policial.codopm|e('js') }}",
+            email: "{{ policial.email|e('js') }}",
+            telefone: "{{ policial.telefone|default('')|e('js') }}",
+            cpf: "{{ policial.cpf|e('js') }}",
+            rg: "{{ policial.rg|default('')|e('js') }}",
+            data_nascimento: "{{ policial.data_nascimento ? policial.data_nascimento|date('Y-m-d') : '' }}",
+            data_admissao: "{{ policial.data_admissao ? policial.data_admissao|date('Y-m-d') : '' }}",
+            endereco: "{{ policial.endereco|default('')|e('js') }}",
+            municipio: "{{ policial.municipio|default('')|e('js') }}",
+            funcao_copom: "{{ policial.funcao_copom|default('')|e('js') }}",
+            equipe: "{{ policial.equipe|default('')|e('js') }}",
+            chegada_copom: "{{ policial.chegada_copom ? policial.chegada_copom|date('Y-m-d') : '' }}",
+            saida_copom: "{{ policial.saida_copom ? policial.saida_copom|date('Y-m-d') : '' }}",
+            situacao: "{{ policial.situacao|default('')|e('js') }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ];
+
+    console.table(efetivo);
+
+    function carregarPM(id) {
+        // Procurar policial pelo id_efetivo
+        const policial = efetivo.find(p => p.id_efetivo === id);
+        if (!policial) {
+            alert('Policial não encontrado!');
+            return;
+        }
+
+        // Preencher os campos do modal
+        document.getElementById('id-editar').value = policial.id_efetivo;
+        document.getElementById('ptgr').value = policial.pt_gr;
+        document.getElementById('re-editar').value = policial.re;
+        document.getElementById('dgre').value = policial.dg_re;
+        document.getElementById('nome').value = policial.nome;
+        document.getElementById('guerra').value = policial.guerra;
+        document.getElementById('email').value = policial.email;
+        document.getElementById('opm').value = policial.opm;
+        document.getElementById('codopm').value = policial.codopm;
+        document.getElementById('cpf').value = policial.cpf;
+        // Sexo não veio no banco? Se sim, adicionar no array e aqui. Se não, deixar vazio
+        document.getElementById('sexo').value = policial.sexo || ''; 
+        document.getElementById('data_nascimento').value = policial.data_nascimento;
+        document.getElementById('da').value = policial.data_admissao;
+        document.getElementById('telefone').value = policial.telefone;
+        document.getElementById('rg').value = policial.rg;
+        document.getElementById('endereco').value = policial.endereco;
+        document.getElementById('municipio').value = policial.municipio;
+        document.getElementById('equipe').value = policial.equipe;
+        document.getElementById('funcao').value = policial.funcao_copom;
+        document.getElementById('chegada_copom').value = policial.chegada_copom;
+        document.getElementById('saida_copom').value = policial.saida_copom;
+        document.getElementById('situcao').value = policial.situacao;
+
+        document.getElementById('foto-editar').src = `public/assets/foto-efetivo/${policial.re}.png`;
+
+
+    }
+</script>

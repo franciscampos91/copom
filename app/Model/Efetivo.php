@@ -102,4 +102,98 @@ class Efetivo
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+    public static function buscaChefeCopom()
+    {
+        $con = Connection::getConn();
+    
+        $sql = "SELECT * FROM copom_efetivo WHERE funcao_copom = 'Chefe' LIMIT 1";
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+    
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    public static function efetivoDashboard()
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT
+                    COUNT(*) AS efetivo_total,
+                    SUM(CASE WHEN situacao = 'Agregado' THEN 1 ELSE 0 END) AS efetivo_agregado,
+                    SUM(CASE WHEN funcao_copom = 'Supervisor' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS supervisores,
+                    SUM(CASE WHEN funcao_copom = 'Atendente 190' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS atendentes,
+                    SUM(CASE WHEN funcao_copom = 'Adm' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS adm,
+                    SUM(CASE WHEN funcao_copom = 'Chefe' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS chefe,
+                    SUM(CASE WHEN funcao_copom = '' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS sem_funcao,
+                    SUM(CASE WHEN funcao_copom = 'Despachador' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS despachadores
+                FROM copom_efetivo
+                WHERE situacao IN ('Ativo', 'Agregado');";
+
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+
+    public static function editarPM($dados)
+    {
+        $pdo = Connection::getConn();
+
+        $data_nascimento = !empty($dados['data_nascimento']) ? $dados['data_nascimento'] : null;
+        $data_admissao = !empty($dados['data_admissao']) ? $dados['data_admissao'] : null;
+        $chegada_copom = !empty($dados['chegada_copom']) ? $dados['chegada_copom'] : null;
+        $saida_copom = !empty($dados['saida_copom']) ? $dados['saida_copom'] : null;
+
+        $sql = "UPDATE copom_efetivo SET 
+                    pt_gr = :pt_gr,
+                    dg_re = :dg_re,
+                    nome = :nome,
+                    guerra = :guerra,
+                    opm = :opm,
+                    codopm = :codopm,
+                    email = :email,
+                    telefone = :telefone,
+                    cpf = :cpf,
+                    rg = :rg,
+                    data_nascimento = :data_nascimento,
+                    data_admissao = :data_admissao,
+                    endereco = :endereco,
+                    municipio = :municipio,
+                    funcao_copom = :funcao_copom,
+                    equipe = :equipe,
+                    chegada_copom = :chegada_copom,
+                    saida_copom = :saida_copom,
+                    situacao = :situacao
+                WHERE id_efetivo = :id_efetivo";
+
+        $stmt = $pdo->prepare($sql);
+
+        return $stmt->execute([
+                                ':pt_gr' => $dados['ptgr'],
+                                ':dg_re' => $dados['dgre'],
+                                ':nome' => $dados['nome'],
+                                ':guerra' => $dados['guerra'],
+                                ':opm' => $dados['opm'],
+                                ':codopm' => $dados['codopm'],
+                                ':email' => $dados['email'],
+                                ':telefone' => $dados['telefone'],
+                                ':cpf' => $dados['cpf'],
+                                ':rg' => $dados['rg'],
+                                ':data_nascimento' => $data_nascimento,
+                                ':data_admissao' => $data_admissao,
+                                ':endereco' => $dados['endereco'],
+                                ':municipio' => $dados['municipio'],
+                                ':funcao_copom' => $dados['funcao'],
+                                ':equipe' => $dados['equipe'],
+                                ':chegada_copom' => $chegada_copom,
+                                ':saida_copom' => $saida_copom,
+                                ':situacao' => $dados['situacao'],
+                                ':id_efetivo' => $dados['id_efetivo'],
+                            ]);
+    }
+
 }

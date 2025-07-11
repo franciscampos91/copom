@@ -36,6 +36,9 @@ class EfetivoController
                 $parametros['cpf'] = $_SESSION['parametros']['cpf'];
                 $parametros['rg'] = $_SESSION['parametros']['rg'];
                 $parametros['sexo'] = $_SESSION['parametros']['sexo'];
+                $parametros['data_nascimento'] = $_SESSION['parametros']['dataNascimento'];
+                $parametros['data_admissao'] = $_SESSION['parametros']['dataAdmissao'];
+
 
 
                 unset($_SESSION['parametros']);
@@ -48,6 +51,7 @@ class EfetivoController
             $parametros['efetivo'] = Efetivo::listarEfetivo();
 
 
+            $parametros['dashboard_efetivo'] = Efetivo::efetivoDashboard();
 
             // Inicializa o Twig
             $loader = new \Twig\Loader\FilesystemLoader(['app/View', 'app/View/Partners']);
@@ -88,7 +92,9 @@ class EfetivoController
                 'codopm' => $policial->codopm,
                 'cpf' => $policial->cpf,
                 'rg' => $policial->rg,
-                'sexo' => $policial->sexo
+                'sexo' => $policial->sexo,
+                'dataNascimento' => $policial->dataNascimento,
+                'dataAdmissao' => $policial->dataAdmissao
             ];
 
              $_SESSION['parametros'] = $parametros;
@@ -134,6 +140,53 @@ class EfetivoController
         }
 
         header('location: ?pagina=efetivo');
+
+    }
+
+
+    public function editarPM()
+    {
+        if (Efetivo::editarPM($_POST)) {
+            $_SESSION['msg'] = "success";
+            $_SESSION['msgText'] = "Alterado com sucesso.";  
+        } else {
+            // Falha - redirecionar ou retornar erro
+            echo "Erro ao atualizar o efetivo.";
+            $_SESSION['msg'] = "error";
+            $_SESSION['msgText'] = "Erro ao atualizar.";
+        }
+
+        header('location: ?pagina=efetivo');
+        exit;
+
+    }
+
+
+
+    public function quadro()
+    {
+
+        try {
+
+            $loader = new \Twig\Loader\FilesystemLoader(['app/View', 'app/View/Partners']);
+            $twig = new \Twig\Environment($loader);
+            $template = $twig->load('efetivo/quadro.html');
+
+            $parametros = array();
+
+            
+            $parametros['efetivo'] = Efetivo::listarEfetivo();
+            $parametros['dashboard_efetivo'] = Efetivo::efetivoDashboard();
+
+            $parametros['chefe'] = Efetivo::buscaChefeCopom();
+
+      
+            $conteudo = $template->render($parametros);
+
+            echo $conteudo;
+        } catch (Exception $ex) {
+            echo "Erro: " . $ex->getMessage();
+        }
 
     }
 
