@@ -1,0 +1,108 @@
+{% include 'caixaMensagem.html' %}
+
+<section class="container__cpi">
+
+    <div class="titulo__secao">
+        <p>
+            Afastamentos
+        </p>
+        <div class="barra__titulo_secao"></div>
+    </div>
+
+
+    <br>
+   
+
+
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNovoAfastamento">
+        Novo Afastamento
+    </button>
+
+    <table class="table table-striped mt-5">
+        <tr>
+            <th>#</th>
+            <th>Policial</th>
+            <th>Afastamento</th>
+            <th>Dias</th>
+            <th>Início</th>
+            <th>Término</th>
+            <th></th>
+        </tr>
+
+        {% for afastamento in afastamentos %}
+
+            <td></td>
+            <td>{{ afastamento.re }}</td>
+            <td>{{ afastamento.afastamento }}</td>
+            <td>{{ afastamento.dias }}</td>
+            <td>{{ afastamento.inicio }}</td>
+            <td>{{ afastamento.termino }}</td>
+            <td></td>
+
+        {% endfor %}
+
+    </table>
+
+    <!-- Modal Novo Afastamento -->
+    <div class="modal fade" id="modalNovoAfastamento" tabindex="-1" aria-labelledby="modalNovoAfastamentoLabel" aria-hidden="true">
+    <form action="?pagina=afastamentos&metodo=gravarAfastamento" method="post" class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalNovoAfastamentoLabel">Novo Afastamento</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="re" class="form-label">RE</label>
+                    <input type="text" class="form-control" name="re">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" class="form-label">Tipo</label>
+                    <select name="afastamento" id="" class="form-select">
+                        <option value="Férias">Férias</option>
+                        <option value="LP">LP</option>
+                        <option value="DS">DS</option>
+                        <option value="Luto">Luto</option>
+                        <option value="Doação de Sangue">Doação de Sangue</option>
+                        <option value="Licença Maternidade">Licença Maternidade</option>
+                        <option value="Licença Paternidade">Licença Paternidade</option>
+                        <option value="Licença Adoção">Licença Adoção</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="dias">Dias</label>
+                    <input type="number" name="dias" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="inicio">Início</label>
+                    <input type="date" name="inicio" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="inicio">Término</label>
+                    <input type="date" name="termino" class="form-control">
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+        </div>
+    </form>
+    </div>
+
+
+
+
+
+</section>

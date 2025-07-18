@@ -102,7 +102,7 @@
         border-radius: 10px;
         text-align: center;
         font-size: 0.9em;
-        width: 80px;
+        width: 90px;
     }
 
 
@@ -113,7 +113,18 @@
         border-radius: 10px;
         text-align: center;
         font-size: 0.9em;
-        width: 80px;
+        width: 90px;
+    }
+
+
+    .table__efetivo .alert__inativando {
+        border: 1px solid #FFE69C;
+        color: #664D24;
+        background-color: #FFF3CD;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 0.9em;
+        width: 90px;
     }
 
     .td__center {
@@ -288,6 +299,8 @@
                         <div 
                             {% if policial.situacao == 'Agregado'  %}
                                 class="alert__agregado"
+                            {% elseif policial.situacao == 'Inativando' %}
+                                class="alert__inativando"
                             {% else %}
                                 class="alert__ativo"
                             {% endif %}
@@ -509,6 +522,7 @@
                                     <option value="Ativo">Ativo</option>
                                     <option value="Agregado">Agregado</option>
                                     <option value="Inativo">Inativo</option>
+                                    <option value="Inativando">Inativando</option>
                                 </select>
                             </div>
                         

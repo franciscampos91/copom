@@ -196,4 +196,31 @@ class Efetivo
                             ]);
     }
 
+
+    public static function buscaAdm()
+    {
+        $con = Connection::getConn();
+    
+        $sql = "SELECT * FROM copom_efetivo WHERE funcao_copom = 'adm'";
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public static function consultaPorEquipe($equipe)
+    {
+        $con = Connection::getConn();
+    
+        $sql = "SELECT * FROM copom_efetivo WHERE equipe = :equipe";
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue(':equipe', $equipe);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
 }

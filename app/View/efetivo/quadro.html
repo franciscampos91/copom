@@ -8,51 +8,141 @@
   grid-template-rows: auto auto auto auto auto;
   gap: 8px;
   padding: 16px;
-  border: 2px solid #4caf50;
-  background: #e8f5e9;
+  background: #013a17;
   font-family: sans-serif;
 }
 
 .quadro__rotulo {
-  background: #ffe0b2;
   padding: 8px;
-  border: 1px solid #ef6c00;
+  text-align: center;
+  text-decoration: underline;
 }
 
 .quadro__chefe {
-  background: #c8e6c9;
+  /*background: #c8e6c9;*/
   padding: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.quadro__chefe .quadro__equipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .quadro__equipes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 8px;
-  background: #64b5f6;
-  padding: 8px;
+  /*background: #64b5f6;*/
+  padding: 8px;  
 }
 
 .quadro__equipe {
-  background: #f5f5f5;
-  border: 1px solid #000;
+  border-radius: 10px;
   padding: 8px;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.quadro__equipe h5 {
+  border-radius: 4px;
+  background-color: #fff;
+  text-align: center;
+  padding: 3px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .quadro__adm {
-  background: #cfd8dc;
+  /*background: #cfd8dc;*/
   padding: 8px;
+  display: flex;
+  gap: 20px;
 }
 
 .quadro__outros {
-  background: #bbdefb;
+  /*background: #bbdefb;*/
   padding: 8px;
+  display: flex;
+  gap: 20px;
 }
+
+
+
+.card__pm {
+    background-color: #fff;
+    width: 110px;
+    padding: 5px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 10%;
+    font-size: 14px;
+}
+
+.card_pm__guerra {
+    font-weight: 700;
+}
+
+.card_pm__ptgr {
+    color: rgb(51, 51, 51);
+    text-align: center;
+}
+
+.card_pm__foto img {
+  border-radius: 15%;
+}
+
+.container__card_pm {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.equipe__A {
+  background-color: #A0D468;
+  border: 2px solid #91BF5D;
+}
+
+.equipe__B {
+  background-color: #FB6E52;
+  border: 2px solid #E46246;
+}
+
+.equipe__C {
+  background-color: #5E9DEC;
+  border: 2px solid #518ED5;
+}
+
+.equipe__D {
+  background-color: #D73449;
+  border: 2px solid #C32E42;
+}
+
+
+.equipe__E {
+  background-color: #b8a470;
+  border: 2px solid #E5BB4B;
+}
+
+
+
 
 
 </style>
 
 
-<section class="container">
+<section class="">
 
 
     <div class="quadro">
@@ -62,24 +152,578 @@
 
 
     <div class="quadro__chefe">
-        
 
-                        <img src="public/assets/foto-efetivo/{{ chefe.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="img_efetivo_lista" alt="{{guerra}}" >
+      <div class="quadro__equipe">
+
+        <h5>Chefe COPOM</h5>
+
+        <div class="card__pm">
+
+          <div class="card_pm__foto">
+              <img src="public/assets/foto-efetivo/{{ chefe.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="" alt="{{guerra}}" >
+          </div>
+
+          <div class="card_pm__guerra">
+              {{ chefe.guerra }}
+          </div>
+
+          <div class="card_pm__ptgr">
+              {{ chefe.pt_gr }} 
+              <br> {{ chefe.re }}-{{ chefe.dg_re }}
+              
+              <!--<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                  width="36pt" viewBox="0 0 406.000000 134.000000"
+                  preserveAspectRatio="xMidYMid meet">
+
+                  <g transform="translate(0.000000,134.000000) scale(0.100000,-0.100000)"
+                  fill="#000000" stroke="none">
+                  <path d="M686 1274 c-3 -9 -6 -72 -6 -141 0 -113 2 -124 18 -121 15 3 17 16
+                  18 103 1 113 -4 175 -16 175 -4 0 -11 -7 -14 -16z"/>
+                  <path d="M2016 1274 c-3 -9 -6 -72 -6 -141 0 -113 2 -124 18 -121 15 3 17 16
+                  18 103 1 113 -4 175 -16 175 -4 0 -11 -7 -14 -16z"/>
+                  <path d="M3336 1274 c-3 -9 -6 -72 -6 -141 0 -113 2 -124 18 -121 15 3 17 16
+                  18 103 1 113 -4 175 -16 175 -4 0 -11 -7 -14 -16z"/>
+                  <path d="M625 1211 c-3 -6 -5 -56 -4 -111 1 -87 4 -101 18 -98 14 3 16 19 16
+                  107 0 70 -4 106 -12 108 -6 2 -14 -1 -18 -6z"/>
+                  <path d="M747 1213 c-4 -3 -7 -53 -7 -110 0 -85 3 -103 15 -103 12 0 15 19 15
+                  110 0 101 -5 122 -23 103z"/>
+                  <path d="M1955 1211 c-3 -6 -5 -56 -4 -111 1 -87 4 -101 18 -98 14 3 16 19 16
+                  107 0 70 -4 106 -12 108 -6 2 -14 -1 -18 -6z"/>
+                  <path d="M2077 1213 c-4 -3 -7 -53 -7 -110 0 -85 3 -103 15 -103 12 0 15 19
+                  15 110 0 101 -5 122 -23 103z"/>
+                  <path d="M3275 1211 c-3 -6 -5 -56 -4 -111 1 -87 4 -101 18 -98 14 3 16 19 16
+                  107 0 70 -4 106 -12 108 -6 2 -14 -1 -18 -6z"/>
+                  <path d="M3397 1213 c-4 -3 -7 -53 -7 -110 0 -85 3 -103 15 -103 12 0 15 19
+                  15 110 0 101 -5 122 -23 103z"/>
+                  <path d="M576 1153 c-3 -3 -6 -44 -6 -89 0 -70 2 -82 15 -78 12 5 15 24 15 84
+                  0 73 -8 99 -24 83z"/>
+                  <path d="M804 1147 c-10 -27 1 -160 14 -165 9 -3 12 18 12 82 0 78 -12 118
+                  -26 83z"/>
+                  <path d="M1906 1153 c-3 -3 -6 -44 -6 -89 0 -70 2 -82 15 -78 12 5 15 24 15
+                  84 0 73 -8 99 -24 83z"/>
+                  <path d="M2134 1147 c-10 -27 1 -160 14 -165 9 -3 12 18 12 82 0 78 -12 118
+                  -26 83z"/>
+                  <path d="M3226 1153 c-3 -3 -6 -44 -6 -89 0 -70 2 -82 15 -78 12 5 15 24 15
+                  84 0 73 -8 99 -24 83z"/>
+                  <path d="M3454 1147 c-10 -27 1 -160 14 -165 9 -3 12 18 12 82 0 78 -12 118
+                  -26 83z"/>
+                  <path d="M516 1083 c-3 -3 -6 -35 -6 -69 0 -52 3 -62 15 -58 11 5 15 22 15 64
+                  0 55 -9 78 -24 63z"/>
+                  <path d="M862 1024 c2 -44 7 -69 16 -72 10 -3 12 12 10 64 -2 44 -7 69 -16 72
+                  -10 3 -12 -12 -10 -64z"/>
+                  <path d="M1846 1083 c-3 -3 -6 -35 -6 -69 0 -52 3 -62 15 -58 11 5 15 22 15
+                  64 0 55 -9 78 -24 63z"/>
+                  <path d="M2192 1024 c2 -44 7 -69 16 -72 10 -3 12 12 10 64 -2 44 -7 69 -16
+                  72 -10 3 -12 -12 -10 -64z"/>
+                  <path d="M3166 1083 c-3 -3 -6 -35 -6 -69 0 -52 3 -62 15 -58 11 5 15 22 15
+                  64 0 55 -9 78 -24 63z"/>
+                  <path d="M3512 1024 c2 -44 7 -69 16 -72 10 -3 12 12 10 64 -2 44 -7 69 -16
+                  72 -10 3 -12 -12 -10 -64z"/>
+                  <path d="M456 1023 c-3 -3 -6 -28 -6 -54 l0 -48 -52 -3 c-65 -4 -66 -22 -2
+                  -26 63 -4 84 15 84 79 0 45 -9 66 -24 52z"/>
+                  <path d="M926 1021 c-11 -17 -9 -86 2 -108 12 -22 45 -31 95 -24 44 5 26 26
+                  -26 29 l-47 3 0 49 c0 46 -12 71 -24 51z"/>
+                  <path d="M1786 1023 c-3 -3 -6 -28 -6 -54 l0 -48 -52 -3 c-65 -4 -66 -22 -2
+                  -26 63 -4 84 15 84 79 0 45 -9 66 -24 52z"/>
+                  <path d="M2256 1021 c-11 -17 -9 -86 2 -108 12 -22 45 -31 95 -24 44 5 26 26
+                  -26 29 l-47 3 0 49 c0 46 -12 71 -24 51z"/>
+                  <path d="M3106 1023 c-3 -3 -6 -28 -6 -54 l0 -48 -52 -3 c-65 -4 -66 -22 -2
+                  -26 63 -4 84 15 84 79 0 45 -9 66 -24 52z"/>
+                  <path d="M3576 1021 c-11 -17 -9 -86 2 -108 12 -22 45 -31 95 -24 44 5 26 26
+                  -26 29 l-47 3 0 49 c0 46 -12 71 -24 51z"/>
+                  <path d="M690 970 c0 -5 -7 -10 -15 -10 -17 0 -20 -16 -5 -25 5 -3 7 -12 4
+                  -19 -4 -9 4 -13 25 -12 17 1 31 6 31 13 0 6 3 18 6 27 4 11 1 16 -10 16 -9 0
+                  -16 5 -16 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+                  <path d="M2020 970 c0 -5 -7 -10 -15 -10 -17 0 -20 -16 -5 -25 5 -3 7 -12 4
+                  -19 -4 -9 4 -13 25 -12 17 1 31 6 31 13 0 6 3 18 6 27 4 11 1 16 -10 16 -9 0
+                  -16 5 -16 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+                  <path d="M3340 970 c0 -5 -7 -10 -15 -10 -17 0 -20 -16 -5 -25 5 -3 7 -12 4
+                  -19 -4 -9 4 -13 25 -12 17 1 31 6 31 13 0 6 3 18 6 27 4 11 1 16 -10 16 -9 0
+                  -16 5 -16 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+                  <path d="M606 859 c-73 -39 -106 -88 -113 -169 -7 -73 9 -121 55 -166 53 -51
+                  89 -67 152 -67 124 0 212 89 211 215 0 94 -52 166 -140 196 -52 18 -121 15
+                  -165 -9z m188 -28 c39 -22 83 -86 91 -132 8 -47 -9 -110 -40 -147 -36 -43
+                  -118 -75 -171 -67 -82 12 -163 99 -164 175 -1 148 156 242 284 171z"/>
+                  <path d="M696 820 c-3 -8 -12 -33 -19 -55 l-14 -40 -64 -5 -64 -5 48 -34 c26
+                  -19 47 -39 47 -45 0 -6 -7 -32 -15 -58 -8 -27 -12 -48 -10 -48 3 0 25 14 49
+                  32 l45 31 48 -31 c26 -17 48 -30 50 -29 1 2 -5 27 -14 57 l-16 53 26 19 c14
+                  10 36 27 49 38 l23 19 -62 1 -61 0 -20 58 c-12 35 -22 51 -26 42z"/>
+                  <path d="M1936 859 c-73 -39 -106 -88 -113 -169 -7 -73 9 -121 55 -166 53 -51
+                  89 -67 152 -67 124 0 212 89 211 215 0 94 -52 166 -140 196 -52 18 -121 15
+                  -165 -9z m188 -28 c39 -22 83 -86 91 -132 8 -47 -9 -110 -40 -147 -36 -43
+                  -118 -75 -171 -67 -82 12 -163 99 -164 175 -1 148 156 242 284 171z"/>
+                  <path d="M2026 820 c-3 -8 -12 -33 -19 -55 l-14 -40 -64 -5 -64 -5 48 -34 c26
+                  -19 47 -39 47 -45 0 -6 -7 -32 -15 -58 -8 -27 -12 -48 -10 -48 3 0 25 14 49
+                  32 l45 31 48 -31 c26 -17 48 -30 50 -29 1 2 -5 27 -14 57 l-16 53 26 19 c14
+                  10 36 27 49 38 l23 19 -62 1 -61 0 -20 58 c-12 35 -22 51 -26 42z"/>
+                  <path d="M3256 859 c-73 -39 -106 -88 -113 -169 -7 -73 9 -121 55 -166 53 -51
+                  89 -67 152 -67 124 0 212 89 211 215 0 94 -52 166 -140 196 -52 18 -121 15
+                  -165 -9z m188 -28 c39 -22 83 -86 91 -132 8 -47 -9 -110 -40 -147 -36 -43
+                  -118 -75 -171 -67 -82 12 -163 99 -164 175 -1 148 156 242 284 171z"/>
+                  <path d="M3346 820 c-3 -8 -12 -33 -19 -55 l-14 -40 -64 -5 -64 -5 48 -34 c26
+                  -19 47 -39 47 -45 0 -6 -7 -32 -15 -58 -8 -27 -12 -48 -10 -48 3 0 25 14 49
+                  32 l45 31 48 -31 c26 -17 48 -30 50 -29 1 2 -5 27 -14 57 l-16 53 26 19 c14
+                  10 36 27 49 38 l23 19 -62 1 -61 0 -20 58 c-12 35 -22 51 -26 42z"/>
+                  <path d="M280 845 c0 -12 14 -15 64 -15 48 0 65 4 70 15 4 12 -6 15 -64 15
+                  -56 0 -70 -3 -70 -15z"/>
+                  <path d="M986 845 c5 -13 19 -15 68 -13 82 4 78 22 -6 26 -59 3 -67 1 -62 -13z"/>
+                  <path d="M1610 845 c0 -12 14 -15 64 -15 48 0 65 4 70 15 4 12 -6 15 -64 15
+                  -56 0 -70 -3 -70 -15z"/>
+                  <path d="M2316 845 c5 -13 19 -15 68 -13 82 4 78 22 -6 26 -59 3 -67 1 -62
+                  -13z"/>
+                  <path d="M2930 845 c0 -12 14 -15 64 -15 48 0 65 4 70 15 4 12 -6 15 -64 15
+                  -56 0 -70 -3 -70 -15z"/>
+                  <path d="M3636 845 c5 -13 19 -15 68 -13 82 4 78 22 -6 26 -59 3 -67 1 -62
+                  -13z"/>
+                  <path d="M217 794 c-16 -16 10 -24 83 -24 60 0 79 3 84 15 4 13 -8 15 -78 15
+                  -45 0 -86 -3 -89 -6z"/>
+                  <path d="M437 786 c-4 -9 -14 -16 -23 -16 -13 0 -14 -3 -4 -15 6 -8 9 -19 6
+                  -24 -4 -5 7 -9 24 -9 22 1 30 6 30 19 0 9 6 20 13 22 7 3 5 6 -5 6 -9 1 -21 8
+                  -26 17 -8 15 -10 15 -15 0z"/>
+                  <path d="M1012 788 c3 -9 32 -14 86 -16 68 -2 82 0 82 13 0 12 -15 15 -86 15
+                  -64 0 -85 -3 -82 -12z"/>
+                  <path d="M1547 794 c-16 -16 10 -24 83 -24 60 0 79 3 84 15 4 13 -8 15 -78 15
+                  -45 0 -86 -3 -89 -6z"/>
+                  <path d="M1767 786 c-4 -9 -14 -16 -23 -16 -13 0 -14 -3 -4 -15 6 -8 9 -19 6
+                  -24 -4 -5 7 -9 24 -9 22 1 30 6 30 19 0 9 6 20 13 22 7 3 5 6 -5 6 -9 1 -21 8
+                  -26 17 -8 15 -10 15 -15 0z"/>
+                  <path d="M2342 788 c3 -9 32 -14 86 -16 68 -2 82 0 82 13 0 12 -15 15 -86 15
+                  -64 0 -85 -3 -82 -12z"/>
+                  <path d="M2867 794 c-16 -16 10 -24 83 -24 60 0 79 3 84 15 4 13 -8 15 -78 15
+                  -45 0 -86 -3 -89 -6z"/>
+                  <path d="M3087 786 c-4 -9 -14 -16 -23 -16 -13 0 -14 -3 -4 -15 6 -8 9 -19 6
+                  -24 -4 -5 7 -9 24 -9 22 1 30 6 30 19 0 9 6 20 13 22 7 3 5 6 -5 6 -9 1 -21 8
+                  -26 17 -8 15 -10 15 -15 0z"/>
+                  <path d="M3662 788 c3 -9 32 -14 86 -16 68 -2 82 0 82 13 0 12 -15 15 -86 15
+                  -64 0 -85 -3 -82 -12z"/>
+                  <path d="M934 775 c-17 -8 -19 -14 -11 -33 10 -22 57 -32 57 -13 0 5 2 15 5
+                  23 8 21 -26 36 -51 23z"/>
+                  <path d="M2264 775 c-17 -8 -19 -14 -11 -33 10 -22 57 -32 57 -13 0 5 2 15 5
+                  23 8 21 -26 36 -51 23z"/>
+                  <path d="M3584 775 c-17 -8 -19 -14 -11 -33 10 -22 57 -32 57 -13 0 5 2 15 5
+                  23 8 21 -26 36 -51 23z"/>
+                  <path d="M192 742 c-28 -2 -42 -7 -39 -15 5 -17 209 -17 214 0 4 12 -95 21
+                  -175 15z"/>
+                  <path d="M1030 728 c0 -16 11 -18 104 -18 64 0 107 4 111 11 4 6 5 12 3 14 -2
+                  3 -52 6 -111 8 -97 3 -107 1 -107 -15z"/>
+                  <path d="M1522 742 c-28 -2 -42 -7 -39 -15 5 -17 209 -17 214 0 4 12 -95 21
+                  -175 15z"/>
+                  <path d="M2360 728 c0 -16 11 -18 104 -18 64 0 107 4 111 11 4 6 5 12 3 14 -2
+                  3 -52 6 -111 8 -97 3 -107 1 -107 -15z"/>
+                  <path d="M2842 742 c-28 -2 -42 -7 -39 -15 5 -17 209 -17 214 0 4 12 -95 21
+                  -175 15z"/>
+                  <path d="M3680 728 c0 -16 11 -18 104 -18 64 0 107 4 111 11 4 6 5 12 3 14 -2
+                  3 -52 6 -111 8 -97 3 -107 1 -107 -15z"/>
+                  <path d="M87 678 c-28 -18 23 -28 146 -28 121 0 127 1 127 20 0 20 -5 21 -130
+                  18 -72 -1 -136 -6 -143 -10z"/>
+                  <path d="M1035 680 c-15 -24 12 -30 134 -30 97 0 131 3 140 14 9 11 7 15 -7
+                  18 -37 10 -261 8 -267 -2z"/>
+                  <path d="M1417 678 c-28 -18 23 -28 146 -28 121 0 127 1 127 20 0 20 -5 21
+                  -130 18 -72 -1 -136 -6 -143 -10z"/>
+                  <path d="M2365 680 c-15 -24 12 -30 134 -30 97 0 131 3 140 14 9 11 7 15 -7
+                  18 -37 10 -261 8 -267 -2z"/>
+                  <path d="M2737 678 c-28 -18 23 -28 146 -28 121 0 127 1 127 20 0 20 -5 21
+                  -130 18 -72 -1 -136 -6 -143 -10z"/>
+                  <path d="M3685 680 c-15 -24 12 -30 134 -30 97 0 131 3 140 14 9 11 7 15 -7
+                  18 -37 10 -261 8 -267 -2z"/>
+                  <path d="M157 624 c-19 -19 2 -24 104 -24 84 0 110 3 107 13 -5 13 -198 23
+                  -211 11z"/>
+                  <path d="M1030 615 c0 -13 18 -15 111 -15 84 0 110 3 107 13 -3 8 -37 13 -111
+                  15 -91 2 -107 0 -107 -13z"/>
+                  <path d="M1487 624 c-19 -19 2 -24 104 -24 84 0 110 3 107 13 -5 13 -198 23
+                  -211 11z"/>
+                  <path d="M2360 615 c0 -13 18 -15 111 -15 84 0 110 3 107 13 -3 8 -37 13 -111
+                  15 -91 2 -107 0 -107 -13z"/>
+                  <path d="M2807 624 c-19 -19 2 -24 104 -24 84 0 110 3 107 13 -5 13 -198 23
+                  -211 11z"/>
+                  <path d="M3680 615 c0 -13 18 -15 111 -15 84 0 110 3 107 13 -3 8 -37 13 -111
+                  15 -91 2 -107 0 -107 -13z"/>
+                  <path d="M217 564 c-16 -17 11 -24 88 -24 71 0 83 2 79 15 -5 12 -24 15 -83
+                  15 -43 0 -81 -3 -84 -6z"/>
+                  <path d="M1016 555 c-5 -14 5 -15 79 -13 110 4 116 22 9 26 -67 2 -83 0 -88
+                  -13z"/>
+                  <path d="M1547 564 c-16 -17 11 -24 88 -24 71 0 83 2 79 15 -5 12 -24 15 -83
+                  15 -43 0 -81 -3 -84 -6z"/>
+                  <path d="M2346 555 c-5 -14 5 -15 79 -13 110 4 116 22 9 26 -67 2 -83 0 -88
+                  -13z"/>
+                  <path d="M2867 564 c-16 -17 11 -24 88 -24 71 0 83 2 79 15 -5 12 -24 15 -83
+                  15 -43 0 -81 -3 -84 -6z"/>
+                  <path d="M3666 555 c-5 -14 5 -15 79 -13 110 4 116 22 9 26 -67 2 -83 0 -88
+                  -13z"/>
+                  <path d="M282 498 c3 -8 29 -14 71 -16 57 -2 66 -1 61 13 -8 20 -138 23 -132
+                  3z"/>
+                  <path d="M987 504 c-18 -19 -2 -25 58 -22 36 2 66 8 68 13 2 11 -115 20 -126
+                  9z"/>
+                  <path d="M1612 498 c3 -8 29 -14 71 -16 57 -2 66 -1 61 13 -8 20 -138 23 -132
+                  3z"/>
+                  <path d="M2317 504 c-18 -19 -2 -25 58 -22 36 2 66 8 68 13 2 11 -115 20 -126
+                  9z"/>
+                  <path d="M2932 498 c3 -8 29 -14 71 -16 57 -2 66 -1 61 13 -8 20 -138 23 -132
+                  3z"/>
+                  <path d="M3637 504 c-18 -19 -2 -25 58 -22 36 2 66 8 68 13 2 11 -115 20 -126
+                  9z"/>
+                  <path d="M847 486 c-4 -9 -13 -16 -21 -16 -11 0 -12 -5 -3 -25 7 -14 20 -25
+                  32 -25 12 0 25 11 32 25 9 20 8 25 -2 25 -8 0 -18 7 -23 16 -8 15 -10 15 -15
+                  0z"/>
+                  <path d="M2177 486 c-4 -9 -13 -16 -21 -16 -11 0 -12 -5 -3 -25 7 -14 20 -25
+                  32 -25 12 0 25 11 32 25 9 20 8 25 -2 25 -8 0 -18 7 -23 16 -8 15 -10 15 -15
+                  0z"/>
+                  <path d="M3497 486 c-4 -9 -13 -16 -21 -16 -11 0 -12 -5 -3 -25 7 -14 20 -25
+                  32 -25 12 0 25 11 32 25 9 20 8 25 -2 25 -8 0 -18 7 -23 16 -8 15 -10 15 -15
+                  0z"/>
+                  <path d="M530 479 c0 -5 -7 -9 -15 -9 -12 0 -13 -4 -6 -19 6 -10 7 -21 4 -25
+                  -3 -3 9 -6 27 -6 18 0 30 3 27 6 -3 4 -2 14 2 23 7 12 3 19 -15 28 -13 6 -24
+                  7 -24 2z"/>
+                  <path d="M1860 479 c0 -5 -7 -9 -15 -9 -12 0 -13 -4 -6 -19 6 -10 7 -21 4 -25
+                  -3 -3 9 -6 27 -6 18 0 30 3 27 6 -3 4 -2 14 2 23 7 12 3 19 -15 28 -13 6 -24
+                  7 -24 2z"/>
+                  <path d="M3180 479 c0 -5 -7 -9 -15 -9 -12 0 -13 -4 -6 -19 6 -10 7 -21 4 -25
+                  -3 -3 9 -6 27 -6 18 0 30 3 27 6 -3 4 -2 14 2 23 7 12 3 19 -15 28 -13 6 -24
+                  7 -24 2z"/>
+                  <path d="M347 444 c-14 -15 7 -24 53 -24 l49 0 3 -52 c4 -68 22 -69 26 -2 4
+                  66 -12 84 -77 84 -26 0 -51 -3 -54 -6z"/>
+                  <path d="M935 430 c-16 -18 -24 -94 -11 -107 13 -13 26 13 26 52 l0 44 47 3
+                  c65 4 70 28 5 28 -36 0 -54 -5 -67 -20z"/>
+                  <path d="M1677 444 c-14 -15 7 -24 53 -24 l49 0 3 -52 c4 -68 22 -69 26 -2 4
+                  66 -12 84 -77 84 -26 0 -51 -3 -54 -6z"/>
+                  <path d="M2265 430 c-16 -18 -24 -94 -11 -107 13 -13 26 13 26 52 l0 44 47 3
+                  c65 4 70 28 5 28 -36 0 -54 -5 -67 -20z"/>
+                  <path d="M2997 444 c-14 -15 7 -24 53 -24 l49 0 3 -52 c4 -68 22 -69 26 -2 4
+                  66 -12 84 -77 84 -26 0 -51 -3 -54 -6z"/>
+                  <path d="M3585 430 c-16 -18 -24 -94 -11 -107 13 -13 26 13 26 52 l0 44 47 3
+                  c65 4 70 28 5 28 -36 0 -54 -5 -67 -20z"/>
+                  <path d="M510 319 c0 -52 3 -70 13 -67 7 3 13 28 15 65 2 47 -1 62 -13 66 -13
+                  5 -15 -5 -15 -64z"/>
+                  <path d="M867 383 c-4 -3 -7 -35 -7 -70 0 -47 3 -64 13 -61 7 3 13 29 15 71 3
+                  61 -3 78 -21 60z"/>
+                  <path d="M1840 319 c0 -52 3 -70 13 -67 7 3 13 28 15 65 2 47 -1 62 -13 66
+                  -13 5 -15 -5 -15 -64z"/>
+                  <path d="M2197 383 c-4 -3 -7 -35 -7 -70 0 -47 3 -64 13 -61 7 3 13 29 15 71
+                  3 61 -3 78 -21 60z"/>
+                  <path d="M3160 319 c0 -52 3 -70 13 -67 7 3 13 28 15 65 2 47 -1 62 -13 66
+                  -13 5 -15 -5 -15 -64z"/>
+                  <path d="M3517 383 c-4 -3 -7 -35 -7 -70 0 -47 3 -64 13 -61 7 3 13 29 15 71
+                  3 61 -3 78 -21 60z"/>
+                  <path d="M572 275 c4 -108 22 -112 26 -6 2 64 0 80 -13 85 -14 5 -15 -5 -13
+                  -79z"/>
+                  <path d="M813 353 c-16 -6 -18 -159 -3 -168 16 -10 21 17 18 97 -2 54 -6 74
+                  -15 71z"/>
+                  <path d="M1902 275 c4 -108 22 -112 26 -6 2 64 0 80 -13 85 -14 5 -15 -5 -13
+                  -79z"/>
+                  <path d="M2143 353 c-16 -6 -18 -159 -3 -168 16 -10 21 17 18 97 -2 54 -6 74
+                  -15 71z"/>
+                  <path d="M3222 275 c4 -108 22 -112 26 -6 2 64 0 80 -13 85 -14 5 -15 -5 -13
+                  -79z"/>
+                  <path d="M3463 353 c-16 -6 -18 -159 -3 -168 16 -10 21 17 18 97 -2 54 -6 74
+                  -15 71z"/>
+                  <path d="M626 308 c-7 -43 -3 -174 6 -183 19 -20 28 14 28 111 0 84 -3 104
+                  -15 104 -8 0 -16 -13 -19 -32z"/>
+                  <path d="M744 327 c-10 -28 1 -200 14 -205 9 -3 12 23 12 107 0 70 -4 111 -10
+                  111 -6 0 -13 -6 -16 -13z"/>
+                  <path d="M1956 308 c-7 -43 -3 -174 6 -183 19 -20 28 14 28 111 0 84 -3 104
+                  -15 104 -8 0 -16 -13 -19 -32z"/>
+                  <path d="M2074 327 c-10 -28 1 -200 14 -205 9 -3 12 23 12 107 0 70 -4 111
+                  -10 111 -6 0 -13 -6 -16 -13z"/>
+                  <path d="M3276 308 c-7 -43 -3 -174 6 -183 19 -20 28 14 28 111 0 84 -3 104
+                  -15 104 -8 0 -16 -13 -19 -32z"/>
+                  <path d="M3394 327 c-10 -28 1 -200 14 -205 9 -3 12 23 12 107 0 70 -4 111
+                  -10 111 -6 0 -13 -6 -16 -13z"/>
+                  <path d="M680 196 c0 -123 7 -162 27 -142 3 3 6 66 7 141 1 122 -1 135 -16
+                  135 -16 0 -18 -13 -18 -134z"/>
+                  <path d="M2010 196 c0 -123 7 -162 27 -142 3 3 6 66 7 141 1 122 -1 135 -16
+                  135 -16 0 -18 -13 -18 -134z"/>
+                  <path d="M3330 196 c0 -123 7 -162 27 -142 3 3 6 66 7 141 1 122 -1 135 -16
+                  135 -16 0 -18 -13 -18 -134z"/>
+                  </g>
+                  </svg> -->
+          </div>
+
+          </div>
+       
+      </div>            
 
     </div>
 
 
     <div class="quadro__equipes">
-        <div class="quadro__equipe">.quadro__equipe</div>
-        <div class="quadro__equipe">.quadro__equipe</div>
-        <div class="quadro__equipe">.quadro__equipe</div>
-        <div class="quadro__equipe">.quadro__equipe</div>
-        <div class="quadro__equipe">.quadro__equipe</div>
+        <div class="quadro__equipe equipe__A">
+          <h5>Equipe A</h5>
+
+            <div class="container__card_pm">
+            {% for pm in efetivo %}
+              {% if pm.equipe == 'A' %}
+
+                <div class="card__pm">
+        
+                  <div class="card_pm__foto">
+                      <img src="public/assets/foto-efetivo/{{ pm.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="" alt="{{pm.guerra}}" >
+                  </div>
+  
+                  <div class="card_pm__guerra">
+                      {{ pm.guerra }}
+                  </div>
+  
+                  <div class="card_pm__ptgr">
+                      {{ pm.pt_gr }}
+                      <br>{{ pm.re }}-{{ pm.dg_re }}
+                                                  
+                  </div>
+  
+                </div>
+              {% endif %}      
+            {% endfor %}
+          </div>
+
+        </div>
+
+
+        <div class="quadro__equipe equipe__B">
+          <h5>Equipe B</h5>
+
+            <div class="container__card_pm">
+            {% for pm in efetivo %}
+              {% if pm.equipe == 'B' %}
+
+                <div class="card__pm">
+        
+                  <div class="card_pm__foto">
+                            <img src="public/assets/foto-efetivo/{{ pm.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="" alt="{{pm.guerra}}" >
+                        </div>
+        
+                        <div class="card_pm__guerra">
+                            {{ pm.guerra }}
+                        </div>
+        
+                        <div class="card_pm__ptgr">
+                            {{ pm.pt_gr }} 
+                            <br>
+                            {{ pm.re }}-{{ pm.dg_re }}                            
+                        </div>
+        
+                </div>
+              {% endif %}      
+            {% endfor %}
+          </div>
+
+        </div>
+
+
+        <div class="quadro__equipe equipe__C">
+          <h5>Equipe C</h5>
+
+            <div class="container__card_pm">
+            {% for pm in efetivo %}
+              {% if pm.equipe == 'C' %}
+
+                <div class="card__pm">
+        
+                  <div class="card_pm__foto">
+                            <img src="public/assets/foto-efetivo/{{ pm.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="" alt="{{pm.guerra}}" >
+                        </div>
+        
+                        <div class="card_pm__guerra">
+                            {{ pm.guerra }}
+                        </div>
+        
+                        <div class="card_pm__ptgr">
+                            {{ pm.pt_gr }}
+                            <br>
+                            {{ pm.re }}-{{ pm.dg_re }}                            
+                        </div>
+        
+                </div>
+              {% endif %}      
+            {% endfor %}
+          </div>
+
+        </div>
+
+        <div class="quadro__equipe equipe__D">
+          <h5>Equipe D</h5>
+
+            <div class="container__card_pm">
+            {% for pm in efetivo %}
+              {% if pm.equipe == 'D' %}
+
+                <div class="card__pm">
+        
+                  <div class="card_pm__foto">
+                            <img src="public/assets/foto-efetivo/{{ pm.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="" alt="{{pm.guerra}}" >
+                        </div>
+        
+                        <div class="card_pm__guerra">
+                            {{ pm.guerra }}
+                        </div>
+        
+                        <div class="card_pm__ptgr">
+                            {{ pm.pt_gr }}
+                            <br>
+                            {{ pm.re }}-{{ pm.dg_re }}                            
+                        </div>
+        
+                </div>
+              {% endif %}      
+            {% endfor %}
+          </div>
+
+        </div>
+
+        <div class="quadro__equipe equipe__E">
+          <h5>Equipe E</h5>
+
+            <div class="container__card_pm">
+            {% for pm in efetivo %}
+              {% if pm.equipe == 'E' %}
+
+                <div class="card__pm">
+        
+                  <div class="card_pm__foto">
+                            <img src="public/assets/foto-efetivo/{{ pm.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="" alt="{{pm.guerra}}" >
+                        </div>
+        
+                        <div class="card_pm__guerra">
+                            {{ pm.guerra }}
+                        </div>
+        
+                        <div class="card_pm__ptgr">
+                            {{ pm.pt_gr }}
+                            <br>
+                            {{ pm.re }}-{{ pm.dg_re }}
+                            
+                        </div>
+        
+                </div>
+              {% endif %}      
+            {% endfor %}
+          </div>
+
+        </div>
+
     </div>
-    <div class="quadro__adm">.quadro__adm</div>
-    <div class="quadro__outros">.quadro__outros</div>
+    <div class="quadro__adm">
+
+      <div class="quadro__equipe">
+
+        <h5>Administração COPOM</h5>
+  
+        <div class="container__card_pm">
+          {% for pm in adm %}
+
+            {% if pm.situacao == 'Ativo' %}
+
+              <div class="card__pm">
+      
+                  <div class="card_pm__foto">
+                      <img src="public/assets/foto-efetivo/{{ pm.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="" alt="{{pm.guerra}}" >
+                  </div>
+
+                  <div class="card_pm__guerra">
+                      {{ pm.guerra }}
+                  </div>
+
+                  <div class="card_pm__ptgr">
+                      {{ pm.pt_gr }}
+                      <br>
+                      {{ pm.re }}-{{ pm.dg_re }}                      
+                  </div>
+      
+              </div>
+
+            {% endif %}
+    
+          {% endfor %}
+        </div>
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+      <div class="quadro__outros">
+
+        <div class="quadro__equipe">
+
+          <h5>Agregados</h5>
+
+          <div class="container__card_pm">
+
+            {% for pm in efetivo %}
+                  {% if pm.situacao == 'Agregado' %}
+
+                    <div class="card__pm">
+            
+                      <div class="card_pm__foto">
+                                <img src="public/assets/foto-efetivo/{{ pm.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="" alt="{{pm.guerra}}" >
+                            </div>
+            
+                            <div class="card_pm__guerra">
+                                {{ pm.guerra }}
+                            </div>
+            
+                            <div class="card_pm__ptgr">
+                                {{ pm.pt_gr }}
+                                <br>
+                                {{ pm.re }}-{{ pm.dg_re }}
+                                
+                            </div>
+            
+                    </div>
+                  {% endif %}      
+                {% endfor %}
+          </div>
+        </div>
+
+        <div class="quadro__equipe">
+          <h5>Afastamento para inatividade</h5>
+
+          <div class="container__card_pm">
+
+            {% for pm in efetivo %}
+                  {% if pm.situacao == 'Inativando' %}
+
+                    <div class="card__pm">
+            
+                      <div class="card_pm__foto">
+                                <img src="public/assets/foto-efetivo/{{ pm.re }}.png" onerror="this.src='public/assets/images/default-user.png'" class="" alt="{{pm.guerra}}" >
+                            </div>
+            
+                            <div class="card_pm__guerra">
+                                {{ pm.guerra }}
+                            </div>
+            
+                            <div class="card_pm__ptgr">
+                                {{ pm.pt_gr }}
+                                <br>
+                                {{ pm.re }}-{{ pm.dg_re }}
+                                
+                            </div>
+            
+                    </div>
+                  {% endif %}      
+                {% endfor %}
+          </div>
+        </div>
+
+
+      </div>
     </div>
 
 
 
 </section>
+
+
+<script>
+
+        // Alterna a classe 'recolhido' no aside
+        document.querySelector('aside').classList.toggle('recolhido');
+        // Alterna a classe 'recolhido' no botão
+        document.querySelector('.recolhe__menu').classList.toggle('recolhido');
+        document.querySelector(".body__cpi").classList.toggle("recolhido");
+
+</script>

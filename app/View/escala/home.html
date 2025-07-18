@@ -1,0 +1,114 @@
+{% include 'caixaMensagem.html' %}
+
+<section class="container__cpi">
+
+    <div class="titulo__secao">
+        <p>
+            Escala
+        </p>
+        <div class="barra__titulo_secao"></div>
+    </div>
+
+
+    <br>
+    <p>Dia:</p>
+    <h4>{{dataConsulta|date('d/m/Y')}}</h4>
+
+    <table class="table table-bordered" style="width: 400px;"> 
+        <tr>
+            <th>Dia</th>
+            <th>Noite</th>
+        </tr>
+        <tr>
+            <td>{{equipeDia}}</td>
+            <td>{{equipeNoite}}</td>
+        </tr>
+    </table>
+
+
+    <h4>Equipes</h4>
+
+    <table class="table table-bordered" style="width: 800px;"> 
+        <tr>
+            <th>Equipe {{equipeDia}} (Diurno)</th>
+            <th>Equipe {{equipeNoite}} (Noturno)</th>
+        </tr>
+        <tr>
+            <th colspan="2">Supervisor</th>
+        </tr>
+
+        <tr>
+            <td>
+                {% for pm in efetivoDia %}
+                    {% if pm.funcao_copom == 'Supervisor' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+
+            <td>
+                {% for pm in efetivoNoite %}
+                    {% if pm.funcao_copom == 'Supervisor' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+
+
+        <tr>
+            <th colspan="2">Atendente 190</th>
+        </tr>
+
+        <tr>
+            <td>
+                {% for pm in efetivoDia %}
+                    {% if pm.funcao_copom == 'Atendente 190' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+
+            <td>
+                {% for pm in efetivoNoite %}
+                    {% if pm.funcao_copom == 'Atendente 190' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+
+
+        <tr>
+            <th colspan="2">Despachador</th>
+        </tr>
+
+        <tr>
+            <td>
+                {% for pm in efetivoDia %}
+                    {% if pm.funcao_copom == 'Despachador' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+
+            <td>
+                {% for pm in efetivoNoite %}
+                    {% if pm.funcao_copom == 'Despachador' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+
+
+    </table>
+
+
+
+
+
+
+
+
+</section>

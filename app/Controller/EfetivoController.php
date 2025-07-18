@@ -180,6 +180,9 @@ class EfetivoController
 
             $parametros['chefe'] = Efetivo::buscaChefeCopom();
 
+            
+            $parametros['adm']   = Efetivo::buscaAdm();
+            
       
             $conteudo = $template->render($parametros);
 

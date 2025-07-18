@@ -1,0 +1,54 @@
+{
+  "data_referencia": "2024-07-01",
+  "ciclos": {
+    "A": {
+      "ciclo": [
+        { "turno": "Dia",     "horario": "06:00" },
+        { "turno": "Folga",   "horario": "00:00" },
+        { "turno": "Dia",     "horario": "06:00" },
+        { "turno": "Folga 1", "horario": "00:00" },
+        { "turno": "Folga 2", "horario": "00:00" }
+      ],
+      "inicio": 2
+    },
+    "B": {
+      "ciclo": [
+        { "turno": "Noite",   "horario": "18:00" },
+        { "turno": "Folga",   "horario": "00:00" },
+        { "turno": "Noite",   "horario": "18:00" },
+        { "turno": "Folga 1", "horario": "00:00" },
+        { "turno": "Folga 2", "horario": "00:00" }
+      ],
+      "inicio": 0
+    },
+    "C": {
+      "ciclo": [
+        { "turno": "Dia",     "horario": "06:00" },
+        { "turno": "Noite",   "horario": "18:00" },
+        { "turno": "Folga 1", "horario": "00:00" },
+        { "turno": "Folga 2", "horario": "00:00" }
+      ],
+      "inicio": 3
+    },
+    "D": {
+      "ciclo": [
+        { "turno": "Noite",   "horario": "18:00" },
+        { "turno": "Folga",   "horario": "00:00" },
+        { "turno": "Noite",   "horario": "18:00" },
+        { "turno": "Folga 1", "horario": "00:00" },
+        { "turno": "Folga 2", "horario": "00:00" }
+      ],
+      "inicio": 3
+    },
+    "E": {
+      "ciclo": [
+        { "turno": "Dia",     "horario": "06:00" },
+        { "turno": "Folga",   "horario": "00:00" },
+        { "turno": "Dia",     "horario": "06:00" },
+        { "turno": "Folga 1", "horario": "00:00" },
+        { "turno": "Folga 2", "horario": "00:00" }
+      ],
+      "inicio": 3
+    }
+  }
+} 
