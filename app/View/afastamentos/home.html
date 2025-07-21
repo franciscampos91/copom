@@ -23,6 +23,7 @@
         <tr>
             <th>#</th>
             <th>Policial</th>
+            <th>Equipe</th>
             <th>Afastamento</th>
             <th>Dias</th>
             <th>Início</th>
@@ -32,13 +33,16 @@
 
         {% for afastamento in afastamentos %}
 
-            <td></td>
-            <td>{{ afastamento.re }}</td>
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ afastamento.pt_gr }} {{ afastamento.re }} {{ afastamento.nome }}</td>
+            <td>{{ afastamento.equipe }}</td>
             <td>{{ afastamento.afastamento }}</td>
             <td>{{ afastamento.dias }}</td>
-            <td>{{ afastamento.inicio }}</td>
-            <td>{{ afastamento.termino }}</td>
+            <td>{{ afastamento.inicio|date('d/m/Y') }}</td>
+            <td>{{ afastamento.termino|date('d/m/Y') }}</td>
             <td></td>
+        </tr>
 
         {% endfor %}
 

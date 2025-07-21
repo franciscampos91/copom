@@ -64,6 +64,12 @@ class EscalaController
         $parametros['efetivoNoite'] = Efetivo::consultaPorEquipe($equipeNoite);
 
 
+        $efetivoPorEquipe = Efetivo::listarEfetivoPorEquipe($dataConsulta); // ou data dinâmica
+        $parametros['efetivoPorEquipe'] = $efetivoPorEquipe;
+
+     //   var_dump($parametros['efetivoPorEquipe']);
+
+        
         $conteudo = $template->render($parametros);
 
         echo $conteudo;

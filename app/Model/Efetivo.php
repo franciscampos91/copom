@@ -19,6 +19,59 @@ class Efetivo
     }
 
 
+    public static function listarEfetivoPorEquipe($data)
+    {
+        $con = Connection::getConn();
+        $sql = "
+            SELECT 
+                e.*,
+                a.id_afastamentos,
+                ta.sigla_afastamento,
+                ta.afastamento,
+                a.inicio AS inicio_afastamento,
+                a.termino AS termino_afastamento
+            FROM copom_efetivo e
+            LEFT JOIN copom_afastamentos a ON e.re = a.re 
+                AND :data BETWEEN DATE(a.inicio) AND DATE(a.termino)
+            LEFT JOIN copom_tipo_afastamento ta ON ta.cod_afastamento = a.cod_afastamento
+            WHERE e.situacao = 'Ativo'
+            ORDER BY e.equipe, 
+                FIELD(e.funcao_copom, 'Supervisor', 'Atendente 190', 'Despachador'), 
+                e.nome
+        ";
+
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue(':data', $data);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $efetivo = [
+            'A' => ['Supervisor' => [], 'Atendente 190' => [], 'Despachador' => [], 'Afastamentos' => []],
+            'B' => ['Supervisor' => [], 'Atendente 190' => [], 'Despachador' => [], 'Afastamentos' => []],
+            'C' => ['Supervisor' => [], 'Atendente 190' => [], 'Despachador' => [], 'Afastamentos' => []],
+            'D' => ['Supervisor' => [], 'Atendente 190' => [], 'Despachador' => [], 'Afastamentos' => []],
+            'E' => ['Supervisor' => [], 'Atendente 190' => [], 'Despachador' => [], 'Afastamentos' => []],
+        ];
+
+        foreach ($result as $row) {
+            $equipe = strtoupper($row['equipe']);
+            $funcao = $row['funcao_copom'];
+
+            if (!in_array($equipe, ['A', 'B', 'C', 'D', 'E'])) {
+                continue;
+            }
+
+            if ($row['id_afastamentos']) {
+                $efetivo[$equipe]['Afastamentos'][] = $row;
+            } elseif (isset($efetivo[$equipe][$funcao])) {
+                $efetivo[$equipe][$funcao][] = $row;
+            }
+        }
+
+        return $efetivo;
+    }
+
+
     public static function incluirEfetivo($dados)
     {
         $con = Connection::getConn();

@@ -7,7 +7,13 @@ class Afastamento
     {
         $con = Connection::getConn();
 
-        $sql = "SELECT * FROM copom_afastamentos ORDER BY inicio DESC";
+        $sql = "SELECT * 
+                FROM copom_afastamentos as af
+                JOIN copom_tipo_afastamento as ta
+                ON af.cod_afastamento = ta.cod_afastamento
+                JOIN copom_efetivo as co
+                ON af.re = co.re
+                ORDER BY inicio ASC";
 
         $stmt = $con->prepare($sql);
         $stmt->execute();
