@@ -3,6 +3,309 @@
 
 <style>
 
+.container__equipes_servico {
+    display: grid;
+    grid-template-areas: "colunaDia colunaNoite"
+                         "supervisorDia supervisorNoite"
+                         "atendenteDia atendenteNoite"
+                         "despachadorDia despachadorNoite"
+                         "afastamentosDia afastamentosNoite";
+    grid-template-columns: 300px 300px;
+    margin: 20px;
+}
+
+.coluna_dia {
+    grid-area: colunaDia;
+}
+
+.coluna_noite {
+    grid-area: colunaNoite;
+}
+
+.supervisor_dia {
+    grid-area: supervisorDia;
+}
+
+.supervisor_noite {
+    grid-area: supervisorNoite;
+}
+
+.atendente_dia {
+    grid-area: atendenteDia;
+}
+
+.atendente_noite {
+    grid-area: atendenteNoite;
+}
+
+.despachador_dia {
+    grid-area: despachadorDia;
+}
+
+.despachador_notie {
+    grid-area: despachadorNoite;
+}
+
+
+.afastamentos_dia {
+    grid-area: afastamentosDia;
+}
+
+.afastamentos_noite {
+    grid-area: afastamentosNoite;
+}
+
+.container__equipes_servico h5 {
+    background-color: #383535;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.container__equipes_servico p {
+    line-height: 18px;
+    /*background-color: #ABAEFF;*/
+    border-radius: 7px;
+    font-size: 13px;
+    margin: 5px 10px;
+    padding: 1px 6px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.dia {
+    /*background-color: #aadef7;*/
+    border: 1px solid #C4C8CA;
+}
+
+.noite {
+   /* background-color: #4f72ff;*/
+    border-top: 1px solid #C4C8CA;
+    border-right: 1px solid #C4C8CA;
+    border-bottom: 1px solid #C4C8CA;
+}
+
+.bg_equipeA {
+    background-color: #baf17f;
+}
+
+.bg_equipeB {
+    background-color: #ff8067;    
+}
+
+.bg_equipeC {
+    background-color: #91c0fa;    
+}
+
+.bg_equipeD {
+    background-color: #fda3af;    
+}
+
+.bg_equipeE {
+    background-color: #fadb52;    
+}
+
+
+</style>
+
+<div class="row mt-5">
+    <div class="col-md-2">
+        <input type="date" class="form-control" name="data" id="data">
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-primary" onclick="irParaEscala()">Ir</button>
+    </div>
+</div>
+
+<div class="mt-3">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-dark" onclick="diaAnterior()">Anterior</button>
+        <button type="button" class="btn btn-dark" onclick="irParaHoje()">Hoje</button>
+        <button type="button" class="btn btn-dark" onclick="diaSeguinte()">Próximo</button>
+    </div>
+</div>
+
+<script>
+
+    const hoje = new Date();
+    const ano = hoje.getFullYear();
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const dataFormatada = `${ano}-${mes}-${dia}`;
+    document.getElementById('data').value = dataFormatada;
+
+
+    // Obtém a string de consulta da URL atual
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    // Verifica se existe um parâmetro chamado "nome"
+    if (urlParams.has('data')) {
+        data = urlParams.get('data');
+        document.getElementById('data').value = data;
+    } 
+
+  
+    function irParaEscala() {
+        const data = document.getElementById('data').value;
+        location.href = '?pagina=escala&data=' + data;
+    }
+
+    function irParaHoje() {
+        location.href = '?pagina=escala&data=' + dataFormatada;
+    }
+
+function diaAnterior() {
+    let data = urlParams.get('data'); // Obtém a data da URL
+    let dataObj = new Date(data); // Converte a data para um objeto Date
+    dataObj.setDate(dataObj.getDate() - 1); // Subtrai um dia da data
+
+    let novaData = dataObj.toISOString().split('T')[0]; // Converte de volta para o formato YYYY-MM-DD
+    location.href = '?pagina=escala&data=' + novaData; // Atualiza a URL com a nova data
+}
+
+function diaSeguinte() {
+    let data = urlParams.get('data'); // Obtém a data da URL
+    let dataObj = new Date(data); // Converte a data para um objeto Date
+    dataObj.setDate(dataObj.getDate() + 1); // Adiciona um dia à data
+
+    let novaData = dataObj.toISOString().split('T')[0]; // Converte de volta para o formato YYYY-MM-DD
+    location.href = '?pagina=escala&data=' + novaData; // Atualiza a URL com a nova data
+}
+
+
+
+
+</script>
+
+
+<div class="container__equipes_servico">
+
+    <div class="coluna_dia">
+        <h4>Equipe {{ equipeDia }} - Diurna</h4>
+    </div>
+
+
+    <div class="coluna_noite">
+        <h4>Equipe {{ equipeNoite }} - Noturna</h4>
+    </div>
+
+
+    {% for equipe, dados in efetivoPorEquipe %}
+
+
+        {% if equipe == equipeDia %}
+            <div class="dia supervisor_dia">
+                <h5>Supervisor </h5>
+                {% for sup in dados['Supervisor'] %}
+                <p class="bg_equipe{{ sup.equipe }}">
+                    {{ sup.pt_gr }} {{ sup.re }}-{{ sup.dg_re }} {{ sup.guerra }}
+                </p>
+                {% endfor %}
+            </div>
+        {% endif %}            
+
+
+        {% if equipe == equipeNoite %}
+         <div class="noite supervisor_noite">
+                <h5>Supervisor</h5>
+                {% for sup in dados['Supervisor'] %}
+                <p class="bg_equipe{{ sup.equipe }}">
+                    {{ sup.pt_gr }} {{ sup.re }}-{{ sup.dg_re }} {{ sup.guerra }}
+                </p>
+                {% endfor %}
+        </div>
+        {% endif %}
+        
+        
+        {% if equipe == equipeDia %}
+            <div class="dia atendente_dia">
+                <h5>Atendente 190</h5>
+                {% for at in dados['Atendente 190'] %}
+                <p class="bg_equipe{{ at.equipe }}">
+                    {{ at.pt_gr }} {{ at.re }}-{{ at.dg_re }} {{ at.guerra }}
+                </p>
+                {% endfor %}
+            </div>
+        {% endif %}            
+
+
+        {% if equipe == equipeNoite %}
+            <div class="noite atendente_noite">
+                <h5>Atendente 190</h5>
+                {% for at in dados['Atendente 190'] %}
+                <p class="bg_equipe{{ at.equipe }}">
+                    {{ at.pt_gr }} {{ at.re }}-{{ at.dg_re }} {{ at.guerra }}
+                </p>
+                {% endfor %}
+        </div>
+        {% endif %}            
+
+
+        {% if equipe == equipeDia %}
+            <div class="dia despachador_dia">
+                <h5>Despachador</h5>
+                {% for desp in dados['Despachador'] %}
+                <p class="bg_equipe{{ desp.equipe }}">
+                    {{ desp.pt_gr }} {{ desp.re }}-{{ desp.dg_re }} {{ desp.guerra }}
+                </p>
+                {% endfor %}
+            </div>
+        {% endif %}            
+
+
+        {% if equipe == equipeNoite %}
+            <div class="noite despachador_noite">
+                <h5>Despachador</h5>
+                {% for desp in dados['Despachador'] %}
+                <p class="bg_equipe{{ desp.equipe }}">
+                    {{ desp.pt_gr }} {{ desp.re }}-{{ desp.dg_re }} {{ desp.guerra }}
+                </p>
+                {% endfor %}
+        </div>
+        {% endif %}
+
+
+        {% if equipe == equipeDia %}
+            <div class="dia afastamentos_dia">
+                <h5>Afastamentos</h5>
+                {% for afast in dados['Afastamentos'] %}
+                <p class="bg_equipe{{ afast.equipe }}">
+                    [{{ afast.afastamento }}] {{ afast.pt_gr }} {{ afast.re }}-{{ afast.dg_re }} {{ afast.guerra }}
+                </p>
+                {% endfor %}
+            </div>
+        {% endif %}            
+
+
+        {% if equipe == equipeNoite %}
+            <div class="noite afastamentos">
+                <h5>Afastamentos</h5>
+                {% for afast in dados['Afastamentos'] %}
+                <p class="bg_equipe{{ afast.equipe }}">
+                    [{{ afast.afastamento }}] {{ afast.pt_gr }} {{ afast.re }}-{{ afast.dg_re }} {{ afast.guerra }}
+                </p>
+                {% endfor %}
+        </div>
+        {% endif %}
+                
+
+       
+
+
+
+    {% endfor %}
+
+
+
+</div>
+
+
+
+
+<!--
+
+<style>
+
 
     .container__equipes {
         display: grid;
@@ -12,7 +315,7 @@
     .container_equipe {
         border-radius: 8px;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-        width: 600px;
+        width: 400px;
         padding: 10px;
     }
 
@@ -45,9 +348,120 @@
     }
 
 
+    .container__equipes_servico {
+        border: 2px dotted #3A60F1;
+        display: grid;
+        grid-template-areas: "supervisao_dia supervisao_noite"
+                             "atendente_dia atendente_noite"
+                             "despacho_dia despacho_noite"
+                             "afastamentos_dia afastamentos_noite";
+    }
+
+    .equipe__dia {
+     
+    }
+
+    .equipe__noite {
+
+    }
+
+    .supervisao__dia {
+        border: 1px dashed greenyellow;
+        grid-area: supervisao_dia;
+
+    }
+
+    .supervisao__noite {
+        border: 1px dashed greenyellow;
+        grid-area: supervisao_noite;
+
+    }
+
+    .atendente__dia {
+        border: 1px dashed purple;
+        grid-area: atendente_noite;
+
+    }
+
+    .atendente__noite {
+        border: 1px dashed purple;
+        grid-area: atendente_dia;
+
+    }
+
+
 </style>
 
-<div class="container__cpi">
+    <div class="container__cpi">
+
+        <div class="container__equipes_servico">
+
+
+        {% for equipe, dados in efetivoPorEquipe %}
+
+                
+
+                    <div class="equipes__secao equipe__dia" style="border: 3px dashed blue;">
+
+                        <div class="supervisao__dia">
+                            <h5>Supervisor</h5>
+                            {% for sup in dados['Supervisor'] %}
+                            <p>
+                                {{ sup.pt_gr }} {{ sup.re }}-{{ sup.dg_re }} {{ sup.guerra }}
+                            </p>
+                            {% endfor %}
+                        </div>
+
+
+                        <div class="atendente__dia">
+                            <h5>Atendente 190</h5>
+                            {% for at in dados['Atendente 190'] %}
+                            <p>
+                                {{ at.pt_gr }} {{ at.re }}-{{ at.dg_re }} {{ at.guerra }}
+                            </p>
+                            {% endfor %}
+                        </div>
+
+
+            
+                        <div class="despacho__dia">
+                            <h5>Despachador</h5>
+                            {% for desp in dados['Despachador'] %}
+                            <p>
+                                {{ desp.pt_gr }} {{ desp.re }}-{{ desp.dg_re }} {{ desp.guerra }}
+                            </p>
+                            {% endfor %}
+                        </div>
+
+
+                        <div class="afastamentos__dia">
+                            <h5>Afastamentos</h5>
+                            {% for af in dados['Afastamentos'] %}
+                            <p>
+                                {{ af.afastamento }} - {{ af.pt_gr }} {{ af.re }}-{{ af.dg_re }} {{ af.guerra }}
+                            </p>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                        
+
+            
+
+            {% endfor %}
+
+
+
+        <div class="supervisao_dia">Supervisão Dia</div>
+        <div class="supervisao_noite">Supervisão Noite</div>
+        <div class="atendente_dia">Atendente Dia</div>
+        <div class="atendente_noite">Atendente Noite</div>
+        <div class="despacho_dia">Despacho Dia</div>
+        <div class="despacho_noite">Despacho Noite</div>
+        <div class="afastamentos_dia">Afastamentos Dia</div>
+        <div class="afastamentos_noite">Afastamentos Noite</div>
+    </div>
+
 
     <div class="titulo__secao">
         <p>
@@ -71,6 +485,122 @@
             <td>{{equipeNoite}}</td>
         </tr>
     </table>
+
+
+    <div class="container__equipes_servico">
+
+  
+
+   
+
+
+    {% for equipe, dados in efetivoPorEquipe %}
+
+        {% if equipe == equipeDia %}
+
+            <div class="equipes__secao equipe__dia" style="border: 3px dashed blue;">
+
+                <div class="supervisao__dia">
+                    <h5>Supervisor</h5>
+                    {% for sup in dados['Supervisor'] %}
+                    <p>
+                        {{ sup.pt_gr }} {{ sup.re }}-{{ sup.dg_re }} {{ sup.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+
+                <div class="atendente__dia">
+                    <h5>Atendente 190</h5>
+                    {% for at in dados['Atendente 190'] %}
+                    <p>
+                        {{ at.pt_gr }} {{ at.re }}-{{ at.dg_re }} {{ at.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+
+    
+                <div class="despacho__dia">
+                    <h5>Despachador</h5>
+                    {% for desp in dados['Despachador'] %}
+                    <p>
+                        {{ desp.pt_gr }} {{ desp.re }}-{{ desp.dg_re }} {{ desp.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+
+                <div class="afastamentos__dia">
+                    <h5>Afastamentos</h5>
+                    {% for af in dados['Afastamentos'] %}
+                    <p>
+                        {{ af.afastamento }} - {{ af.pt_gr }} {{ af.re }}-{{ af.dg_re }} {{ af.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+            </div>
+                
+
+        {% endif %}
+
+    {% endfor %}
+
+    {% for equipe, dados in efetivoPorEquipe %}
+
+        {% if equipe == equipeNoite %}
+
+            <div class="equipes__secao equipe__noite" style="border: 3px dashed black;">
+
+                <div class="supervisao__noite">
+                    <h5>Supervisor</h5>
+                    {% for sup in dados['Supervisor'] %}
+                    <p>
+                        {{ sup.pt_gr }} {{ sup.re }}-{{ sup.dg_re }} {{ sup.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+
+                <div class="atendente__noite">
+                    <h5>Atendente 190</h5>
+                    {% for at in dados['Atendente 190'] %}
+                    <p>
+                        {{ at.pt_gr }} {{ at.re }}-{{ at.dg_re }} {{ at.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+
+    
+                <div class="despacho__noite">
+                    <h5>Despachador</h5>
+                    {% for desp in dados['Despachador'] %}
+                    <p>
+                        {{ desp.pt_gr }} {{ desp.re }}-{{ desp.dg_re }} {{ desp.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+
+                <div class="afastamentos__noite">
+                    <h5>Afastamentos</h5>
+                    {% for af in dados['Afastamentos'] %}
+                    <p>
+                        {{ af.afastamento }} - {{ af.pt_gr }} {{ af.re }}-{{ af.dg_re }} {{ af.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+            </div>
+                
+
+        {% endif %}
+
+    {% endfor %}
+
+     </div>
 
 
     <div class="container__equipes">
@@ -311,3 +841,165 @@
 
 
 </section>
+
+
+<div class="equipes__secao container__dia">
+    {% for equipe, dados in efetivoPorEquipe %}
+        {% if equipe == equipeDia %}
+            <div class="equipe__secao">
+                <div class="supervisao__secao">
+                    <h5>Supervisor</h5>
+                    {% for sup in dados['Supervisor'] %}
+                    <p>
+                        {{ sup.pt_gr }} {{ sup.re }}-{{ sup.dg_re }} {{ sup.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+                <div class="atendente__secao">
+                    <h5>Atendente 190</h5>
+                    {% for at in dados['Atendente 190'] %}
+                    <p>
+                        {{ at.pt_gr }} {{ at.re }}-{{ at.dg_re }} {{ at.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+                <div class="despacho__secao">
+                    <h5>Despachador</h5>
+                    {% for desp in dados['Despachador'] %}
+                    <p>
+                        {{ desp.pt_gr }} {{ desp.re }}-{{ desp.dg_re }} {{ desp.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+                <div class="afastamentos__secao">
+                    <h5>Afastamentos</h5>
+                    {% for af in dados['Afastamentos'] %}
+                    <p>
+                        {{ af.afastamento }} - {{ af.pt_gr }} {{ af.re }}-{{ af.dg_re }} {{ af.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div class="equipes__secao container__noite">
+    {% for equipe, dados in efetivoPorEquipe %}
+        {% if equipe == equipeNoite %}
+            <div class="equipe__secao">
+                <div class="supervisao__secao">
+                    <h5>Supervisor</h5>
+                    {% for sup in dados['Supervisor'] %}
+                    <p>
+                        {{ sup.pt_gr }} {{ sup.re }}-{{ sup.dg_re }} {{ sup.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+                <div class="atendente__secao">
+                    <h5>Atendente 190</h5>
+                    {% for at in dados['Atendente 190'] %}
+                    <p>
+                        {{ at.pt_gr }} {{ at.re }}-{{ at.dg_re }} {{ at.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+                <div class="despacho__secao">
+                    <h5>Despachador</h5>
+                    {% for desp in dados['Despachador'] %}
+                    <p>
+                        {{ desp.pt_gr }} {{ desp.re }}-{{ desp.dg_re }} {{ desp.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+
+                <div class="afastamentos__secao">
+                    <h5>Afastamentos</h5>
+                    {% for af in dados['Afastamentos'] %}
+                    <p>
+                        {{ af.afastamento }} - {{ af.pt_gr }} {{ af.re }}-{{ af.dg_re }} {{ af.guerra }}
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<style>
+
+
+    /* Container para a seção dia e noite */
+.equipes__secao {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Para o dia */
+.container__dia {
+    background-color: #D1E5FF;  /* Azul claro */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Para a noite */
+.container__noite {
+    background-color: #2C3E50;  /* Azul escuro */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+/* Estilo para cada seção dentro da equipe (supervisor, atendente, etc.) */
+.equipe__secao {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Alinhar as seções da equipe */
+.supervisao__secao, .atendente__secao, .despacho__secao, .afastamentos__secao {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos das seções */
+.supervisao__secao h5,
+.atendente__secao h5,
+.despacho__secao h5,
+.afastamentos__secao h5 {
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Estilo para os parágrafos dentro das seções */
+.supervisao__secao p,
+.atendente__secao p,
+.despacho__secao p,
+.afastamentos__secao p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Ajustes responsivos para garantir boa visualização */
+@media (max-width: 768px) {
+    .equipes__secao {
+        flex-direction: column;
+    }
+}
+
+
+
+</style> -->

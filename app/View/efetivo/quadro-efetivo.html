@@ -1,0 +1,225 @@
+{% include 'caixaMensagem.html' %}
+
+<style>
+
+.container__cpi {
+
+}
+
+.container__quadro_efetivo {
+    background-color: #013A17;
+}
+
+.container__efetivo_equipes {
+
+}
+
+.container_equipe {
+
+}
+
+
+.equipe__supervisor {
+
+}
+
+.equipe__atendente {
+
+}
+
+.equipe__despachador {
+
+}
+
+.equipe__afastamentos {
+    
+}
+
+
+.card__pm {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 13px;
+    width: 100px;
+    height: 160px;
+}
+
+.card_pm__foto {
+
+}
+
+
+.card_pm__foto img {
+    height: 80px;
+}
+
+.card_pm__guerra {
+    font-weight: 700;
+}
+
+.card_pm__ptgr {
+    text-align: center;
+}
+
+.bg__equipe_A {
+    background-color: #A0D468;
+}
+
+.bg__equipe_B {
+    background-color: #FB6E52;    
+}
+
+.bg__equipe_C {
+    background-color: #4FC0E8;    
+}
+
+.bg__equipe_D {
+    background-color: #D73449;    
+}
+
+.bg__equipe_E {
+    background-color: #FED054;   
+}
+
+
+</style>
+
+
+<div class="container__cpi">
+
+    
+    <div class="container__quadro_efetivo">
+
+
+        <div class="container__efetivo_equipes">
+
+
+            {% for efetivo, dados in efetivoPorEquipe %}
+        
+                <div class="container__equipe">
+
+                    <h4>Equipe {{ efetivo }}</h4>
+
+                    <div class="equipe__supervisor">
+                        
+                        <p>Supervisor</p>
+
+                        {% for supervisor in dados['Supervisor'] %}
+
+                            <div class="card__pm bg__equipe_{{ supervisor.equipe }}" onclick="visualizarPM({{ supervisor.re }})">
+
+                                <div class="card_pm__foto">
+                                    <img src="public/assets/foto-efetivo/{{ supervisor.re }}.png" alt="">
+                                </div>
+
+                                <div class="card_pm__guerra">
+                                    {{ supervisor.guerra }}
+                                </div>
+
+                                <div class="card_pm__ptgr">
+                                    {{ supervisor.pt_gr }} 
+                                    <br> {{ supervisor.re }}-{{ supervisor.dg_re }}              
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+
+                    </div>
+
+                    <div class="equipe__atendente">
+
+                        <p>Atendente 190</p>
+
+                        {% for atendente in dados['Atendente 190'] %}
+
+                            <div class="card__pm bg__equipe_{{ atendente.equipe }}" onclick="visualizarPM({{ atendente.re }})">
+
+                                <div class="card_pm__foto">
+                                    <img src="public/assets/foto-efetivo/{{ atendente.re }}.png" alt="">
+                                </div>
+
+                                <div class="card_pm__guerra">
+                                    {{ atendente.guerra }}
+                                </div>
+
+                                <div class="card_pm__ptgr">
+                                    {{ atendente.pt_gr }} 
+                                    <br> {{ atendente.re }}-{{ atendente.dg_re }}              
+                                </div>
+                                
+                            </div>
+
+                        {% endfor %}
+                    </div>
+
+
+                    <div class="equipe__despachador">
+
+                        <p>Despachador</p>
+
+                        {% for despachador in dados['Despachador'] %}
+
+                            <div class="card__pm bg__equipe_{{ despachador.equipe }}" onclick="visualizarPM({{ despachador.re }})">
+
+                                <div class="card_pm__foto">
+                                    <img src="public/assets/foto-efetivo/{{ despachador.re }}.png" alt="">
+                                </div>
+
+                                <div class="card_pm__guerra">
+                                    {{ despachador.guerra }}
+                                </div>
+
+                                <div class="card_pm__ptgr">
+                                    {{ despachador.pt_gr }} 
+                                    <br> {{ despachador.re }}-{{ despachador.dg_re }}              
+                                </div>
+                                
+                            </div>
+
+                        {% endfor %}
+                    </div>
+
+
+                    <div class="equipe__afastamentos">
+
+                        <p>Afastamentos</p>
+
+                        {% for afastamentos in dados['Afastamentos'] %}
+
+                            <div class="card__pm bg__equipe_{{ afastamentos.equipe }}" onclick="visualizarPM({{ afastamentos.re }})">
+
+                                <div class="card_pm__foto">
+                                    <img src="public/assets/foto-efetivo/{{ afastamentos.re }}.png" alt="">
+                                </div>
+
+                                <div class="card_pm__guerra">
+                                    {{ afastamentos.guerra }}
+                                </div>
+
+                                <div class="card_pm__ptgr">
+                                    {{ afastamentos.pt_gr }} 
+                                    <br> {{ afastamentos.re }}-{{ afastamentos.dg_re }}              
+                                </div>
+                                
+                            </div>
+
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+        
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+</div>

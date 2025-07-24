@@ -25,7 +25,7 @@ class Afastamento
     {
         $con = Connection::getConn();
 
-        $sql = "INSERT INTO copom_afastamentos (re, afastamento, dias, inicio, termino)
+        $sql = "INSERT INTO copom_afastamentos (re, cod_afastamento, dias, inicio, termino)
                 VALUES (:re, :afastamento, :dias, :inicio, :termino)";
         
         $stmt = $con->prepare($sql);
@@ -38,5 +38,17 @@ class Afastamento
         $stmt->execute();
 
         return $con->lastInsertId(); // Opcional
+    }
+
+
+    public static function tiposAfastamentos()
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT * FROM copom_tipo_afastamento;";
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

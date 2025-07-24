@@ -162,7 +162,7 @@ class Policial
     public static function procuraCelular($dados)
     {
         $celular = null;
-
+        
     if (isset($dados->dadosContatoFuncionario) && is_object($dados->dadosContatoFuncionario)) {
         // Verifique se 'FuncionarioContato' existe e é um array
         if (isset($dados->dadosContatoFuncionario->FuncionarioContato) && is_array($dados->dadosContatoFuncionario->FuncionarioContato)) {

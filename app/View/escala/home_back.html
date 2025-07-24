@@ -1,0 +1,313 @@
+{% include 'caixaMensagem.html' %}
+
+
+<style>
+
+
+    .container__equipes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .container_equipe {
+        border-radius: 8px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        width: 600px;
+        padding: 10px;
+    }
+
+    .container__equipes h3 {
+       /* background-color: rgba(250, 250, 250, 0.5);*/
+       color: #fff;
+        border-radius: 25px;
+        padding: 3px;
+        text-align: center;
+    }
+    
+    .container__equipes table td {
+        padding: 1px 20px;
+    }
+
+    .equipe__dia {
+    }
+    
+    .equipe__dia h3 {
+        background-color: #4DB6E3;
+
+    }
+
+    .equipe__noite {
+    }
+    
+    .equipe__noite h3 {
+        background-color: #3A60F1;
+
+    }
+
+
+</style>
+
+<div class="container__cpi">
+
+    <div class="titulo__secao">
+        <p>
+            Escala
+        </p>
+        <div class="barra__titulo_secao"></div>
+    </div>
+
+
+    <br>
+    <p>Dia:</p>
+    <h4>{{dataConsulta|date('d/m/Y')}}</h4>
+
+    <table class="table table-bordered" style="width: 400px;"> 
+        <tr>
+            <th>Dia</th>
+            <th>Noite</th>
+        </tr>
+        <tr>
+            <td>{{equipeDia}}</td>
+            <td>{{equipeNoite}}</td>
+        </tr>
+    </table>
+
+
+    <div class="container__equipes">
+
+        <div class="container_equipe equipe__dia">
+
+            <h3>Equipe Diurna</h3>
+            
+            {% for equipe, dados in efetivoPorEquipe %}
+
+                {% if equipe == equipeDia %}
+
+                    <table class="table table-bordered">
+                        
+                        <tr>
+                            <th>Supervisor</th>
+                        </tr>
+
+                        {% for sup in dados['Supervisor'] %}
+                        <tr>
+                            <td>
+                                {{ sup.pt_gr }} {{ sup.re }}-{{ sup.dg_re }} {{ sup.guerra }}
+                                {% endfor %}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Atendente 190</th>
+                        </tr>
+
+                        {% for at in dados['Atendente 190'] %}
+                        <tr>
+                            <td>
+                                {{ at.pt_gr }} {{ at.re }}-{{ at.dg_re }} {{ at.guerra }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+
+                        <tr>
+                            <th>
+                                Despachador
+                            </th>
+                        </tr>
+
+                        {% for desp in dados['Despachador'] %}
+                        <tr>
+                            <td>
+                                {{ desp.pt_gr }} {{ desp.re }}-{{ desp.dg_re }} {{ desp.guerra }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                        <tr>
+                            <th>
+                                Afastamentos
+                            </th>
+                        </tr>
+
+                        {% for af in dados['Afastamentos'] %}
+                         <tr>
+                            <td>
+                                {{ af.afastamento }} - {{ af.pt_gr }} {{ af.re }}-{{ af.dg_re }} {{ af.guerra }}
+                            </td>
+                         </tr>
+                        {% endfor %}
+
+
+                        
+                    </table>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="container_equipe equipe__noite">
+
+            <h3>Equipe Noturna</h3>
+            
+            {% for equipe, dados in efetivoPorEquipe %}
+
+                {% if equipe == equipeNoite %}
+
+                    <table class="table table-bordered">
+                        
+                        <tr>
+                            <th>Supervisor</th>
+                        </tr>
+
+                        {% for sup in dados['Supervisor'] %}
+                        <tr>
+                            <td>
+                                {{ sup.pt_gr }} {{ sup.re }}-{{ sup.dg_re }} {{ sup.guerra }}
+                                {% endfor %}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Atendente 190</th>
+                        </tr>
+
+                        {% for at in dados['Atendente 190'] %}
+                        <tr>
+                            <td>
+                                {{ at.pt_gr }} {{ at.re }}-{{ at.dg_re }} {{ at.guerra }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+
+                        <tr>
+                            <th>
+                                Despachador
+                            </th>
+                        </tr>
+
+                        {% for desp in dados['Despachador'] %}
+                        <tr>
+                            <td>
+                                {{ desp.pt_gr }} {{ desp.re }}-{{ desp.dg_re }} {{ desp.guerra }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                        <tr>
+                            <th>
+                                Afastamentos
+                            </th>
+                        </tr>
+
+                        {% for af in dados['Afastamentos'] %}
+                         <tr>
+                            <td>
+                                {{ af.afastamento }} - {{ af.pt_gr }} {{ af.re }}-{{ af.dg_re }} {{ af.guerra }}
+                            </td>
+                         </tr>
+                        {% endfor %}
+
+
+                        
+                    </table>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <h4>Equipes</h4>
+
+    <table class="table table-bordered" style="width: 800px;"> 
+        <tr>
+            <th>Equipe {{equipeDia}} (Diurno)</th>
+            <th>Equipe {{equipeNoite}} (Noturno)</th>
+        </tr>
+        <tr>
+            <th colspan="2">Supervisor</th>
+        </tr>
+
+        <tr>
+            <td>
+                {% for pm in efetivoDia %}
+                    {% if pm.funcao_copom == 'Supervisor' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+
+            <td>
+                {% for pm in efetivoNoite %}
+                    {% if pm.funcao_copom == 'Supervisor' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+
+
+        <tr>
+            <th colspan="2">Atendente 190</th>
+        </tr>
+
+        <tr>
+            <td>
+                {% for pm in efetivoDia %}
+                    {% if pm.funcao_copom == 'Atendente 190' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+
+            <td>
+                {% for pm in efetivoNoite %}
+                    {% if pm.funcao_copom == 'Atendente 190' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+
+
+        <tr>
+            <th colspan="2">Despachador</th>
+        </tr>
+
+        <tr>
+            <td>
+                {% for pm in efetivoDia %}
+                    {% if pm.funcao_copom == 'Despachador' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+
+            <td>
+                {% for pm in efetivoNoite %}
+                    {% if pm.funcao_copom == 'Despachador' %}
+                        <p>{{ pm.pt_gr }} {{ pm.re }}  {{ pm.dg_re }} {{ pm.guerra }}</p>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+
+
+    </table>
+
+
+
+
+
+
+
+
+</section>

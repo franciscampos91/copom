@@ -12,6 +12,8 @@ class AfastamentosController
         $parametros = array();
 
         $parametros['afastamentos'] = Afastamento::listar();
+        $parametros['efetivo'] = Efetivo::listarEfetivo();
+        $parametros['tipos_afastamentos'] = Afastamento::tiposAfastamentos();
 
         $conteudo = $template->render($parametros);
 

@@ -34,7 +34,7 @@ class Efetivo
             LEFT JOIN copom_afastamentos a ON e.re = a.re 
                 AND :data BETWEEN DATE(a.inicio) AND DATE(a.termino)
             LEFT JOIN copom_tipo_afastamento ta ON ta.cod_afastamento = a.cod_afastamento
-            WHERE e.situacao = 'Ativo'
+            WHERE e.situacao = 'Ativo' or e.situacao = 'Inativando'
             ORDER BY e.equipe, 
                 FIELD(e.funcao_copom, 'Supervisor', 'Atendente 190', 'Despachador'), 
                 e.nome
@@ -273,6 +273,28 @@ class Efetivo
     
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+
+    public static function atualizaDataFoto($id, $dataNascimento, $dataAdmissao, $rg)
+    {
+        $con = Connection::getConn();
+
+        $sql = "UPDATE copom_efetivo 
+                SET data_nascimento = :dataNascimento, data_admissao = :dataAdmissao, rg = :rg
+                WHERE id_efetivo = :id;";
+
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue(':dataNascimento', $dataNascimento);
+        $stmt->bindValue(':dataAdmissao',   $dataAdmissao);
+        $stmt->bindValue(':rg',             $rg);
+        $stmt->bindValue(':id',             $id);
+
+        return $stmt->execute();
+    }
+
+
+
 
 
 

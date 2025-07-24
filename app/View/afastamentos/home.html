@@ -60,8 +60,13 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <label for="re" class="form-label">RE</label>
-                    <input type="text" class="form-control" name="re">
+                    <label for="re" class="form-label">Policial</label>
+                    <select name="re" id="re" class="js-example-basic-single form-select" style="width: 100%;" required>
+                        <option value="">Selecione...</option>
+                        {% for pm in efetivo %}
+                            <option value="{{pm.re}}">{{ pm.pt_gr }} {{ pm.guerra }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
             
@@ -69,17 +74,20 @@
                 <div class="col-md-6">
                     <label for="" class="form-label">Tipo</label>
                     <select name="afastamento" id="" class="form-select">
-                        <option value="Férias">Férias</option>
+                        <!-- <option value="Férias">Férias</option>
                         <option value="LP">LP</option>
                         <option value="DS">DS</option>
                         <option value="Luto">Luto</option>
                         <option value="Doação de Sangue">Doação de Sangue</option>
                         <option value="Licença Maternidade">Licença Maternidade</option>
                         <option value="Licença Paternidade">Licença Paternidade</option>
-                        <option value="Licença Adoção">Licença Adoção</option>
+                        <option value="Licença Adoção">Licença Adoção</option> -->
+                        {% for afastamento in tipos_afastamentos %}
+                            <option value="{{ afastamento.cod_afastamento }}">{{ afastamento.afastamento }}</option>
+                        {% endfor %}
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 mt-2">
                     <label for="dias">Dias</label>
                     <input type="number" name="dias" class="form-control">
                 </div>
@@ -110,3 +118,15 @@
 
 
 </section>
+
+<script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+
+
+
+        $('.js-example-basic-single').select2({
+                dropdownParent: $("#modalNovoAfastamento")
+        });
+    });
+</script>
