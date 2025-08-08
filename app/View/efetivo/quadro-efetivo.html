@@ -8,15 +8,16 @@
 
 .container__quadro_efetivo {
     background-color: #013A17;
+    padding: 10px;
 }
 
 .container__efetivo_equipes {
-
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 5px;
+    margin-top: 10px;
 }
 
-.container_equipe {
-
-}
 
 
 .equipe__supervisor {
@@ -27,12 +28,50 @@
 
 }
 
+.secao__funcao {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+}
+
 .equipe__despachador {
 
 }
 
 .equipe__afastamentos {
     
+}
+
+.container__equipe {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+}
+
+.container__equipe h4 {
+    background-color: #fff;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.74);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.5px);
+    -webkit-backdrop-filter: blur(3.5px);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 5px;
+    text-align: center;
+    padding: 2px;
+    width: 100%;
+}
+
+.container__equipe p {
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 4px;
 }
 
 
@@ -46,6 +85,7 @@
     font-size: 13px;
     width: 100px;
     height: 160px;
+    background-color: #fff;
 }
 
 .card_pm__foto {
@@ -64,6 +104,26 @@
 .card_pm__ptgr {
     text-align: center;
 }
+
+.card_pm__afastamento span {
+    background-color: #3f3e3e;
+    color: #fff;
+    border-radius: 3px;
+    padding: 0px 5px;
+}
+
+.container__cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container__efetivo_adm {
+    margin-top: 10px;
+}
+
 
 .bg__equipe_A {
     background-color: #A0D468;
@@ -85,14 +145,65 @@
     background-color: #FED054;   
 }
 
+.bg__equipe_Adm {
+    background-color: rgb(207, 201, 207);
+}
+
 
 </style>
 
 
-<div class="container__cpi">
+<div class="">
 
     
     <div class="container__quadro_efetivo">
+
+        <div class="container__cabecalho">
+
+            <div class="cabecalho__logo_cpi">
+                <img src="public/assets/images/cpi7.png" height="200px" class="" >
+            </div>
+
+
+            <div class="cabecalho__chefe_copom">
+                <div class="container__efetivo_adm" style="display: flex;">
+
+                    <div class="container__equipe">
+
+                        <h4>Chefe COPOM</h4>
+
+                        <div class="secao__card_pm" style="display: flex; justify-content: center;">         
+                 
+                                <div class="card__pm bg__equipe_{{ chefe.equipe }}" onclick="visualizarPM({{ chefe.re }})">
+            
+                                    <div class="card_pm__foto">
+                                        <img src="public/assets/foto-efetivo/{{ chefe.re }}.png" alt="">
+                                    </div>
+            
+                                    <div class="card_pm__guerra">
+                                        {{ chefe.guerra }}
+                                    </div>
+            
+                                    <div class="card_pm__ptgr">
+                                        {{ chefe.pt_gr }} 
+                                        <br> {{ chefe.re }}-{{ chefe.dg_re }}              
+                                    </div>
+                                    
+                                </div>    
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="cabecalho__logo_cpom">
+                <img src="public/assets/images/copom.png" height="170px" class="" >
+            </div>
+
+
+        </div>
 
 
         <div class="container__efetivo_equipes">
@@ -136,26 +247,28 @@
 
                         <p>Atendente 190</p>
 
-                        {% for atendente in dados['Atendente 190'] %}
+                        <div class="secao__funcao">
+                            {% for atendente in dados['Atendente 190'] %}
+                                <div class="card__pm bg__equipe_{{ atendente.equipe }}" onclick="visualizarPM({{ atendente.re }})">
 
-                            <div class="card__pm bg__equipe_{{ atendente.equipe }}" onclick="visualizarPM({{ atendente.re }})">
+                                    <div class="card_pm__foto">
+                                        <img src="public/assets/foto-efetivo/{{ atendente.re }}.png" alt="">
+                                    </div>
 
-                                <div class="card_pm__foto">
-                                    <img src="public/assets/foto-efetivo/{{ atendente.re }}.png" alt="">
+                                    <div class="card_pm__guerra">
+                                        {{ atendente.guerra }}
+                                    </div>
+
+                                    <div class="card_pm__ptgr">
+                                        {{ atendente.pt_gr }} 
+                                        <br> {{ atendente.re }}-{{ atendente.dg_re }}              
+                                    </div>
+                                    
                                 </div>
 
-                                <div class="card_pm__guerra">
-                                    {{ atendente.guerra }}
-                                </div>
-
-                                <div class="card_pm__ptgr">
-                                    {{ atendente.pt_gr }} 
-                                    <br> {{ atendente.re }}-{{ atendente.dg_re }}              
-                                </div>
-                                
-                            </div>
-
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
+                        
                     </div>
 
 
@@ -163,26 +276,29 @@
 
                         <p>Despachador</p>
 
-                        {% for despachador in dados['Despachador'] %}
-
-                            <div class="card__pm bg__equipe_{{ despachador.equipe }}" onclick="visualizarPM({{ despachador.re }})">
-
-                                <div class="card_pm__foto">
-                                    <img src="public/assets/foto-efetivo/{{ despachador.re }}.png" alt="">
+                        <div class="secao__funcao">
+                            {% for despachador in dados['Despachador'] %}
+    
+                                <div class="card__pm bg__equipe_{{ despachador.equipe }}" onclick="visualizarPM({{ despachador.re }})">
+    
+                                    <div class="card_pm__foto">
+                                        <img src="public/assets/foto-efetivo/{{ despachador.re }}.png" alt="">
+                                    </div>
+    
+                                    <div class="card_pm__guerra">
+                                        {{ despachador.guerra }}
+                                    </div>
+    
+                                    <div class="card_pm__ptgr">
+                                        {{ despachador.pt_gr }} 
+                                        <br> {{ despachador.re }}-{{ despachador.dg_re }}              
+                                    </div>
+                                    
                                 </div>
+    
+                            {% endfor %}
+                        </div>
 
-                                <div class="card_pm__guerra">
-                                    {{ despachador.guerra }}
-                                </div>
-
-                                <div class="card_pm__ptgr">
-                                    {{ despachador.pt_gr }} 
-                                    <br> {{ despachador.re }}-{{ despachador.dg_re }}              
-                                </div>
-                                
-                            </div>
-
-                        {% endfor %}
                     </div>
 
 
@@ -190,26 +306,33 @@
 
                         <p>Afastamentos</p>
 
-                        {% for afastamentos in dados['Afastamentos'] %}
+                        <div class="secao__funcao">
+                            {% for afastamentos in dados['Afastamentos'] %}
+    
+                                <div class="card__pm bg__equipe_{{ afastamentos.equipe }}" onclick="visualizarPM({{ afastamentos.re }})">
+    
+                                    <div class="card_pm__foto">
+                                        <img src="public/assets/foto-efetivo/{{ afastamentos.re }}.png" alt="">
+                                    </div>
+    
+                                    <div class="card_pm__guerra">
+                                        {{ afastamentos.guerra }}
+                                    </div>
+    
+                                    <div class="card_pm__ptgr">
+                                        {{ afastamentos.pt_gr }} 
+                                        <br> {{ afastamentos.re }}-{{ afastamentos.dg_re }}              
+                                    </div>
 
-                            <div class="card__pm bg__equipe_{{ afastamentos.equipe }}" onclick="visualizarPM({{ afastamentos.re }})">
+                                    <div class="card_pm__afastamento">
+                                        <span>{{afastamentos.alias_afastamento}}</span>
+                                    </div>
+                                    
+                                </div>    
+                            {% endfor %}
 
-                                <div class="card_pm__foto">
-                                    <img src="public/assets/foto-efetivo/{{ afastamentos.re }}.png" alt="">
-                                </div>
+                        </div>
 
-                                <div class="card_pm__guerra">
-                                    {{ afastamentos.guerra }}
-                                </div>
-
-                                <div class="card_pm__ptgr">
-                                    {{ afastamentos.pt_gr }} 
-                                    <br> {{ afastamentos.re }}-{{ afastamentos.dg_re }}              
-                                </div>
-                                
-                            </div>
-
-                        {% endfor %}
                     </div>
 
 
@@ -220,6 +343,131 @@
 
         </div>
 
+
+        <div class="container__efetivo_adm" style="display: flex;">
+
+            <div class="container__equipe">
+
+                <h4>Administração</h4>
+
+                <div class="secao__card_pm" style="display: flex; gap: 10px;">
+                    {% for policial in adm %}
+    
+                        {% if policial.situacao == 'Ativo' %}
+        
+                        <div class="card__pm bg__equipe_{{ policial.equipe }}" onclick="visualizarPM({{ policial.re }})">
+    
+                            <div class="card_pm__foto">
+                                <img src="public/assets/foto-efetivo/{{ policial.re }}.png" alt="">
+                            </div>
+    
+                            <div class="card_pm__guerra">
+                                {{ policial.guerra }}
+                            </div>
+    
+                            <div class="card_pm__ptgr">
+                                {{ policial.pt_gr }} 
+                                <br> {{ policial.re }}-{{ policial.dg_re }}              
+                            </div>
+                            
+                        </div>    
+    
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="container__efetivo_adm" style="display: flex;">
+
+            <div class="container__equipe">
+
+                <h4>Agregados</h4>
+
+                <div class="secao__card_pm" style="display: flex; gap: 10px;">
+                    {% for policial in efetivo %}
+    
+                        {% if policial.situacao == 'Agregado' %}
+        
+                        <div class="card__pm bg__equipe_{{ policial.equipe }}" onclick="visualizarPM({{ policial.re }})">
+    
+                            <div class="card_pm__foto">
+                                <img src="public/assets/foto-efetivo/{{ policial.re }}.png" alt="">
+                            </div>
+    
+                            <div class="card_pm__guerra">
+                                {{ policial.guerra }}
+                            </div>
+    
+                            <div class="card_pm__ptgr">
+                                {{ policial.pt_gr }} 
+                                <br> {{ policial.re }}-{{ policial.dg_re }}              
+                            </div>
+                            
+                        </div>    
+    
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="container__efetivo_adm" style="display: flex;">
+
+            <div class="container__equipe">
+
+                <h4>Afastamento para Inatividade</h4>
+
+                <div class="secao__card_pm" style="display: flex; gap: 10px;">
+                    {% for policial in efetivo %}
+    
+                        {% if policial.situacao == 'Inativando' %}
+        
+                        <div class="card__pm bg__equipe_{{ policial.equipe }}" onclick="visualizarPM({{ policial.re }})">
+    
+                            <div class="card_pm__foto">
+                                <img src="public/assets/foto-efetivo/{{ policial.re }}.png" alt="">
+                            </div>
+    
+                            <div class="card_pm__guerra">
+                                {{ policial.guerra }}
+                            </div>
+    
+                            <div class="card_pm__ptgr">
+                                {{ policial.pt_gr }} 
+                                <br> {{ policial.re }}-{{ policial.dg_re }}              
+                            </div>
+                            
+                        </div>    
+    
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>
+
+
+<script>
+
+        // Alterna a classe 'recolhido' no aside
+        document.querySelector('aside').classList.toggle('recolhido');
+        // Alterna a classe 'recolhido' no botão
+        document.querySelector('.recolhe__menu').classList.toggle('recolhido');
+        document.querySelector(".body__cpi").classList.toggle("recolhido");
+
+</script>

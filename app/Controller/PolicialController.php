@@ -223,6 +223,8 @@ class PolicialController
     {
         $celular = null;
 
+        //echo json_encode($dados->dadosContatoFuncionario); exit;
+
         if (isset($dados->dadosContatoFuncionario) && is_object($dados->dadosContatoFuncionario)) {
             // Verifique se 'FuncionarioContato' existe e é um array
             if (isset($dados->dadosContatoFuncionario->FuncionarioContato) && is_array($dados->dadosContatoFuncionario->FuncionarioContato)) {

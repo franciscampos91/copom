@@ -28,13 +28,14 @@ class Efetivo
                 a.id_afastamentos,
                 ta.sigla_afastamento,
                 ta.afastamento,
+                ta.alias_afastamento,
                 a.inicio AS inicio_afastamento,
                 a.termino AS termino_afastamento
             FROM copom_efetivo e
             LEFT JOIN copom_afastamentos a ON e.re = a.re 
                 AND :data BETWEEN DATE(a.inicio) AND DATE(a.termino)
             LEFT JOIN copom_tipo_afastamento ta ON ta.cod_afastamento = a.cod_afastamento
-            WHERE e.situacao = 'Ativo' or e.situacao = 'Inativando'
+            WHERE e.situacao = 'Ativo'
             ORDER BY e.equipe, 
                 FIELD(e.funcao_copom, 'Supervisor', 'Atendente 190', 'Despachador'), 
                 e.nome

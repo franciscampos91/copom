@@ -284,6 +284,11 @@ class EfetivoController
         $efetivoPorEquipe = Efetivo::listarEfetivoPorEquipe($dataConsulta); // ou data dinâmica
         $parametros['efetivoPorEquipe'] = $efetivoPorEquipe;
 
+        $parametros['chefe'] = Efetivo::buscaChefeCopom();            
+        $parametros['adm']   = Efetivo::buscaAdm();
+        $parametros['efetivo'] = Efetivo::listarEfetivo();
+
+
         $conteudo = $template->render($parametros);
 
         echo $conteudo;
