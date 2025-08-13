@@ -13,9 +13,9 @@
     require_once 'app/Controller/AfastamentosController.php';
 
 
-
     require_once 'app/Model/Efetivo.php';
     require_once 'app/Model/Afastamentos.php';
+    require_once 'app/Model/Dejem.php';
 
 
     require_once 'vendor/autoload.php';

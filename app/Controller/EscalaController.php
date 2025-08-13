@@ -69,6 +69,11 @@ class EscalaController
 
      //   var_dump($parametros['efetivoPorEquipe']);
 
+        $parametros['dejem_diurna'] = Dejem::DejemDiurna($dataConsulta);
+        $parametros['dejem_noturna'] = Dejem::DejemNoturna($dataConsulta);
+
+        echo json_encode($parametros['dejem_noturna']); 
+
         
         $conteudo = $template->render($parametros);
 

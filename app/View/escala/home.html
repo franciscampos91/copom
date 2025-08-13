@@ -9,6 +9,7 @@
                          "supervisorDia supervisorNoite"
                          "atendenteDia atendenteNoite"
                          "despachadorDia despachadorNoite"
+                         "dejemDia dejemNoite"
                          "afastamentosDia afastamentosNoite";
     grid-template-columns: 300px 300px;
     margin: 20px;
@@ -44,6 +45,14 @@
 
 .despachador_notie {
     grid-area: despachadorNoite;
+}
+
+.dejem_dia {
+    grid-area: dejemDia;
+}
+
+.dejem_noite {
+    grid-area: dejemNoite;
 }
 
 
@@ -103,6 +112,66 @@
 .bg_equipeE {
     background-color: #fadb52;    
 }
+
+
+.dejem_periodo {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    
+}   
+
+
+.dejem_periodo_hora {
+    
+}
+
+
+.dejem_container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dejem_periodo {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 1px 5px;
+}
+
+.dejem_periodo_hora {
+    height: 20px;
+    background-color: #eee;
+    padding: 1px 6px;
+    font-size: 13px; 
+}
+
+.dejem_periodo_hora.preenchida {
+    background-color: #4caf50; /* verde para indicar serviço */
+}
+
+
+.preenchido_sgt {
+    background-color: rgb(240, 152, 152);
+}
+
+.preenchido_cbsd {
+    background-color: #5ba4fd;
+    margin-top: 2px;
+}
+
+.preenchido_oficial {
+    background-color: #f7e597;
+}
+
+.preenchido_primeiro {
+    border-radius: 7px 0 0 7px;
+}
+
+.preenchido_ultimo {
+    border-radius: 0 7px 7px 0;
+}
+
+
 
 
 </style>
@@ -263,6 +332,347 @@ function diaSeguinte() {
                 {% endfor %}
         </div>
         {% endif %}
+
+        <div class="dia dejem_dia">
+            <h5>DEJEM</h5>
+
+            <!--<div class="dejem_container">
+                {% for dejem in dejem_diurna %}
+                    {% if dejem.cbsd|default(0) > 0 %}
+                        <div class="dejem_periodo">
+                            {% set inicioHora = dejem.dejem_data|date("G") %}
+                            {% set terminoHora = dejem.dejem_termino|date("G") %}
+                            
+                            {# Ajusta limites para o período 6h–18h #}
+                            {% if inicioHora < 6 %}
+                                {% set inicioHora = 6 %}
+                            {% endif %}
+                            {% if terminoHora > 18 %}
+                                {% set terminoHora = 18 %}
+                            {% endif %}
+                            
+                            {% for hora in 6..17 %}
+                                {% if hora >= inicioHora and hora < terminoHora %}
+                                    <div class="dejem_periodo_hora preenchida"></div>
+                                {% else %}
+                                    <div class="dejem_periodo_hora"></div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div> -->
+
+
+           <!-- <div class="dejem_container">
+                {% for dejem in dejem_diurna %}
+
+                    
+                    {% if dejem.cbsd|default(0) > 0 %}
+
+                        {% set cbsd = dejem.cbsd %}
+
+                        {% for i in 1..dejem.cbsd %}
+                           
+                            <div class="dejem_periodo">
+                                {% set inicioHora = dejem.dejem_data|date("G") %}
+                                {% set terminoHora = dejem.dejem_termino|date("G") %}
+                                
+                                {# Ajusta limites para o período 6h–18h #}
+                                {% if inicioHora < 6 %}
+                                    {% set inicioHora = 6 %}
+                                {% endif %}
+                                {% if terminoHora > 18 %}
+                                    {% set terminoHora = 18 %}
+                                {% endif %}
+                                
+                                {% for hora in 6..17 %}
+                                    {% if hora >= inicioHora and hora < terminoHora %}
+                                        <div class="dejem_periodo_hora preenchida"></div>
+                                    {% else %}
+                                        <div class="dejem_periodo_hora"></div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+
+
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                    {% if dejem.sgt|default(0) > 0 %}
+
+                        {% set sgt = dejem.sgt %}
+
+                        {% for i in 1..dejem.sgt %}
+                           
+                            <div class="dejem_periodo">
+                                {% set inicioHora = dejem.dejem_data|date("G") %}
+                                {% set terminoHora = dejem.dejem_termino|date("G") %}
+                                
+                                {# Ajusta limites para o período 6h–18h #}
+                                {% if inicioHora < 6 %}
+                                    {% set inicioHora = 6 %}
+                                {% endif %}
+                                {% if terminoHora > 18 %}
+                                    {% set terminoHora = 18 %}
+                                {% endif %}
+                                
+                                {% for hora in 6..17 %}
+                                    {% if hora >= inicioHora and hora < terminoHora %}
+                                        <div class="dejem_periodo_hora preenchida preenchida_sgt"></div>
+                                    {% else %}
+                                        <div class="dejem_periodo_hora"></div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+
+
+
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                {% endfor %}
+            </div> -->
+
+            <div class="dejem_container">
+                {% for dejem in dejem_diurna %}
+
+                    <!--<h5>ID: {{ dejem.dejem_id_escala }} {{ dejem.dejem_data|date("G") }} - {{ dejem.dejem_termino|date("G") }}</h5> -->
+
+
+                    {% if dejem.cbsd > 0 %}
+                            
+                        <div class="dejem_periodo">
+
+                            {% for i in 1..dejem.cbsd %}
+
+                                {% set inicioHora = dejem.dejem_data|date("G") %}
+                                {% set terminoHora = dejem.dejem_termino|date("G") %}
+                                
+                                {% if inicioHora < 6 %}
+                                    {% set inicioHora = 6 %}
+                                {% endif %}
+                                {% if terminoHora > 18 %}
+                                    {% set terminoHora = 18 %}
+                                {% endif %}
+
+
+                                {% for hora in 6..17 %}
+
+                                    {% if hora >= inicioHora and hora < terminoHora %}
+
+                                        {% if hora == 6 or hora == inicioHora %}
+                                            <div class="dejem_periodo_hora preenchido_cbsd preenchido_primeiro">
+                                                <span>{{ dejem.dejem_data|date("G:i") }}h</span>
+                                            </div>
+                                        {% elseif hora == 17 or hora == terminoHora - 1 %}
+                                            <div class="dejem_periodo_hora preenchido_cbsd preenchido_ultimo"></div>
+                                        {% else %}
+                                            <div class="dejem_periodo_hora preenchido_cbsd"></div>
+                                        {% endif %}
+
+                                    {% else %}
+                                        <div class="dejem_periodo_hora"></div>
+                                    {% endif %}
+
+
+                                {% endfor %}
+   
+                            {% endfor %}
+                            
+                        </div>
+
+                    {% endif %}
+
+
+                    {% if dejem.sgt > 0 %}
+                        
+                        <div class="dejem_periodo">
+
+                            {% for i in 1..dejem.sgt %}
+
+                                {% set inicioHora = dejem.dejem_data|date("G") %}
+                                {% set terminoHora = dejem.dejem_termino|date("G") %}
+                                
+                                {% if inicioHora < 6 %}
+                                    {% set inicioHora = 6 %}
+                                {% endif %}
+                                {% if terminoHora > 18 %}
+                                    {% set terminoHora = 18 %}
+                                {% endif %}
+
+
+                                {% for hora in 6..17 %}
+
+                                    {% if hora >= inicioHora and hora < terminoHora %}
+
+                                        {% if hora == 6 or hora == inicioHora %}
+                                            <div class="dejem_periodo_hora preenchido_sgt preenchido_primeiro">
+                                                <span>{{ dejem.dejem_data|date("G:i") }}h</span>
+                                            </div>
+                                        {% elseif hora == 17 or hora == terminoHora - 1 %}
+                                            <div class="dejem_periodo_hora preenchido_sgt preenchido_ultimo"></div>
+                                        {% else %}
+                                            <div class="dejem_periodo_hora preenchido_sgt"></div>
+                                        {% endif %}
+
+                                    {% else %}
+                                        <div class="dejem_periodo_hora"></div>
+                                    {% endif %}
+
+
+                                {% endfor %}
+   
+                            {% endfor %}
+                            
+                        </div>
+
+                    {% endif %}
+
+
+                    {% if dejem.ten > 0 %}
+                        
+                        <div class="dejem_periodo">
+
+                            {% for i in 1..dejem.ten %}
+
+                                {% set inicioHora = dejem.dejem_data|date("G") %}
+                                {% set terminoHora = dejem.dejem_termino|date("G") %}
+                                
+                                {% if inicioHora < 6 %}
+                                    {% set inicioHora = 6 %}
+                                {% endif %}
+                                {% if terminoHora > 18 %}
+                                    {% set terminoHora = 18 %}
+                                {% endif %}
+
+
+                                {% for hora in 6..17 %}
+
+                                    {% if hora >= inicioHora and hora < terminoHora %}
+
+                                        {% if hora == 6 or hora == inicioHora %}
+                                            <div class="dejem_periodo_hora preenchido_oficial preenchido_primeiro">
+                                                <span>{{ dejem.dejem_data|date("G:i") }}h</span>
+                                            </div>
+                                        {% elseif hora == 17 or hora == terminoHora - 1 %}
+                                            <div class="dejem_periodo_hora preenchido_oficial preenchido_ultimo"></div>
+                                        {% else %}
+                                            <div class="dejem_periodo_hora preenchido_oficial"></div>
+                                        {% endif %}
+
+                                    {% else %}
+                                        <div class="dejem_periodo_hora"></div>
+                                    {% endif %}
+
+
+                                {% endfor %}
+   
+                            {% endfor %}
+                            
+                        </div>
+
+                    {% endif %}
+
+                    
+                
+
+                    {% if dejem.cap > 0 %}
+                        
+                        <div class="dejem_periodo">
+
+                            {% for i in 1..dejem.cap %}
+
+                                {% set inicioHora = dejem.dejem_data|date("G") %}
+                                {% set terminoHora = dejem.dejem_termino|date("G") %}
+                                
+                                {% if inicioHora < 6 %}
+                                    {% set inicioHora = 6 %}
+                                {% endif %}
+                                {% if terminoHora > 18 %}
+                                    {% set terminoHora = 18 %}
+                                {% endif %}
+
+
+                                {% for hora in 6..17 %}
+
+                                    {% if hora >= inicioHora and hora < terminoHora %}
+
+                                        {% if hora == 6 or hora == inicioHora %}
+                                            <div class="dejem_periodo_hora preenchido_oficial preenchido_primeiro">
+                                                <span>{{ dejem.dejem_data|date("G:i") }}h</span>
+                                            </div>
+                                        {% elseif hora == 17 or hora == terminoHora - 1 %}
+                                            <div class="dejem_periodo_hora preenchido_oficial preenchido_ultimo"></div>
+                                        {% else %}
+                                            <div class="dejem_periodo_hora preenchido_oficial"></div>
+                                        {% endif %}
+
+                                    {% else %}
+                                        <div class="dejem_periodo_hora"></div>
+                                    {% endif %}
+
+
+                                {% endfor %}
+   
+                            {% endfor %}
+                            
+                        </div>
+
+                    {% endif %}
+                    
+
+                {% endfor %}
+
+
+
+                
+
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="noite dejem_noite">
+            <h5>DEJEM</h5>
+
+
+            <div class="dejem_container">
+
+                {% for dejem in  dejem_noturna %}
+
+                    <div class="dejem_periodo">
+
+                        {% for i in 1..dejem.cbsd %}
+
+                            {% set inicioHora = dejem.dejem_data|date("G") %}
+                            {% set terminoHora = dejem.dejem_termino|date("G") %}
+
+                            <p>{{inicioHora}}</p><p>{{terminoHora}}</p>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                        
+
+                    
+
+                {% endfor %}
+
+            </div>
+            
+
+            
+        </div>
 
 
         {% if equipe == equipeDia %}
