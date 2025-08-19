@@ -1,0 +1,114 @@
+{% include 'caixaMensagem.html' %}
+
+
+<section class="container__cpi">
+
+    <h1 class="titulo">
+        Troca de Serviço
+    </h1>
+
+    <form action="?pagina=troca&metodo=gravarTroca" method="post">
+        <div class="row">
+            <div class="col-md-2">
+                <label for="interessado" class="form-label">Interessado</label>
+                <select name="interessado" id="interessado" class="form-select js-example-basic-single" required>
+                    {% for policial in efetivo %}
+                        {% if policial.pt_gr != 'CAP PM' %}
+                            <option value="{{ policial.re }}">{{ policial.pt_gr }} {{ policial.re }} {{ policial.guerra }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+    
+            <div class="col-md-2">
+                <label for="data-interessado" class="form-label">Data Folga</label>
+                <input type="date" class="form-control" name="data-interessado" required>
+            </div>
+
+            <div class="col-md-1">
+                <label for="" class="form-label">Turno</label>
+                <select name="turno-folga" id="turno-folga" class="form-select">
+                    <option value=""></option>
+                    <option value="0">Diurno</option>
+                    <option value="1">Noturno</option>
+                </select>
+            </div>
+
+    
+        <div class="col-md-1" style="display: flex; justify-content: center; align-items: middle;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
+            </svg>
+        </div>
+    
+
+            <div class="col-md-2">
+                <label for="compensacao" class="form-label">Compensação</label>
+                <select name="compensacao" id="compensacao" class="form-select js-example-basic-single">
+                    <option value=""></option>
+                    {% for policial in efetivo %}
+                        {% if policial.pt_gr != 'CAP PM' %}
+                            <option value="{{ policial.re }}">{{ policial.pt_gr }} {{ policial.re }} {{ policial.guerra }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="data-compensacao" class="form-label" required>Data Compensação</label>
+                <input type="date" class="form-control" name="data-compensacao">
+            </div>
+            <div class="col-md-1">
+                <label for="" class="form-label">Turno</label>
+                <select name="turno-compensacao" id="turno-compensacao" class="form-select">
+                    <option value=""></option>
+                    <option value="0">Diurno</option>
+                    <option value="1">Noturno</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <label for="" class="form-label">Observação</label>
+                <textarea name="observacao" id="observacao" class="form-control" maxlength="150" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-1 mt-3">
+                <button type="submit" class="btn btn-dark">Gravar</button>
+            </div>
+        </div>
+
+    </form>
+
+
+    <table class="table table-borded mt-5">
+
+        <tr>
+            <th>Interessado</th>
+            <th>Data</th>
+            <th>Troca</th>
+            <th>Compensação</th>
+            <th>Observação</th>
+            <th>Lançado em</th>
+        </tr>
+
+        {% for troca in trocas %}
+            <tr>
+                <td>{{ troca.interessado_pt_gr }} {{ troca.re_troca }} {{ troca.interessado_guerra }}</td>
+                <td>{{ troca.data_servico|date('d/m/Y') }}</td>
+                <td>{{ troca.compensacao_pt_gr }} {{ troca.re_compensa }} {{ troca.compensacao_guerra }}</td>
+                <td>{{ troca.data_compensacao|date('d/m/Y') }}</td>
+                <td>{{ troca.observacao }}</td>
+                <td>{{ troca.criado_em|date("d/m/Y H:i:s") }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    
+
+</section>
+
+

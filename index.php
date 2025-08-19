@@ -11,11 +11,13 @@
     require_once 'app/Controller/EfetivoController.php';
     require_once 'app/Controller/EscalaController.php';
     require_once 'app/Controller/AfastamentosController.php';
+    require_once 'app/controller/TrocaController.php';
 
 
     require_once 'app/Model/Efetivo.php';
     require_once 'app/Model/Afastamentos.php';
     require_once 'app/Model/Dejem.php';
+    require_once 'app/Model/Troca.php';
 
 
     require_once 'vendor/autoload.php';
