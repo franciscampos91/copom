@@ -86,7 +86,8 @@ class Policial
     public static function buscaPMporCPF($cpf)
     {
 
-        $pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
+        //$pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
+        $pmUrl = "http://webservices.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
         $soapOptions = array('trace' => 1);
         $pm = new \SoapClient($pmUrl,$soapOptions);
 
@@ -101,7 +102,8 @@ class Policial
     public static function buscaPMporRE($re)
     {
 
-        $pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
+        //$pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
+        $pmUrl = "http://webservices.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
         $soapOptions = array('trace' => 1);
         $pm = new \SoapClient($pmUrl,$soapOptions);
 
@@ -115,7 +117,8 @@ class Policial
 
     public static function procuraFoto($re)
     {
-        $pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
+        //$pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
+        $pmUrl = "http://webservices.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
         $soapOptions = array('trace' => 1);
         $pm = new \SoapClient($pmUrl,$soapOptions);
 

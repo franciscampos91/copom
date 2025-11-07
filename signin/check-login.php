@@ -33,7 +33,8 @@ class Check_login
 
         $msSis = "PROTOCOLO";
         $msSubSis = "PROTOCOLO";
-        $wsUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/MS/aws_permxml.aspx?WSDL";
+        //$wsUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/MS/aws_permxml.aspx?WSDL";
+        $wsUrl = "http://sistemasadmin.intranet.policiamilitar.sp.gov.br/MS/aws_permxml.aspx?WSDL";
 
         $soapOptions = array('trace' => 1);
         $soapParams  = array('Sisnomsis' 		=> $msSis,

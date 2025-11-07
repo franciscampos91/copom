@@ -789,6 +789,26 @@ aside.recolhido .menu__lateral>a>li:hover .label__menu {
 }
 
 
+.container__card_pm {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "foto dados" "select select";
+  gap: 15px;
+}
+
+.card_pm__foto {
+  grid-area: foto;
+}
+
+.card_pm__dados {
+  grid-area: dados;
+}
+
+.card_pm__select  {
+  grid-area: select;
+}
+
 /** bootstrap */
 .form-label {
   margin-bottom: 0.1rem !important;

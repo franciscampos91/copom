@@ -295,5 +295,22 @@ class EfetivoController
     }
 
 
+    public function editarPMQuadro()
+    {
+        if (Efetivo::editarPMQuadro($_POST)) {
+            $_SESSION['msg'] = "success";
+            $_SESSION['msgText'] = "Alterado com sucesso.";  
+        } else {
+            // Falha - redirecionar ou retornar erro
+            echo "Erro ao atualizar o efetivo.";
+            $_SESSION['msg'] = "error";
+            $_SESSION['msgText'] = "Erro ao atualizar.";
+        }
+
+        header('location: ?pagina=efetivo&metodo=quadroEfetivo');
+        exit;
+    }
+
+
 
 }

@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="re" class="form-label">Policial</label>
-                    <select name="re" id="re" class="js-example-basic-single form-select" style="width: 100%;" required>
+                    <select name="re" id="re" class="js-example-basic-single" style="width: 100%;" required>
                         <option value="">Selecione...</option>
                         {% for pm in efetivo %}
                             <option value="{{pm.re}}">{{ pm.pt_gr }} {{ pm.guerra }}</option>
@@ -120,13 +120,32 @@
 </section>
 
 <script>
-    // In your Javascript (external .js resource or <script> tag)
-    $(document).ready(function() {
 
-
-
-        $('.js-example-basic-single').select2({
+   /* $(document).ready(function() {
+        $('#re').select2({
                 dropdownParent: $("#modalNovoAfastamento")
         });
+    });*/
+
+    // 1. Garante que o Select2 só inicialize quando o modal for exibido.
+    // Isso evita problemas de posicionamento e garante que o Select2 veja o elemento.
+    $('#modalNovoAfastamento').on('shown.bs.modal', function () {
+        
+        // 2. Inicializa o Select2 no campo com id="re"
+        $('.js-example-basic-single').select2({
+            
+            // 3. Essencial para que o dropdown apareça corretamente DENTRO do modal
+            dropdownParent: $('#modalNovoAfastamento'),
+
+            // 4. Opcional: Garante que a caixa de busca sempre apareça, 
+            // mesmo que haja poucas opções
+            minimumResultsForSearch: 0 
+        });
+        
+        // 5. Opcional: Foca no campo de busca para começar a digitar imediatamente
+        // (Isso requer um passo extra de encontrar o elemento gerado pelo select2)
+        // $('#re').select2('open'); 
+        
     });
+
 </script>

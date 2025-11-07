@@ -14,7 +14,7 @@ abstract class Connection
             try {
                 // Cria uma nova conexão PDO com o banco de dados MySQL
                 self::$conn = new PDO(
-                    'mysql:host=10.36.177.137;dbname=copom;charset=utf8mb4', 
+                    'mysql:host=10.36.177.136;dbname=copom;charset=utf8mb4', 
                     'policial', 
                     'cpi7@cpi7'
                 );

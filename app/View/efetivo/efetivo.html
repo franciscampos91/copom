@@ -158,18 +158,6 @@
 
         <div class="dashboard__card">
             <div class="dashboard__num">
-                {{ dashboard_efetivo.efetivo_agregado }}
-            </div>
-            <div class="dashboard__ico">
-              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" width="26" viewBox="0 0 512 512"><path d="M376 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M288 304c-87 0-175.3 48-191.64 138.6-2 10.92 4.21 21.4 15.65 21.4H464c11.44 0 17.62-10.48 15.65-21.4C463.3 352 375 304 288 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M144 232H32"/></svg>
-            </div>
-            <div class="dashboard__label">
-                Agregados
-            </div>
-        </div>
-
-        <div class="dashboard__card">
-            <div class="dashboard__num">
                 {{ dashboard_efetivo.chefe }}
             </div>
             <div class="dashboard__ico">
@@ -228,9 +216,35 @@
             </div>
         </div>
 
+        <div class="dashboard__card" style="border: 1px solid #FF596D">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.inativando }}
+            </div>
+            <div class="dashboard__ico">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512" width="28"><path d="M320 176v-40a40 40 0 00-40-40H88a40 40 0 00-40 40v240a40 40 0 0040 40h192a40 40 0 0040-40v-40M384 176l80 80-80 80M191 256h273" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Inativando
+            </div>
+        </div>
+
+
+        <div class="dashboard__card" style="border: 1px solid #FF596D">
+            <div class="dashboard__num">
+                {{ dashboard_efetivo.efetivo_agregado }}
+            </div>
+            <div class="dashboard__ico">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" width="26" viewBox="0 0 512 512"><path d="M376 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M288 304c-87 0-175.3 48-191.64 138.6-2 10.92 4.21 21.4 15.65 21.4H464c11.44 0 17.62-10.48 15.65-21.4C463.3 352 375 304 288 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M144 232H32"/></svg>
+            </div>
+            <div class="dashboard__label">
+                Agregados
+            </div>
+        </div>
+
+
 
         
-        <div class="dashboard__card">
+        <div class="dashboard__card" hidden>
             <div class="dashboard__num">
                 {{ dashboard_efetivo.sem_funcao }}
             </div>
@@ -276,7 +290,7 @@
                     </td>
 
                     <td class="td__row_2">
-                        <div>{{ policial.guerra }}</div>
+                        <div> {{ policial.guerra }}</div>
                         <div>{{ policial.pt_gr }} {{ policial.re }}-{{ policial.dg_re }}</div>   
                     </td>
 

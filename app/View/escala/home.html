@@ -121,10 +121,6 @@
 }   
 
 
-.dejem_periodo_hora {
-    
-}
-
 
 .dejem_container {
     display: flex;
@@ -143,6 +139,9 @@
     background-color: #eee;
     padding: 1px 6px;
     font-size: 13px; 
+    display: flex;
+    gap: 2px;
+
 }
 
 .dejem_periodo_hora.preenchida {
@@ -167,11 +166,37 @@
     border-radius: 7px 0 0 7px;
 }
 
+.preenchido_primeiro .bi {
+    border-radius: 100%;
+    padding: 1px;
+    display: flex;
+    width: 18px;
+    height: 18px;
+    justify-content: center;
+    align-items: center;
+}
+
 .preenchido_ultimo {
     border-radius: 0 7px 7px 0;
 }
 
+.span__afastamento {
+    background-color: #383535;
+    border-radius: 2px;
+    padding: 0px 2px;
+    margin-right: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    /* From https://css.glass */
+    background: rgba(254, 244, 244, 0.39);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.6px);
+    -webkit-backdrop-filter: blur(3.6px);
+    border: 1px solid rgba(254, 244, 244, 0.07);
 
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+
+}
 
 
 </style>
@@ -234,8 +259,12 @@ function diaAnterior() {
 
 function diaSeguinte() {
     let data = urlParams.get('data'); // Obtém a data da URL
+    if (data === null) {
+        data = document.getElementById('data').value;
+    }
     let dataObj = new Date(data); // Converte a data para um objeto Date
     dataObj.setDate(dataObj.getDate() + 1); // Adiciona um dia à data
+
 
     let novaData = dataObj.toISOString().split('T')[0]; // Converte de volta para o formato YYYY-MM-DD
     location.href = '?pagina=escala&data=' + novaData; // Atualiza a URL com a nova data
@@ -336,108 +365,6 @@ function diaSeguinte() {
         <div class="dia dejem_dia">
             <h5>DEJEM</h5>
 
-            <!--<div class="dejem_container">
-                {% for dejem in dejem_diurna %}
-                    {% if dejem.cbsd|default(0) > 0 %}
-                        <div class="dejem_periodo">
-                            {% set inicioHora = dejem.dejem_data|date("G") %}
-                            {% set terminoHora = dejem.dejem_termino|date("G") %}
-                            
-                            {# Ajusta limites para o período 6h–18h #}
-                            {% if inicioHora < 6 %}
-                                {% set inicioHora = 6 %}
-                            {% endif %}
-                            {% if terminoHora > 18 %}
-                                {% set terminoHora = 18 %}
-                            {% endif %}
-                            
-                            {% for hora in 6..17 %}
-                                {% if hora >= inicioHora and hora < terminoHora %}
-                                    <div class="dejem_periodo_hora preenchida"></div>
-                                {% else %}
-                                    <div class="dejem_periodo_hora"></div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div> -->
-
-
-           <!-- <div class="dejem_container">
-                {% for dejem in dejem_diurna %}
-
-                    
-                    {% if dejem.cbsd|default(0) > 0 %}
-
-                        {% set cbsd = dejem.cbsd %}
-
-                        {% for i in 1..dejem.cbsd %}
-                           
-                            <div class="dejem_periodo">
-                                {% set inicioHora = dejem.dejem_data|date("G") %}
-                                {% set terminoHora = dejem.dejem_termino|date("G") %}
-                                
-                                {# Ajusta limites para o período 6h–18h #}
-                                {% if inicioHora < 6 %}
-                                    {% set inicioHora = 6 %}
-                                {% endif %}
-                                {% if terminoHora > 18 %}
-                                    {% set terminoHora = 18 %}
-                                {% endif %}
-                                
-                                {% for hora in 6..17 %}
-                                    {% if hora >= inicioHora and hora < terminoHora %}
-                                        <div class="dejem_periodo_hora preenchida"></div>
-                                    {% else %}
-                                        <div class="dejem_periodo_hora"></div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-
-
-
-                        {% endfor %}
-
-                    {% endif %}
-
-                    {% if dejem.sgt|default(0) > 0 %}
-
-                        {% set sgt = dejem.sgt %}
-
-                        {% for i in 1..dejem.sgt %}
-                           
-                            <div class="dejem_periodo">
-                                {% set inicioHora = dejem.dejem_data|date("G") %}
-                                {% set terminoHora = dejem.dejem_termino|date("G") %}
-                                
-                                {# Ajusta limites para o período 6h–18h #}
-                                {% if inicioHora < 6 %}
-                                    {% set inicioHora = 6 %}
-                                {% endif %}
-                                {% if terminoHora > 18 %}
-                                    {% set terminoHora = 18 %}
-                                {% endif %}
-                                
-                                {% for hora in 6..17 %}
-                                    {% if hora >= inicioHora and hora < terminoHora %}
-                                        <div class="dejem_periodo_hora preenchida preenchida_sgt"></div>
-                                    {% else %}
-                                        <div class="dejem_periodo_hora"></div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-
-
-
-                        {% endfor %}
-
-                    {% endif %}
-
-
-                {% endfor %}
-            </div> -->
-
             <div class="dejem_container">
                 {% for dejem in dejem_diurna %}
 
@@ -465,9 +392,13 @@ function diaSeguinte() {
 
                                     {% if hora >= inicioHora and hora < terminoHora %}
 
+                                    <a href="http://sistemasadmin.intranet.policiamilitar.sp.gov.br/Escala/arrelpreesc.aspx?{{ dejem.dejem_id_escala }}" target="_blank">
+
+
                                         {% if hora == 6 or hora == inicioHora %}
                                             <div class="dejem_periodo_hora preenchido_cbsd preenchido_primeiro">
-                                                <span>{{ dejem.dejem_data|date("G:i") }}h</span>
+                                                <i class="bi bi-headset"></i>
+                                                <span>{{ dejem.dejem_data|date("G:i") }}h</span>                                               
                                             </div>
                                         {% elseif hora == 17 or hora == terminoHora - 1 %}
                                             <div class="dejem_periodo_hora preenchido_cbsd preenchido_ultimo"></div>
@@ -479,6 +410,7 @@ function diaSeguinte() {
                                         <div class="dejem_periodo_hora"></div>
                                     {% endif %}
 
+                                    </a>
 
                                 {% endfor %}
    
@@ -510,8 +442,16 @@ function diaSeguinte() {
 
                                     {% if hora >= inicioHora and hora < terminoHora %}
 
+                                        <a href="http://sistemasadmin.intranet.policiamilitar.sp.gov.br/Escala/arrelpreesc.aspx?{{ dejem.dejem_id_escala }}" target="_blank">
+
+
                                         {% if hora == 6 or hora == inicioHora %}
                                             <div class="dejem_periodo_hora preenchido_sgt preenchido_primeiro">
+                                                {% if dejem.tipo == 'Supervisão' %}
+                                                    <i class="bi bi-pc-display-horizontal"></i>
+                                                {% else %}
+                                                    <i class="bi bi-headset"></i>
+                                                {% endif %}
                                                 <span>{{ dejem.dejem_data|date("G:i") }}h</span>
                                             </div>
                                         {% elseif hora == 17 or hora == terminoHora - 1 %}
@@ -519,6 +459,8 @@ function diaSeguinte() {
                                         {% else %}
                                             <div class="dejem_periodo_hora preenchido_sgt"></div>
                                         {% endif %}
+
+                                        </a>
 
                                     {% else %}
                                         <div class="dejem_periodo_hora"></div>
@@ -555,8 +497,11 @@ function diaSeguinte() {
 
                                     {% if hora >= inicioHora and hora < terminoHora %}
 
+                                        <a href="http://sistemasadmin.intranet.policiamilitar.sp.gov.br/Escala/arrelpreesc.aspx?{{ dejem.dejem_id_escala }}" target="_blank">
+                                        
                                         {% if hora == 6 or hora == inicioHora %}
                                             <div class="dejem_periodo_hora preenchido_oficial preenchido_primeiro">
+                                                <i class="bi bi-star"></i>
                                                 <span>{{ dejem.dejem_data|date("G:i") }}h</span>
                                             </div>
                                         {% elseif hora == 17 or hora == terminoHora - 1 %}
@@ -564,6 +509,8 @@ function diaSeguinte() {
                                         {% else %}
                                             <div class="dejem_periodo_hora preenchido_oficial"></div>
                                         {% endif %}
+
+                                        </a>
 
                                     {% else %}
                                         <div class="dejem_periodo_hora"></div>
@@ -602,8 +549,12 @@ function diaSeguinte() {
 
                                     {% if hora >= inicioHora and hora < terminoHora %}
 
+                                        <a href="http://sistemasadmin.intranet.policiamilitar.sp.gov.br/Escala/arrelpreesc.aspx?{{ dejem.dejem_id_escala }}" target="_blank">
+
+
                                         {% if hora == 6 or hora == inicioHora %}
                                             <div class="dejem_periodo_hora preenchido_oficial preenchido_primeiro">
+                                                <i class="bi bi-star"></i>
                                                 <span>{{ dejem.dejem_data|date("G:i") }}h</span>
                                             </div>
                                         {% elseif hora == 17 or hora == terminoHora - 1 %}
@@ -611,6 +562,8 @@ function diaSeguinte() {
                                         {% else %}
                                             <div class="dejem_periodo_hora preenchido_oficial"></div>
                                         {% endif %}
+
+                                        </a>
 
                                     {% else %}
                                         <div class="dejem_periodo_hora"></div>
@@ -658,7 +611,7 @@ function diaSeguinte() {
                             {% set inicioHora = dejem.dejem_data|date("G") %}
                             {% set terminoHora = dejem.dejem_termino|date("G") %}
 
-                                {# Para ajustar o horário, sequencia de 18 a 29 #}
+                                {# Para ajustar o horário, sequencia de 18 a 30 #}
 
                                 {% if inicioHora == 0 %}
                                     {% set inicioHora = 24 %}
@@ -687,6 +640,8 @@ function diaSeguinte() {
                                     {% set terminoHora = 28 %}
                                 {% elseif terminoHora == 5 %}
                                     {% set terminoHora = 29 %}
+                                {% elseif terminoHora == 6 %}
+                                    {% set terminoHora = 30 %}
                                 {% endif %}
 
 
@@ -694,19 +649,22 @@ function diaSeguinte() {
                                 {% if inicioHora < 18 %}
                                     {% set inicioHora = 18 %}
                                 {% endif %}
-                                {% if terminoHora > 29  %}
-                                    {% set terminoHora = 29 %}
+                                {% if terminoHora > 30  %}
+                                    {% set terminoHora = 30 %}
                                 {% endif %}
 
                                 {% for hora in 18..29 %}
 
                                     {% if hora >= inicioHora and hora < terminoHora %}
 
+                                    <a href="http://sistemasadmin.intranet.policiamilitar.sp.gov.br/Escala/arrelpreesc.aspx?{{ dejem.dejem_id_escala }}" target="_blank">
+
                                         {% if hora == 18 or hora == inicioHora %}
                                             <div class="dejem_periodo_hora preenchido_cbsd preenchido_primeiro">
+                                                <i class="bi bi-headset"></i>
                                                 <span>{{ dejem.dejem_data|date("G:i") }}h</span>
                                             </div>
-                                        {% elseif hora == 29 or hora == terminoHora - 1 %}
+                                        {% elseif hora == 30 or hora == terminoHora - 1 %}
                                             <div class="dejem_periodo_hora preenchido_cbsd preenchido_ultimo"></div>
                                         {% else %}
                                             <div class="dejem_periodo_hora preenchido_cbsd"></div>
@@ -716,6 +674,7 @@ function diaSeguinte() {
                                         <div class="dejem_periodo_hora"></div>
                                     {% endif %}
 
+                                    </a>
 
                                 {% endfor %}
 
@@ -738,7 +697,7 @@ function diaSeguinte() {
                             {% set inicioHora = dejem.dejem_data|date("G") %}
                             {% set terminoHora = dejem.dejem_termino|date("G") %}
 
-                                {# Para ajustar o horário, sequencia de 18 a 29 #}
+                                {# Para ajustar o horário, sequencia de 18 a 30 #}
 
                                 {% if inicioHora == 0 %}
                                     {% set inicioHora = 24 %}
@@ -752,6 +711,8 @@ function diaSeguinte() {
                                     {% set inicioHora = 28 %}
                                 {% elseif inicioHora == 5 %}
                                     {% set inicioHora = 29 %}
+                                {% elseif inicioHora == 6 %}
+                                    {% set inicioHora = 30 %}
                                 {% endif %}
 
 
@@ -767,6 +728,8 @@ function diaSeguinte() {
                                     {% set terminoHora = 28 %}
                                 {% elseif terminoHora == 5 %}
                                     {% set terminoHora = 29 %}
+                                {% elseif inicioHora == 6 %}
+                                    {% set inicioHora = 30 %}
                                 {% endif %}
 
 
@@ -774,28 +737,35 @@ function diaSeguinte() {
                                 {% if inicioHora < 18 %}
                                     {% set inicioHora = 18 %}
                                 {% endif %}
-                                {% if terminoHora > 29  %}
-                                    {% set terminoHora = 29 %}
+                                {% if terminoHora > 30  %}
+                                    {% set terminoHora = 30 %}
                                 {% endif %}
 
                                 {% for hora in 18..29 %}
 
                                     {% if hora >= inicioHora and hora < terminoHora %}
 
+                                    <a href="http://sistemasadmin.intranet.policiamilitar.sp.gov.br/Escala/arrelpreesc.aspx?{{ dejem.dejem_id_escala }}" target="_blank">
                                         {% if hora == 18 or hora == inicioHora %}
                                             <div class="dejem_periodo_hora preenchido_sgt preenchido_primeiro">
+                                                {% if dejem.tipo == 'Supervisão' %}
+                                                    <i class="bi bi-pc-display-horizontal"></i>
+                                                {% else %}
+                                                    <i class="bi bi-headset"></i>
+                                                {% endif %}
                                                 <span>{{ dejem.dejem_data|date("G:i") }}h</span>
                                             </div>
-                                        {% elseif hora == 29 or hora == terminoHora - 1 %}
+                                            {% elseif hora == 29 or hora == terminoHora - 1 %}
                                             <div class="dejem_periodo_hora preenchido_sgt preenchido_ultimo"></div>
-                                        {% else %}
+                                            {% else %}
                                             <div class="dejem_periodo_hora preenchido_sgt"></div>
+                                            {% endif %}
+                                            
+                                            {% else %}
+                                            <div class="dejem_periodo_hora"></div>
                                         {% endif %}
-
-                                    {% else %}
-                                        <div class="dejem_periodo_hora"></div>
-                                    {% endif %}
-
+                                                
+                                    </a>
 
                                 {% endfor %}
 
@@ -830,6 +800,8 @@ function diaSeguinte() {
                                     {% set inicioHora = 28 %}
                                 {% elseif inicioHora == 5 %}
                                     {% set inicioHora = 29 %}
+                                {% elseif inicioHora == 6 %}
+                                    {% set inicioHora = 30 %}
                                 {% endif %}
 
 
@@ -845,6 +817,8 @@ function diaSeguinte() {
                                     {% set terminoHora = 28 %}
                                 {% elseif terminoHora == 5 %}
                                     {% set terminoHora = 29 %}
+                                {% elseif inicioHora == 6 %}
+                                    {% set inicioHora = 30 %}
                                 {% endif %}
 
 
@@ -852,16 +826,20 @@ function diaSeguinte() {
                                 {% if inicioHora < 18 %}
                                     {% set inicioHora = 18 %}
                                 {% endif %}
-                                {% if terminoHora > 29  %}
-                                    {% set terminoHora = 29 %}
+                                {% if terminoHora > 30  %}
+                                    {% set terminoHora = 30 %}
                                 {% endif %}
 
                                 {% for hora in 18..29 %}
 
                                     {% if hora >= inicioHora and hora < terminoHora %}
 
+                                    <a href="http://sistemasadmin.intranet.policiamilitar.sp.gov.br/Escala/arrelpreesc.aspx?{{ dejem.dejem_id_escala }}" target="_blank">
+
+
                                         {% if hora == 18 or hora == inicioHora %}
                                             <div class="dejem_periodo_hora preenchido_oficial preenchido_primeiro">
+                                                <i class="bi bi-star"></i>
                                                 <span>{{ dejem.dejem_data|date("G:i") }}h</span>
                                             </div>
                                         {% elseif hora == 29 or hora == terminoHora - 1 %}
@@ -871,9 +849,10 @@ function diaSeguinte() {
                                         {% endif %}
 
                                     {% else %}
-                                        <div class="dejem_periodo_hora"></div>
+                                        <div class="dejem_periodo_hora">ten</div>
                                     {% endif %}
 
+                                    </a>
 
                                 {% endfor %}
 
@@ -894,7 +873,7 @@ function diaSeguinte() {
                             {% set inicioHora = dejem.dejem_data|date("G") %}
                             {% set terminoHora = dejem.dejem_termino|date("G") %}
 
-                                {# Para ajustar o horário, sequencia de 18 a 29 #}
+                                {# Para ajustar o horário, sequencia de 18 a 30 #}
 
                                 {% if inicioHora == 0 %}
                                     {% set inicioHora = 24 %}
@@ -908,6 +887,8 @@ function diaSeguinte() {
                                     {% set inicioHora = 28 %}
                                 {% elseif inicioHora == 5 %}
                                     {% set inicioHora = 29 %}
+                                {% elseif inicioHora == 6 %}
+                                    {% set inicioHora = 30 %}
                                 {% endif %}
 
 
@@ -923,6 +904,8 @@ function diaSeguinte() {
                                     {% set terminoHora = 28 %}
                                 {% elseif terminoHora == 5 %}
                                     {% set terminoHora = 29 %}
+                                {% elseif inicioHora == 6 %}
+                                    {% set inicioHora = 30 %}
                                 {% endif %}
 
 
@@ -930,16 +913,20 @@ function diaSeguinte() {
                                 {% if inicioHora < 18 %}
                                     {% set inicioHora = 18 %}
                                 {% endif %}
-                                {% if terminoHora > 29  %}
-                                    {% set terminoHora = 29 %}
+                                {% if terminoHora > 30  %}
+                                    {% set terminoHora = 30 %}
                                 {% endif %}
 
                                 {% for hora in 18..29 %}
 
                                     {% if hora >= inicioHora and hora < terminoHora %}
 
+                                    <a href="http://sistemasadmin.intranet.policiamilitar.sp.gov.br/Escala/arrelpreesc.aspx?{{ dejem.dejem_id_escala }}" target="_blank">
+
+
                                         {% if hora == 18 or hora == inicioHora %}
                                             <div class="dejem_periodo_hora preenchido_oficial preenchido_primeiro">
+                                                <i class="bi bi-star"></i>
                                                 <span>{{ dejem.dejem_data|date("G:i") }}h</span>
                                             </div>
                                         {% elseif hora == 29 or hora == terminoHora - 1 %}
@@ -948,8 +935,10 @@ function diaSeguinte() {
                                             <div class="dejem_periodo_hora preenchido_oficial"></div>
                                         {% endif %}
 
+                                    </a>
+
                                     {% else %}
-                                        <div class="dejem_periodo_hora"></div>
+                                        <div class="dejem_periodo_hora">cap</div>
                                     {% endif %}
 
 
@@ -981,7 +970,7 @@ function diaSeguinte() {
                 <h5>Afastamentos</h5>
                 {% for afast in dados['Afastamentos'] %}
                 <p class="bg_equipe{{ afast.equipe }}">
-                    [{{ afast.afastamento }}] {{ afast.pt_gr }} {{ afast.re }}-{{ afast.dg_re }} {{ afast.guerra }}
+                    <span class="span__afastamento"> {{ afast.alias_afastamento }} </span> {{ afast.pt_gr }} {{ afast.re }}-{{ afast.dg_re }} {{ afast.guerra }}
                 </p>
                 {% endfor %}
             </div>
@@ -993,7 +982,7 @@ function diaSeguinte() {
                 <h5>Afastamentos</h5>
                 {% for afast in dados['Afastamentos'] %}
                 <p class="bg_equipe{{ afast.equipe }}">
-                    [{{ afast.alias_afastamento }}] {{ afast.pt_gr }} {{ afast.re }}-{{ afast.dg_re }} {{ afast.guerra }}
+                    <span class="span__afastamento"> {{ afast.alias_afastamento }} </span> {{ afast.pt_gr }} {{ afast.re }}-{{ afast.dg_re }} {{ afast.guerra }}
                 </p>
                 {% endfor %}
         </div>

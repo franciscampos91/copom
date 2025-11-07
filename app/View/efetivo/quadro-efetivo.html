@@ -174,7 +174,7 @@
 
                         <div class="secao__card_pm" style="display: flex; justify-content: center;">         
                  
-                                <div class="card__pm bg__equipe_{{ chefe.equipe }}" onclick="visualizarPM({{ chefe.re }})">
+                                <div class="card__pm bg__equipe_{{ chefe.equipe }}" onclick="visualizarPM({{ chefe.re }})"  data-bs-toggle="modal" data-bs-target="#modalEdital">
             
                                     <div class="card_pm__foto">
                                         <img src="public/assets/foto-efetivo/{{ chefe.re }}.png" alt="">
@@ -219,26 +219,31 @@
                         
                         <p>Supervisor</p>
 
-                        {% for supervisor in dados['Supervisor'] %}
+                            <div class="secao__funcao">
 
-                            <div class="card__pm bg__equipe_{{ supervisor.equipe }}" onclick="visualizarPM({{ supervisor.re }})">
 
-                                <div class="card_pm__foto">
-                                    <img src="public/assets/foto-efetivo/{{ supervisor.re }}.png" alt="">
+                            {% for supervisor in dados['Supervisor'] %}
+
+                                <div class="card__pm bg__equipe_{{ supervisor.equipe }}" onclick="visualizarPM({{ supervisor.re }})"  data-bs-toggle="modal" data-bs-target="#modalEdital">
+
+                                    <div class="card_pm__foto">
+                                        <img src="public/assets/foto-efetivo/{{ supervisor.re }}.png" alt="">
+                                    </div>
+
+                                    <div class="card_pm__guerra">
+                                        {{ supervisor.guerra }}
+                                    </div>
+
+                                    <div class="card_pm__ptgr">
+                                        {{ supervisor.pt_gr }} 
+                                        <br> {{ supervisor.re }}-{{ supervisor.dg_re }}              
+                                    </div>
+
                                 </div>
 
-                                <div class="card_pm__guerra">
-                                    {{ supervisor.guerra }}
-                                </div>
-
-                                <div class="card_pm__ptgr">
-                                    {{ supervisor.pt_gr }} 
-                                    <br> {{ supervisor.re }}-{{ supervisor.dg_re }}              
-                                </div>
+                            {% endfor %}
 
                             </div>
-
-                        {% endfor %}
 
 
                     </div>
@@ -249,7 +254,7 @@
 
                         <div class="secao__funcao">
                             {% for atendente in dados['Atendente 190'] %}
-                                <div class="card__pm bg__equipe_{{ atendente.equipe }}" onclick="visualizarPM({{ atendente.re }})">
+                                <div class="card__pm bg__equipe_{{ atendente.equipe }}" onclick="visualizarPM({{ atendente.re }})"  data-bs-toggle="modal" data-bs-target="#modalEdital">
 
                                     <div class="card_pm__foto">
                                         <img src="public/assets/foto-efetivo/{{ atendente.re }}.png" alt="">
@@ -279,7 +284,7 @@
                         <div class="secao__funcao">
                             {% for despachador in dados['Despachador'] %}
     
-                                <div class="card__pm bg__equipe_{{ despachador.equipe }}" onclick="visualizarPM({{ despachador.re }})">
+                                <div class="card__pm bg__equipe_{{ despachador.equipe }}" onclick="visualizarPM({{ despachador.re }})"  data-bs-toggle="modal" data-bs-target="#modalEdital">
     
                                     <div class="card_pm__foto">
                                         <img src="public/assets/foto-efetivo/{{ despachador.re }}.png" alt="">
@@ -309,7 +314,7 @@
                         <div class="secao__funcao">
                             {% for afastamentos in dados['Afastamentos'] %}
     
-                                <div class="card__pm bg__equipe_{{ afastamentos.equipe }}" onclick="visualizarPM({{ afastamentos.re }})">
+                                <div class="card__pm bg__equipe_{{ afastamentos.equipe }}" onclick="visualizarPM({{ afastamentos.re }})"  data-bs-toggle="modal" data-bs-target="#modalEdital">
     
                                     <div class="card_pm__foto">
                                         <img src="public/assets/foto-efetivo/{{ afastamentos.re }}.png" alt="">
@@ -355,7 +360,7 @@
     
                         {% if policial.situacao == 'Ativo' %}
         
-                        <div class="card__pm bg__equipe_{{ policial.equipe }}" onclick="visualizarPM({{ policial.re }})">
+                        <div class="card__pm bg__equipe_{{ policial.equipe }}" onclick="visualizarPM({{ policial.re }})"  data-bs-toggle="modal" data-bs-target="#modalEdital">
     
                             <div class="card_pm__foto">
                                 <img src="public/assets/foto-efetivo/{{ policial.re }}.png" alt="">
@@ -393,7 +398,7 @@
     
                         {% if policial.situacao == 'Agregado' %}
         
-                        <div class="card__pm bg__equipe_{{ policial.equipe }}" onclick="visualizarPM({{ policial.re }})">
+                        <div class="card__pm bg__equipe_{{ policial.equipe }}" onclick="visualizarPM({{ policial.re }})"  data-bs-toggle="modal" data-bs-target="#modalEdital">
     
                             <div class="card_pm__foto">
                                 <img src="public/assets/foto-efetivo/{{ policial.re }}.png" alt="">
@@ -431,7 +436,7 @@
     
                         {% if policial.situacao == 'Inativando' %}
         
-                        <div class="card__pm bg__equipe_{{ policial.equipe }}" onclick="visualizarPM({{ policial.re }})">
+                        <div class="card__pm bg__equipe_{{ policial.equipe }}" onclick="visualizarPM({{ policial.re }})"  data-bs-toggle="modal" data-bs-target="#modalEdital">
     
                             <div class="card_pm__foto">
                                 <img src="public/assets/foto-efetivo/{{ policial.re }}.png" alt="">
@@ -459,15 +464,139 @@
 
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="modalEdital" tabindex="-1" aria-labelledby="modalEditalLabel" aria-hidden="true">
+    <form class="modal-dialog" method="post" action="?pagina=efetivo&metodo=editarPMQuadro">
+        <div class="modal-content">
+        <div class="modal-header" id="modal-header-editar">
+            <h1 class="modal-title fs-5" id="modalEditalLabel">COPOM - Efetivo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body-editar">
+            
+            <div class="container__card_pm">
+
+                <div class="card_pm__foto">
+                    <img src="public/assets/foto-efetivo/ {{re}} .png" id="card-foto" height="70px" alt="">
+                </div>
+
+                <div class="card_pm__dados">
+
+                    <div class="row" hidden>
+                        <label for="">ID</label>
+                        <input type="text" class="form-control" name="idEfetivo" id="card-id">
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <h5 id="card-nome">Francis Campos</h5>
+                        </div>
+
+                        <div class="col-md-12">
+                            <span id="card-ptgr">2. Sgt PM</span> <span id="card-re">144795-5</span>
+                        </div>                        
+
+                    </div>
+
+                </div>
+
+                <div class="card_pm__select row">
+                    <div class="col-md-3">
+                        <label for="">Equipe</label>
+                        <select class="form-select" name="equipe" id="card-equipe">
+                            <option value="">Selecione...</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="Adm">Adm</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="">Função</label>
+                        <select class="form-select" name="funcao" id="card-funcao">
+                            <option value="">Selecione...</option>
+                            <option value="Atendente 190">Atendente 190</option>
+                            <option value="Despachador">Despachador</option>
+                            <option value="Supervisor">Supervisor</option>
+                            <option value="Adm">Adm</option>
+                            <option value="Chefe">Chefe</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <label for="">Situação</label>
+                        <select class="form-select" name="situacao" id="card-situacao">
+                            <option value="">Selecione...</option>
+                            <option value="Ativo">Ativo</option>
+                            <option value="Agregado">Agregado</option>
+                            <option value="Inativo">Inativo</option>
+                            <option value="Inativando">Inativando</option>
+                            <option value="Transferido">Transferido</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="modal-footer" id="modal-footer-editar">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+        </div>
+    </form>
+    </div>
+
 </div>
 
 
 <script>
 
-        // Alterna a classe 'recolhido' no aside
-        document.querySelector('aside').classList.toggle('recolhido');
-        // Alterna a classe 'recolhido' no botão
-        document.querySelector('.recolhe__menu').classList.toggle('recolhido');
-        document.querySelector(".body__cpi").classList.toggle("recolhido");
+    // Alterna a classe 'recolhido' no aside
+    document.querySelector('aside').classList.toggle('recolhido');
+    // Alterna a classe 'recolhido' no botão
+    document.querySelector('.recolhe__menu').classList.toggle('recolhido');
+    document.querySelector(".body__cpi").classList.toggle("recolhido");
+
+
+    const efetivo = {{ efetivo|json_encode|raw }};
+
+
+    function visualizarPM(re)
+    {
+        const pm = efetivo.find(p => p.re == re);
+
+        // Preenche os campos do card
+        document.getElementById("card-nome").textContent = pm.nome || "";
+        document.getElementById("card-ptgr").textContent = pm.pt_gr || "";
+        document.getElementById("card-re").textContent = pm.re || "";
+        document.getElementById("card-id").value = pm.id_efetivo || "";
+
+
+        // Preenche selects
+        document.getElementById("card-equipe").value = pm.equipe || "";
+        document.getElementById("card-funcao").value = pm.funcao_copom || "";
+        document.getElementById("card-situacao").value = pm.situacao || "";
+
+        const foto = document.getElementById("card-foto");
+        foto.src = `public/assets/foto-efetivo/${pm.re}.png`;
+        foto.alt = `Foto de ${pm.nome}`;
+
+        document.getElementById("modal-footer-editar").classList.add(`bg__equipe_${pm.equipe}`);
+        document.getElementById("modal-header-editar").classList.add(`bg__equipe_${pm.equipe}`);
+        document.getElementById("modal-body-editar").classList.add(`bg__equipe_${pm.equipe}`);
+
+
+
+        
+    }
+
+
+
 
 </script>

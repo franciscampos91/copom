@@ -37,6 +37,8 @@ class PolicialController
 
             $policial = $this::buscaPM($_POST['re']);
 
+            echo json_encode($policial); exit;
+
             $conteudo = $template->render((array) $policial);
 
             echo $conteudo;
@@ -131,7 +133,8 @@ class PolicialController
     {
 
         // verificar se o serviço está disponível antes de prosseguir nas buscas
-        $pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL";
+        //$pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL";
+        $pmUrl = "http://webservices.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
         // Verifica se o serviço está disponível
         if (!self::isServiceAvailable($pmUrl)) {
 
@@ -156,7 +159,8 @@ class PolicialController
     public static function buscaPMporRE($re)
     {
 
-        $pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL";
+        //$pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL";
+        $pmUrl = "http://webservices.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
         $soapOptions = array('trace' => 1);
         $pm = new \SoapClient($pmUrl, $soapOptions);
 
@@ -170,7 +174,8 @@ class PolicialController
 
     public static function procuraFoto($re)
     {
-        $pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL";
+        //$pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL";
+        $pmUrl = "http://webservices.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
         $soapOptions = array('trace' => 1);
         $pm = new \SoapClient($pmUrl, $soapOptions);
 
@@ -329,7 +334,8 @@ class PolicialController
     public static function buscaMedalhas($cpf)
     {
 
-        $pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL";
+        //$pmUrl = "http://sistemas.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL";
+        $pmUrl = "http://webservices.intranet.policiamilitar.sp.gov.br/WSSCPM/Service.asmx?WSDL"; 
         // Verifica se o serviço está disponível
 
         $soapOptions = array('trace' => 1);

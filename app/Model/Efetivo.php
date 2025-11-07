@@ -181,9 +181,10 @@ class Efetivo
                     SUM(CASE WHEN funcao_copom = 'Adm' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS adm,
                     SUM(CASE WHEN funcao_copom = 'Chefe' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS chefe,
                     SUM(CASE WHEN funcao_copom = '' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS sem_funcao,
-                    SUM(CASE WHEN funcao_copom = 'Despachador' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS despachadores
+                    SUM(CASE WHEN funcao_copom = 'Despachador' AND situacao IN ('Ativo', 'Agregado') THEN 1 ELSE 0 END) AS despachadores,
+                    SUM(CASE WHEN situacao = 'Inativando' THEN 1 ELSE 0 END) AS inativando
                 FROM copom_efetivo
-                WHERE situacao IN ('Ativo', 'Agregado');";
+                WHERE situacao IN ('Ativo', 'Agregado', 'Inativando');";
 
         $stmt = $con->prepare($sql);
         $stmt->execute();
@@ -295,6 +296,24 @@ class Efetivo
     }
 
 
+    public static function editarPMQuadro($dados)
+    {
+        $con = Connection::getConn();
+
+        $sql = "UPDATE copom_efetivo 
+                SET equipe = :equipe, 
+                    funcao_copom = :funcao, 
+                    situacao = :situacao 
+                WHERE id_efetivo = :id";
+
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue(':equipe', $dados['equipe']);
+        $stmt->bindValue(':funcao', $dados['funcao']);
+        $stmt->bindValue(':situacao', $dados['situacao']);
+        $stmt->bindValue(':id', $dados['idEfetivo'], PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
 
 
 
