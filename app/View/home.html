@@ -1,27 +1,370 @@
+<style>
+
+  body {
+    background-color:  #F1F1F1 !important;
+  }
+
+.container__info {
+  width: 500px;
+  background-color: #FFF;
+  padding: 10px 15px;
+  border-radius: 7px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  font-size: 14px;
+}
+
+.container__info h2 {
+  font-size: 20px;
+}
+
+.container__aniversariante {
+}
+
+.foto__aniversario {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  margin-right: 10px;
+}
+
+.container__ferias {
+  width: 700px;
+}
+
+.dashboard_efetivo__card {
+  border: 1px solid red;
+  width: 150px;
+}
+
+.container__efetivo_ptgr {
+  display: flex;
+  flex-direction: column;
+  min-width: 700px;
+  padding: 15px;
+}
+
+.efetivo_ptgr__total {
+  display: flex;
+  gap: 20px;
+}
+
+.efetivo_ptgr__total .container__info {
+  width: 200px;
+}
+
+.container__info .card__num {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+
+.container__info .card__label {
+  color: #787878;
+}
+
+
+.container__info .card__funcoes {
+  display: grid;
+  grid-template-areas: "icon num" "icon label";
+
+}
+
+
+.container__info .card__funcoes .card__icon {
+  grid-area: icon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  margin-right: 8px;
+}
+
+
+.container__info .card__funcoes .card__num {
+  grid-area: num;
+  
+}
+
+
+
+.container__info .card__funcoes .card__label {
+  grid-area: label;
+  
+}
+
+
+
+</style>
+
 <section class="container__cpi">
 
+  <div class="container__info" style="width: 1000px;">
+
+    <div class="container__efetivo_ptgr">
+
+      <h2>Efetivo</h2>
+
+      <div class="efetivo_ptgr__total">
+
+        <div class="container__info">
+
+          <div class="card__num">
+            {{ efetivo['efetivo_cap'] }}
+          </div>
+          <div class="card__label">
+            Cap PM
+          </div>
+
+        </div>
+
+
+          <div class="container__info">
+
+          <div class="card__num">
+            {{ efetivo['efetivo_sgt'] }}
+          </div>
+          <div class="card__label">
+            Subten/Sgt PM
+          </div>
+
+        </div>
+
+        <div class="container__info">
+
+          <div class="card__num">
+            {{ efetivo['efetivo_cbsd'] }}
+          </div>
+          <div class="card__label">
+            Cb/Sd PM
+          </div>
+
+        </div>
+
+          <div class="container__info" style="background-color: #EFFAFC;">
+
+            <div class="card__num">
+              {{ efetivo['efetivo_total'] }}
+            </div>
+
+            <div class="card__label">
+              Efetivo total
+            </div>
+
+        </div>
+
+
+        
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="container__efetivo_ptgr">
+      <div class="efetivo_ptgr__total">
+
+        <div class="container__info card__funcoes">
+
+          <div class="card__icon">
+            <i class="bi bi-star"></i>
+          </div>
+
+          <div class="card__num">
+              {{ efetivo['chefe_total'] }}
+            </div>
+
+            <div class="card__label">
+              Chefe COPOM
+            </div>
+        </div>
+
+        <div class="container__info card__funcoes">
+
+          <div class="card__icon">
+            <i class="bi bi-window-stack"></i>
+          </div>
+
+          <div class="card__num">
+              {{ efetivo['adm_total'] }}
+            </div>
+
+            <div class="card__label">
+              Adm
+            </div>
+        </div>
+
+        <div class="container__info card__funcoes">
+
+          <div class="card__icon">
+            <i class="bi bi-pc-display-horizontal"></i>
+          </div>
+
+          <div class="card__num">
+              {{ efetivo['supervisor_total'] }}
+            </div>
+
+            <div class="card__label">
+              Supervisor
+            </div>
+        </div>
+
+
+        <div class="container__info card__funcoes">
+
+          <div class="card__icon">
+            <i class="bi bi-headset"></i>
+          </div>
+
+          <div class="card__num">
+              {{ efetivo['atendente_total'] }}
+            </div>
+
+            <div class="card__label">
+              Atendente 190
+            </div>
+        </div>
+
+
+        <div class="container__info card__funcoes">
+
+          <div class="card__icon">
+            <i class="bi bi-mic-fill"></i>
+          </div>
+
+          <div class="card__num">
+              {{ efetivo['despachador_total'] }}
+            </div>
+
+            <div class="card__label">
+              Despachador
+            </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+
+
+
+
+    <div class="container__efetivo_ptgr">
+      <div class="efetivo_ptgr__total">
+
+        <div class="container__info" style="background-color: #ffdede;">
+          <div class="card__num">
+              {{ efetivo['inativando_total'] }}
+            </div>
+
+            <div class="card__label">
+              Inativando
+            </div>
+        </div>
+
+        <div class="container__info" style="background-color: #ffdede;">
+          <div class="card__num">
+              {{ efetivo['agregado_total'] }}
+            </div>
+
+            <div class="card__label">
+              Agregado
+            </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+
+
+  <div class="container__de_servico">
+    De serviço
+  </div>
+
+
+
+  <div class="container__info container__aniversariante">
+
+    <h2>Aniversariantes do Mês</h2>
+
+    <table class="table table-bordered">
+
+      {% for policial in aniversariantes %}
+
+        <tr>
+          <td>{{ policial.data_nascimento|date('d') }}</td>
+          <td>
+            <img class="foto__aniversario" src="public/assets/foto-efetivo/{{ policial.re }}.png" alt="">
+            {{ policial.pt_gr }} {{ policial.nome }}
+          </td>
+        </tr>
+
+      {% endfor %}
+
+    </table>
+
+
+  </div>
+
+  <br><br>
+
+  <div class="container__info container__ferias">
+    <h2>Férias/LP</h2>
+    <table class="table table-bordered">
+      {% for policial in ferias %}
+
+        <tr>
+          <td>
+            <img class="foto__aniversario" src="public/assets/foto-efetivo/{{ policial.re }}.png" alt="">
+            {{ policial.pt_gr }} {{ policial.nome }}
+          </td>
+          <td>
+            {{ policial.afastamento }}
+          </td>
+          <td>
+            {{ policial.dias }}
+          </td>
+          <td>
+            {{ policial.inicio|date('d/m/Y') }}
+          </td>
+        </tr>
+
+      {% endfor %}
+    </table>
+  </div>
+  <br><br>
+
+    <div class="container__info container__ferias">
     
+    <h2>Inatividade</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+          <td>
+
+          </td>
+
+          <td>            
+          </td>
+          
+          <td>
+
+          </td>
+        </tr>
+
+    </table>
+  </div>
 
 </section>
-
-
-  
- 
-
-
-  <script>
-
-
-    function iniciarProva()
-    {   
-        var modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-        modal.show();
-    }
-
-
-    function confirmarInicio() {
-        location.href = "?pagina=prova";
-    }
-
-
-  </script>

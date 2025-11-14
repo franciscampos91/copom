@@ -10,7 +10,12 @@
                 $twig = new \Twig\Environment($loader);
                 $template = $twig->load('home.html');
 
-                $conteudo = $template->render();
+                $parametros = array();
+                $parametros['aniversariantes'] = Efetivo::aniversarianteMes();
+                $parametros['ferias']          = Efetivo::feriasMes();
+                $parametros['efetivo']         = Efetivo::efetivoTotal();
+
+                $conteudo = $template->render($parametros);
 
                 echo $conteudo;
 

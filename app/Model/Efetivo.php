@@ -316,6 +316,94 @@ class Efetivo
     }
 
 
+    public static function aniversarianteMes()
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT *
+                FROM copom_efetivo
+                WHERE MONTH(data_nascimento) = MONTH(CURDATE())
+                ORDER BY DAY(data_nascimento);
+                ";
+
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+
+    public static function feriasMes()
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT 
+                    e.re,
+                    e.nome,
+                    e.pt_gr,
+                    e.guerra,
+                    e.opm,
+                    e.codopm,
+                    t.afastamento,
+                    t.sigla_afastamento,
+                    a.inicio,
+                    a.termino,
+                    a.dias
+                FROM copom_afastamentos AS a
+                JOIN copom_efetivo AS e 
+                    ON a.re = e.re
+                JOIN copom_tipo_afastamento AS t 
+                    ON a.cod_afastamento = t.cod_afastamento
+                WHERE a.cod_afastamento IN ('1', '2')
+                AND MONTH(a.inicio) = MONTH(CURDATE())
+                AND YEAR(a.inicio) = YEAR(CURDATE())
+                ORDER BY a.inicio;";
+
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+
+    public static function efetivoTotal()
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT
+                    COUNT(CASE WHEN pt_gr IN ('CAP PM') THEN 1 ELSE NULL END) AS 'efetivo_cap',
+                    COUNT(CASE WHEN pt_gr IN ('SD PM - 2C', 'SD PM - 1C', 'CB PM') THEN 1 ELSE NULL END) AS 'efetivo_cbsd',
+                    COUNT(CASE WHEN pt_gr IN ('1. SGT PM', '2. SGT PM', '3. SGT PM', 'SUBTEN PM') THEN 1 ELSE NULL END) AS 'efetivo_sgt',
+                    COUNT(CASE WHEN situacao IN ('Inativando') THEN 1 ELSE NULL END) AS 'inativando_total',
+                    COUNT(CASE WHEN situacao IN ('Agregado') THEN 1 ELSE NULL END) AS 'agregado_total',
+                    COUNT(CASE WHEN funcao_copom IN ('Chefe') THEN 1 ELSE NULL END) AS 'chefe_total',
+                    COUNT(CASE WHEN funcao_copom IN ('Adm') AND situacao IN ('Ativo') THEN 1 ELSE NULL END) AS 'adm_total',
+                    COUNT(CASE WHEN funcao_copom IN ('Supervisor') AND situacao IN ('Ativo') THEN 1 ELSE NULL END) AS 'supervisor_total',
+                    COUNT(CASE WHEN funcao_copom IN ('Atendente 190')  AND situacao IN ('Ativo') THEN 1 ELSE NULL END) AS 'atendente_total',
+                    COUNT(CASE WHEN funcao_copom IN ('Despachador') AND situacao IN ('Ativo') THEN 1 ELSE NULL END) AS 'despachador_total',
+                    COUNT(*) AS 'efetivo_total'
+                FROM
+                    copom_efetivo;";
+
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
+    }
+
+
+    public static function inativando()
+    {
+        $con = Connection::getConn();
+        $sql = "SELECT * FROM copom_efetivo
+                WHERE situacao = 'Inativando'";
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+
 
 
 }
